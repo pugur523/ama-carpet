@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "ama-carpet",
+  "version": "${version}",
+  "name": "ama-carpet",
+  "description": "carpet addition made for Amateras SMP",
+  "authors": [
+    "pugur"
+  ],
+  "contact": {
+    "repo": "https://github.com/pugur523/ama-carpet"
+  },
+  "license": "MIT",
+  "icon": "assets/ama-carpet/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.amateras_smp.amacarpet.AmaCarpet"
+    ]
+  },
+  "mixins": [
+    "ama-carpet.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
