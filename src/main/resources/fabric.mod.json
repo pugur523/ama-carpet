@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "icon": "assets/ama-carpet/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "org.amateras_smp.amacarpet.AmaCarpet"
@@ -25,6 +25,7 @@
   "depends": {
     "fabricloader": ">=0.15.0",
     "fabric": "*",
+    "carpet": "*",
     "minecraft": "${minecraft_dependency}"
   }
 }

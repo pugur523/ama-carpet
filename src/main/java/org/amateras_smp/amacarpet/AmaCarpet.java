@@ -1,19 +1,28 @@
 package org.amateras_smp.amacarpet;
 
 import net.fabricmc.api.ModInitializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.fabricmc.loader.api.FabricLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class AmaCarpet implements CarpetExtension, ModInitializer {
+
+public class AmaCarpet implements ModInitializer {
 
     public static String MOD_NAME = "AmaCarpet";
     public static String MOD_ID = "ama-carpet";
-    public static String MOD_VERSION = "1.0.0";
+    public static String MOD_VERSION;
     public static Logger LOGGER;
 
     @Override
     public void onInitialize() {
-        LOGGER = LoggerFactory.getLogger(MOD_NAME);
+        MOD_VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+        LOGGER = LogManager.getLogger(MOD_NAME);
+        AmaCarpetServer.init();
         InitHandler.init();
+        LOGGER.info("AmaCarpet has initialized!");
+    }
+
+    public static String getVersion() {
+        return MOD_VERSION;
     }
 }

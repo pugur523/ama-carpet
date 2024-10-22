@@ -1,0 +1,26 @@
+package org.amateras_smp.amacarpet.mixins.chunk_tickets;
+
+import net.minecraft.server.world.ServerChunkManager;
+import net.minecraft.server.world.ServerWorld;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+
+@Mixin(ServerWorld.class)
+public abstract class MixinServerWorld {
+
+    @Unique
+    private final ServerChunkManager chunkManager;
+
+    protected MixinServerWorld(ServerChunkManager chunkManager) {
+        this.chunkManager = chunkManager;
+    }
+
+    @Inject(method = "save", at = @At("HEAD"))
+    private void savePortalTickets(CallbackInfo ci) {
+        this.chunkManager.threadedAnvilChunkStorage.getTicketManager().
+    }
+}
