@@ -38,6 +38,7 @@ dependencies {
 
     modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
 
+    modImplementation "maven.modrinth:carpet:${project.carpet_version}"
     // modImplementation "maven.modrinth:syncmatica:${project.syncmatica_version}"
 }
 

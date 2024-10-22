@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AmaCarpet implements ModInitializer {
+public class AmaCarpet implements CarpetExtension, ModInitializer {
 
     public static String MOD_NAME = "AmaCarpet";
     public static String MOD_ID = "ama-carpet";
