@@ -1,0 +1,10 @@
+{
+  "carpet.category.ama": "ama",
+
+  "carpet.rule.commandHopperLock.desc": "",
+  "carpet.rule.disableSoundEngine.desc": "",
+  "carpet.rule.serverContainerSync.desc": "",
+  "carpet.rule.reloadPortalTicket.desc": "",
+  "carpet.rule.endPortalChunkLoad.desc": "",
+  "carpet.rule.endGatewayChunkLoad.desc": ""
+}

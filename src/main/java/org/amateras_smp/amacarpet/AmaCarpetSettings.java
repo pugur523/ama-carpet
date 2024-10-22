@@ -1,16 +1,12 @@
 package org.amateras_smp.amacarpet;
 
-//#if MC >= 11900
 import carpet.api.settings.Rule;
 import static carpet.api.settings.RuleCategory.*;
-//#else
-//$$ import carpet.settings.Rule;
-//$$ import static carpet.settings.RuleCategory.*;
-//#endif
 
 public class AmaCarpetSettings {
     private static final String AMA = "AMA";
 
+    /*
     @Rule(
             //#if MC >= 11900
             categories = { AMA, CREATIVE, COMMAND}
@@ -20,6 +16,7 @@ public class AmaCarpetSettings {
             //#endif
     )
     public static String commandHopperLock = "ops";
+    */
 
     @Rule(
             //#if MC >= 11900

@@ -1,4 +1,15 @@
-net.minecraft.registry.Registries net.minecraft.util.registry.Registry
-
 net.fabricmc.fabric.api.client.command.v2.ClientCommandManager net.fabricmc.fabric.api.client.command.v1.ClientCommandManager
 net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource
+
+carpet.fakes.ServerPlayerInterface carpet.fakes.ServerPlayerEntityInterface
+carpet.api.settings.CarpetRule carpet.settings.ParsedRule
+carpet.api.settings.CarpetRule value() carpet.settings.ParsedRule get()
+carpet.settings.ParsedRule realValidators validators
+carpet.api.settings.RuleCategory carpet.settings.RuleCategory
+carpet.api.settings.SettingsManager carpet.settings.SettingsManager
+carpet.api.settings.Validator carpet.settings.Validator
+carpet.api.settings.Rule carpet.settings.Rule
+
+net.minecraft.text.MutableText net.minecraft.text.BaseText
+net.minecraft.registry.Registries net.minecraft.util.registry.Registry
+net.minecraft.world.dimension.DimensionType ultrawarm() isUltrawarm()
