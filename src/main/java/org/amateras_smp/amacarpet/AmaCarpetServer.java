@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
+import org.amateras_smp.amacarpet.commands.CommandTreeContext;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
 
@@ -75,11 +76,12 @@ public class AmaCarpetServer implements CarpetExtension {
                 //#endif
         );
         Lists.newArrayList(
-                HopperLockCommand.getInstance();
+                // HopperLockCommand.getInstance();
         ).forEach(command ->
                 command.registerCommand(context)
         );
-        */
+
+         */
     }
 
     //#if MC >= 11900

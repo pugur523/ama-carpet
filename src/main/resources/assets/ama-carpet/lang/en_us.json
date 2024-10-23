@@ -1,10 +1,10 @@
 {
   "carpet.category.ama": "ama",
 
-  "carpet.rule.commandHopperLock.desc": "",
-  "carpet.rule.disableSoundEngine.desc": "",
-  "carpet.rule.serverContainerSync.desc": "",
-  "carpet.rule.reloadPortalTicket.desc": "",
-  "carpet.rule.endPortalChunkLoad.desc": "",
-  "carpet.rule.endGatewayChunkLoad.desc": ""
+  "carpet.rule.hopperLock.desc": "locks all of the hoppers in the server",
+  "carpet.rule.disableSoundEngine.desc": "disabling server side sound engine",
+  "carpet.rule.serverContainerSync.desc": "sync block entity container contents in server",
+  "carpet.rule.reloadPortalTicket.desc": "reload nether portal tickets when server restarts",
+  "carpet.rule.endPortalChunkLoad.desc": "entities go through end portal will load 3x3 chunk",
+  "carpet.rule.endGatewayChunkLoad.desc": "entities go through end gateway portal will load 3x3 chunk"
 }
