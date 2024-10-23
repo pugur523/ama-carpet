@@ -4,7 +4,9 @@
   "package": "org.amateras_smp.amacarpet.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
-    "chunk_tickets.ChunkTicketManagerMixin"
+    "chunk_tickets.MixinChunkHolder",
+    "chunk_tickets.MixinChunkTicketManager",
+    "chunk_tickets.ThreadedAnvilChunkStorageAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
