@@ -3,7 +3,7 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
-  "description": "Carpet addition made for Amateras SMP",
+  "description": "A carpet addition made for Amateras SMP",
   "authors": [
     "pugur"
   ],
@@ -21,7 +21,8 @@
     ]
   },
   "mixins": [
-    "ama-carpet.mixins.json"
+    "ama-carpet.mixins.json",
+    "ama-carpet.client.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.15.0",

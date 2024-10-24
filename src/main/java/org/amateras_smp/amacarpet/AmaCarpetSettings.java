@@ -62,6 +62,18 @@ public class AmaCarpetSettings {
 
     @Rule(
             //#if MC >= 11900
+            categories = { AMA, SURVIVAL },
+            //#else
+            //$$ category = { AMA, SURVIVAL },
+            //$$ desc = "packet rate limit for serverContainerSync",
+            //#endif
+            options = { "1", "2", "5", "20" },
+            strict = false
+    )
+    public static int serverContainerSyncPacketRateLimit = 5;
+
+    @Rule(
+            //#if MC >= 11900
             categories = { AMA, SURVIVAL }
             //#else
             //$$ category = { AMA, SURVIVAL },
