@@ -2,7 +2,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'fabric-loom'
 apply plugin: 'com.replaymod.preprocess'
 
-String mixinFile = "ama-carpet.mixins.json"
+ArrayList<String> mixinFiles = [ "ama-carpet.mixins.json", "ama-carpet.client.mixins.json" ]
+
 int mcVersion = project.mcVersion
 preprocess {
     tabIndentation = true
@@ -144,8 +145,10 @@ processResources {
         expand valueMap
     }
 
-    filesMatching(mixinFile) {
-        filter { s -> s.replace('{{COMPATIBILITY_LEVEL}}', "JAVA_${MIXIN_COMPATIBILITY_LEVEL.ordinal() + 1}") }
+    mixinFiles.each {mixinConfigPath ->
+        filesMatching(mixinConfigPath) {
+            filter { s -> s.replace('{{COMPATIBILITY_LEVEL}}', "JAVA_${MIXIN_COMPATIBILITY_LEVEL.ordinal() + 1}") }
+        }
     }
 }
 

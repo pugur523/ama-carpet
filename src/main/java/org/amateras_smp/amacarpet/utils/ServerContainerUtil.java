@@ -17,7 +17,11 @@ public class ServerContainerUtil {
     public static void onQuery(MinecraftServer server, ServerPlayerEntity player, PacketByteBuf buf, PacketSender responseSender) {
         if (!AmaCarpetSettings.serverContainerSync) return;
         BlockPos blockPos = buf.readBlockPos();
+        //#if MC >= 11900
         ServerWorld world = player.getServerWorld();
+        //#else
+        //$$ ServerWorld world = player.getWorld();
+        //#endif
 
         server.execute(()->{
             BlockEntity blockEntity = world.getBlockEntity(blockPos);
