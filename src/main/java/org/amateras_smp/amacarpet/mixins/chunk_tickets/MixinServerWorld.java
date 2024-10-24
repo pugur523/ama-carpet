@@ -1,6 +1,8 @@
 package org.amateras_smp.amacarpet.mixins.chunk_tickets;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -13,16 +15,35 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerWorld.class)
-public class MixinServerWorld {
+public abstract class MixinServerWorld {
+
     //#if MC < 12100
-    // this was implemented in 1.21 so is not needed in 1.21
-    @Inject(method = "createEndSpawnPlatform",
+    // this was implemented in 1.21 so is not needed in 1.21 or above
+    @Inject(method = "onPlayerChangeDimension",
             at = @At("TAIL")
     )
-    private static void onCreateEndSpawnPlatform(ServerWorld world, CallbackInfo ci, @Local BlockPos pos) {
+    private void onPlayerDimensionChanged(ServerPlayerEntity player, CallbackInfo ci) {
         if (!AmaCarpetSettings.endPortalChunkLoad) return;
-        AmaCarpet.LOGGER.info("debugging : createEndSpawnPlatForm");
-        world.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(pos), 3, pos);
+        ServerWorld world = (ServerWorld) (Object) this;
+        if (world.getRegistryKey() == ServerWorld.END) {
+            BlockPos pos = player.getBlockPos();
+            AmaCarpet.LOGGER.info("debugging : onPlayerDimensionChanged");
+            world.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(pos), 3, pos);
+        }
+    }
+
+    @Inject(method = "onDimensionChanged",
+            at = @At("TAIL")
+    )
+    private void onEntityDimensionChanged(Entity entity, CallbackInfo ci) {
+        if (!AmaCarpetSettings.endPortalChunkLoad) return;
+        AmaCarpet.LOGGER.info("debugging : onEntityDimensionChanged");
+        ServerWorld world = (ServerWorld) (Object) this;
+        if (world.getRegistryKey() == ServerWorld.END) {
+            AmaCarpet.LOGGER.info("debugging : world is end");
+            BlockPos blockPos = entity.getBlockPos();
+            world.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(blockPos), 3, blockPos);
+        }
     }
     //#endif
 }
