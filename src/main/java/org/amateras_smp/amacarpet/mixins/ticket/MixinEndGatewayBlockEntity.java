@@ -1,4 +1,4 @@
-package org.amateras_smp.amacarpet.mixins.chunk_tickets;
+package org.amateras_smp.amacarpet.mixins.ticket;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.block.BlockState;

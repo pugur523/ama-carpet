@@ -1,4 +1,4 @@
-package org.amateras_smp.amacarpet.mixins.chunk_tickets;
+package org.amateras_smp.amacarpet.mixins.ticket;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.WorldGenerationProgressListener;

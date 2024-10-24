@@ -1,8 +1,5 @@
-package org.amateras_smp.amacarpet.mixins.disableSoundEngine;
+package org.amateras_smp.amacarpet.mixins.sound;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.spongepowered.asm.mixin.Mixin;

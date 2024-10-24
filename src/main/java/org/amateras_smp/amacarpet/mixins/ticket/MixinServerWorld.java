@@ -1,6 +1,5 @@
-package org.amateras_smp.amacarpet.mixins.chunk_tickets;
+package org.amateras_smp.amacarpet.mixins.ticket;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ChunkTicketType;
