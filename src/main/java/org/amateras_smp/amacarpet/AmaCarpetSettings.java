@@ -18,6 +18,7 @@ public class AmaCarpetSettings {
     )
     public static boolean disableSoundEngine = false;
 
+    //#if MC < 12100
     @Rule(
             //#if MC >= 11900
             categories = { AMA, SURVIVAL }
@@ -37,6 +38,7 @@ public class AmaCarpetSettings {
             //#endif
     )
     public static boolean endPortalChunkLoad = false;
+    //#endif
 
     @Rule(
             //#if MC >= 11900
