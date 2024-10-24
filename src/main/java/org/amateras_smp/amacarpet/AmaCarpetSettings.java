@@ -1,10 +1,42 @@
 package org.amateras_smp.amacarpet;
 
 import carpet.api.settings.Rule;
+
 import static carpet.api.settings.RuleCategory.*;
 
 public class AmaCarpetSettings {
+
     private static final String AMA = "AMA";
+
+    @Rule(
+            //#if MC >= 11900
+            categories = { AMA, SURVIVAL, OPTIMIZATION }
+            //#else
+            //$$ category = { AMA, SURVIVAL },
+            //$$ desc = "disabling server side sound engine"
+            //#endif
+    )
+    public static boolean disableSoundEngine = false;
+
+    @Rule(
+            //#if MC >= 11900
+            categories = { AMA, SURVIVAL }
+            //#else
+            //$$ category = { AMA, SURVIVAL },
+            //$$ desc = "entities go through end gateway portal will load 3x3 chunk"
+            //#endif
+    )
+    public static boolean endGatewayChunkLoad = false;
+
+    @Rule(
+            //#if MC >= 11900
+            categories = { AMA, SURVIVAL }
+            //#else
+            //$$ category = { AMA, SURVIVAL },
+            //$$ desc = "entities go through end portal will load 3x3 chunk"
+            //#endif
+    )
+    public static boolean endPortalChunkLoad = false;
 
     @Rule(
             //#if MC >= 11900
@@ -15,16 +47,6 @@ public class AmaCarpetSettings {
             //#endif
     )
     public static boolean hopperLock = false;
-
-    @Rule(
-            //#if MC >= 11900
-            categories = { AMA, SURVIVAL }
-            //#else
-            //$$ category = { AMA, SURVIVAL },
-            //$$ desc = "disabling server side sound engine"
-            //#endif
-    )
-    public static boolean disableSoundEngine = false;
 
     @Rule(
             //#if MC >= 11900
@@ -46,23 +68,5 @@ public class AmaCarpetSettings {
     )
     public static boolean reloadPortalTicket = false;
 
-    @Rule(
-            //#if MC >= 11900
-            categories = { AMA, SURVIVAL }
-            //#else
-            //$$ category = { AMA, SURVIVAL },
-            //$$ desc = "entities go through end portal will load 3x3 chunk"
-            //#endif
-    )
-    public static boolean endPortalChunkLoad = false;
 
-    @Rule(
-            //#if MC >= 11900
-            categories = { AMA, SURVIVAL }
-            //#else
-            //$$ category = { AMA, SURVIVAL },
-            //$$ desc = "entities go through end gateway portal will load 3x3 chunk"
-            //#endif
-    )
-    public static boolean endGatewayChunkLoad = false;
 }
