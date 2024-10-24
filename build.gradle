@@ -44,28 +44,31 @@ tasks.register('buildAndGather') {
         println 'Gathering builds'
 
         def branchName = getGitBranchName()
-        def libsName;
+        String libsName
         if (branchName == "main") {
             libsName = "libs"
         } else {
-            libsName = branchName + "-libs";
+            libsName = branchName + "libs";
         }
 
         def buildLibs = {
+            p -> p.buildDir.toPath().resolve("libs")
+        }
+
+        def targetLibs = {
             p -> p.buildDir.toPath().resolve(libsName)
         }
 
-
-        delete fileTree(buildLibs(rootProject)) {
+        delete fileTree(targetLibs(rootProject)) {
             include '*'
         }
         subprojects {
             copy {
                 from(buildLibs(project)) {
-                    include "*-${project.mod_version}.jar"
-                    exclude '*-dev-*.jar', '*-sources.jar', '*-shadow.jar'
+                    include "*.jar"
+                    exclude '*-sources.jar', '*-shadow.jar'
                 }
-                into buildLibs(rootProject)
+                into targetLibs(rootProject)
                 duplicatesStrategy DuplicatesStrategy.INCLUDE
             }
         }
@@ -76,6 +79,18 @@ tasks.register('cleanPreprocessSources') {
     doFirst {
         subprojects {
             def path = project.projectDir.toPath().resolve('build/preprocessed')
+            if (path.toFile().isDirectory()) {
+                path.toFile().deleteDir()
+            }
+        }
+    }
+}
+
+tasks.register('cleanBuilds') {
+    group = 'build'
+    doFirst {
+        subprojects {
+            def path = project.projectDir.toPath().resolve('build/libs')
             if (path.toFile().isDirectory()) {
                 path.toFile().deleteDir()
             }
