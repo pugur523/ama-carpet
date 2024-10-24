@@ -44,11 +44,11 @@ tasks.register('buildAndGather') {
         println 'Gathering builds'
 
         def branchName = getGitBranchName()
-        String libsName
+        String targetLibsName
         if (branchName == "main") {
-            libsName = "libs"
+            targetLibsName = "libs/${project.mod_version}"
         } else {
-            libsName = branchName + "libs";
+            targetLibsName = branchName + "libs/${project.mod_version}";
         }
 
         def buildLibs = {
@@ -56,7 +56,7 @@ tasks.register('buildAndGather') {
         }
 
         def targetLibs = {
-            p -> p.buildDir.toPath().resolve(libsName)
+            p -> p.buildDir.toPath().resolve(targetLibsName)
         }
 
         delete fileTree(targetLibs(rootProject)) {
