@@ -3,8 +3,6 @@
   "package": "org.amateras_smp.amacarpet.client.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
-    "container.MixinClientPlayerEntity",
-    "container.MixinWorld",
     "MixinMinecraftClient"
   ],
   "injectors": {
