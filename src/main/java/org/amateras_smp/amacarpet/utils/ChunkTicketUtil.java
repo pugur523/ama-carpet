@@ -43,7 +43,6 @@ public class ChunkTicketUtil {
             Path saveDirectory = server.getSavePath(WorldSavePath.ROOT);
             portalTicketPath = saveDirectory.resolve(portalTicketFileName);
 
-            AmaCarpet.LOGGER.info("Portal tickets path set to {}", portalTicketPath.toString());
         } catch (Exception e) {
             AmaCarpet.LOGGER.error("Failed to set portal tickets path", e);
         }
@@ -64,7 +63,7 @@ public class ChunkTicketUtil {
         }
 
         if (!Files.exists(portalTicketPath)) {
-            AmaCarpet.LOGGER.warn("No portal tickets file found at {}", portalTicketPath.toString());
+            AmaCarpet.LOGGER.warn("No portal tickets file found");
             return;
         }
 
@@ -140,7 +139,7 @@ public class ChunkTicketUtil {
                 }
             } else AmaCarpet.LOGGER.error(END + " is null");
 
-            AmaCarpet.LOGGER.info("Portal tickets loaded successfully from {}", portalTicketPath.toString());
+            AmaCarpet.LOGGER.info("Portal tickets loaded successfully");
             clearJson();
         } catch (IOException e) {
             AmaCarpet.LOGGER.error("Failed to load portal tickets", e);
