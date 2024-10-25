@@ -18,6 +18,9 @@
   "entrypoints": {
     "main": [
       "org.amateras_smp.amacarpet.AmaCarpet"
+    ],
+    "client": [
+      "org.amateras_smp.amacarpet.client.AmaCarpetClient"
     ]
   },
   "mixins": [

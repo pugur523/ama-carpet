@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.amateras_smp.amacarpet.client.feature.ServerContainerCache;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,8 +18,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(World.class)
 public class MixinWorld {
+
+    @Shadow
+    @Final
+    public boolean isClient;
+
     @Inject(method = "getBlockEntity", at = @At("TAIL"), cancellable = true)
     private void onGetBlockEntity(BlockPos pos, CallbackInfoReturnable<BlockEntity> cir) {
+        if (isClient) return;
         if (!AmaCarpetSettings.serverContainerSync) return;
 
         BlockEntity blockEntity = cir.getReturnValue();
@@ -29,6 +37,6 @@ public class MixinWorld {
         }
 
         // override block entity nbt data
-        cir.setReturnValue(blockEntity);
+        // cir.setReturnValue(blockEntity);
     }
 }

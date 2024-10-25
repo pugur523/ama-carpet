@@ -9,11 +9,10 @@ import static org.amateras_smp.amacarpet.network.packet.S2C.ServerContainerS2CPa
 
 public class AmaCarpetPackets {
     public static void registerC2SPackets() {
-        ClientPlayNetworking.registerGlobalReceiver(SERVER_CONTAINER_PACKET, (client, handler, buf, responseSender) -> ServerContainerUtil.onResponse(buf));
+        ClientPlayNetworking.registerGlobalReceiver(SERVER_CONTAINER_PACKET, ServerContainerUtil::onResponse);
     }
 
     public static void registerS2CPackets() {
-        ServerPlayNetworking.registerGlobalReceiver(CONTAINER_QUERY_PACKET, (server, player, handler, buf, responseSender) -> ServerContainerUtil.onQuery(server, player, buf, responseSender));
-
+        ServerPlayNetworking.registerGlobalReceiver(CONTAINER_QUERY_PACKET, ServerContainerUtil::onQuery);
     }
 }

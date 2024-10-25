@@ -27,6 +27,9 @@ public class ServerContainerCache {
     }
 
     public void put(BlockPos pos, NbtCompound nbt) {
+        if (cache.get(pos) != null) {
+            if (cache.get(pos) == nbt) return;
+        }
         cache.put(pos, nbt);
     }
 
