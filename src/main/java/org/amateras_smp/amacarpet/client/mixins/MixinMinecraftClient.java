@@ -16,13 +16,13 @@ public class MixinMinecraftClient {
 
     @Inject(method = "joinWorld", at = @At("HEAD"))
     private void onJoinWorld(CallbackInfo ci) {
-        AmaCarpetClient.LOGGER.info("joined world");
+        // AmaCarpetClient.LOGGER.info("joined world");
         AmaCarpetClient.isConnected = true;
     }
 
     @Inject(method = "disconnect(Lnet/minecraft/client/gui/screen/Screen;)V", at = @At("HEAD"))
     private void onDisconnect(Screen screen, CallbackInfo ci) {
-        AmaCarpetClient.LOGGER.info("disconnected");
+        // AmaCarpetClient.LOGGER.info("disconnected");
         AmaCarpetClient.isConnected = false;
     }
 }

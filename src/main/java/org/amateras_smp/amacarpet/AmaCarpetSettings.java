@@ -40,6 +40,7 @@ public class AmaCarpetSettings {
     public static boolean endPortalChunkLoad = false;
     //#endif
 
+    /*
     @Rule(
             //#if MC >= 11900
             categories = { AMA, CREATIVE }
@@ -49,6 +50,7 @@ public class AmaCarpetSettings {
             //#endif
     )
     public static boolean hopperLock = false;
+    */
 
     @Rule(
             //#if MC >= 11900
@@ -59,6 +61,7 @@ public class AmaCarpetSettings {
             //#endif
     )
     public static boolean reloadPortalTicket = false;
+
 
 
 }

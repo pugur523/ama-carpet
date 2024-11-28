@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EndGatewayBlockEntity.class)
 public class MixinEndGatewayBlockEntity {
     //#if MC < 12100
-    // this was implemented in 1.21 so is not needed in 1.21
+    // this was implemented in 1.21 vanilla
     @Inject
     (
             method = "tryTeleportingEntity",
@@ -31,9 +31,7 @@ public class MixinEndGatewayBlockEntity {
     )
     private static void onEntityTeleport(World world, BlockPos pos, BlockState state, Entity entity, EndGatewayBlockEntity blockEntity, CallbackInfo ci, @Local(ordinal = 1) BlockPos blockPos) {
         if (!AmaCarpetSettings.endGatewayChunkLoad) return;
-        AmaCarpet.LOGGER.info("debugging : onEntityTeleport");
         if (world instanceof ServerWorld serverWorld) {
-            AmaCarpet.LOGGER.info("debugging : world is ServerWorld instance");
             serverWorld.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(blockPos), 3, blockPos);
         }
     }
