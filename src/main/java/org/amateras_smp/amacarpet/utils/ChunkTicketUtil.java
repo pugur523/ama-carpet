@@ -25,7 +25,7 @@ import java.util.HashSet;
 
 public class ChunkTicketUtil {
 
-    private static final String portalTicketFileName = "ama_tickets.json";
+    private static final String portalTicketFileName = "ama_carpet/ama_tickets.json";
 
     private static final String OW = "overworld";
     private static final String NE = "nether";
