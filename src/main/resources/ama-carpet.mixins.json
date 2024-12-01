@@ -4,8 +4,6 @@
   "package": "org.amateras_smp.amacarpet.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
-    "hopperlock.MixinHopperBlock",
-    "hopperlock.MixinHopperBlockEntity",
     "sound.MixinWorld",
     "ticket.MixinEndGatewayBlockEntity",
     "ticket.MixinMinecraftServer",
