@@ -9,11 +9,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.io.IOException;
+
 @Mixin(MinecraftServer.class)
 public class MixinMinecraftServer {
 
     @Inject(method = "prepareStartRegion", at = @At("HEAD"))
-    private void onPrepareStartRegion(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) {
+    private void onPrepareStartRegion(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo ci) throws IOException {
         ChunkTicketUtil.setPath((MinecraftServer) (Object) this);
         if (!AmaCarpetSettings.reloadPortalTicket) return;
         ChunkTicketUtil.load((MinecraftServer) (Object) this);

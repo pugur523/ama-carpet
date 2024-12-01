@@ -25,7 +25,7 @@ import java.util.HashSet;
 
 public class ChunkTicketUtil {
 
-    private static final String portalTicketFileName = "ama_carpet/ama_tickets.json";
+    private static final String portalTicketFileName = "ama_carpet/portal_tickets.json";
 
     private static final String OW = "overworld";
     private static final String NE = "nether";
@@ -42,7 +42,7 @@ public class ChunkTicketUtil {
         try {
             Path saveDirectory = server.getSavePath(WorldSavePath.ROOT);
             portalTicketPath = saveDirectory.resolve(portalTicketFileName);
-
+            Files.createDirectories(portalTicketPath.getParent());
         } catch (Exception e) {
             AmaCarpet.LOGGER.error("Failed to set portal tickets path", e);
         }
@@ -56,14 +56,14 @@ public class ChunkTicketUtil {
         }
     }
 
-    public static void load(MinecraftServer server) {
+    public static void load(MinecraftServer server) throws IOException {
         if (portalTicketPath == null) {
-            AmaCarpet.LOGGER.warn("Portal ticket path is not set.");
+            AmaCarpet.LOGGER.error("Portal ticket path is not set.");
             return;
         }
 
         if (!Files.exists(portalTicketPath)) {
-            AmaCarpet.LOGGER.warn("No portal tickets file found");
+            Files.createFile(portalTicketPath);
             return;
         }
 
