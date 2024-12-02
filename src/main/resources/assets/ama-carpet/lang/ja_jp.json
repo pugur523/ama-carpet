@@ -1,6 +1,7 @@
 {
   "carpet.category.ama": "ama",
 
+  "carpet.rule.disableNetherPortalCollisionCheck.desc": "エンティティがネザーポータルを通過するときのcollision checkを無効化します。",
   "carpet.rule.disableSoundEngine.desc": "サーバーの音処理エンジンを無効化します。",
   "carpet.rule.endGatewayChunkLoad.desc": "エンドゲートウェイポータルを通過したエンティティが、ネザーポータルを通過したエンティティのようにチャンクをロードします。",
   "carpet.rule.endPortalChunkLoad.desc": "エンドポータルを通過したエンティティが、ネザーポータルを通過したエンティティのようにチャンクをロードします。",
