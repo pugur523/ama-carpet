@@ -4,6 +4,7 @@
   "package": "org.amateras_smp.amacarpet.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
+    "collision_check.MixinNetherPortal",
     "sound.MixinWorld",
     "ticket.MixinEndGatewayBlockEntity",
     "ticket.MixinMinecraftServer",

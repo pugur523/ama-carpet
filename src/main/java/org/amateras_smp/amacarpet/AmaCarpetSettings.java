@@ -8,6 +8,14 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
+
+    //#if MC >= 11900
+    @Rule(
+            categories = { AMA, SURVIVAL, OPTIMIZATION }
+    )
+    public static boolean disableNetherPortalCollisionCheck = false;
+    //#endif
+
     @Rule(
             //#if MC >= 11900
             categories = { AMA, SURVIVAL, OPTIMIZATION }
@@ -61,7 +69,4 @@ public class AmaCarpetSettings {
             //#endif
     )
     public static boolean reloadPortalTicket = false;
-
-
-
 }
