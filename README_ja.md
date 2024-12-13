@@ -5,6 +5,32 @@
 
 これはAmateras SMPのために作られたcarpet extensionです
 
-## Features
+## Rules
 
-まだ書いてない後で書く
+### disableNetherPortalCollisionCheck (MC >= 1.19)
+
+> ネザーポータルを通過したエンティティのCollision Checkを無効化します。
+> これはChronos Carpet Additionからポートされました。
+
+
+### disableSoundeEngine
+
+> サーバー側で処理されるすべての音エンジンを無効化します。
+
+
+### endGatewayChunkLoad (MC < 1.21)
+
+> エンドゲートウェイポータルをくぐったエンティティが3x3チャンクをロードするようになります。
+> これと同様の仕様が1.21のバニラに実装されています。
+
+
+### endPortalChunkLoad (MC < 1.21)
+
+> エンドポータルをくぐったエンティティが3x3チャンクをロードするようになります。
+> これと同様の仕様が1.21のバニラに実装されています。
+
+
+### reloadPortalTicket
+
+> サーバーの起動時に、すべての記録されていたポータルチャンクロードチケットを再読み込みします。
+> これによりチャンクローダーがサーバーの再起動で壊れにくくなります。

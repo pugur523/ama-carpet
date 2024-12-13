@@ -5,6 +5,32 @@
 
 This is a Carpet mod extension made for Amateras SMP.
 
-### Features
+## Rules
 
-I'll write later
+### disableNetherPortalCollisionCheck (MC >= 1.19)
+
+> Disables laggy portal collision check.
+> This was ported from Chronos Carpet Addition.
+
+
+### disableSoundeEngine
+
+> Disables all serverside sound engines.
+
+
+### endGatewayChunkLoad (MC < 1.21)
+
+> Entities go through end portal gateway will load 3x3 chunks like a nether portal.
+> This was implemented in vanilla minecraft 1.21.
+
+
+### endPortalChunkLoad (MC < 1.21)
+
+> Entities go through end portal will load 3x3 chunks like a nether portal.
+> This was implemented in vanilla minecraft 1.21.
+
+
+### reloadPortalTicket
+
+> Reloads all nether portal chunk loading tickets on server start.
+> Chunk loaders may not be broken on server restarts.
