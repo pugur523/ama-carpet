@@ -31,8 +31,8 @@ public class MixinSyncmaticManager {
     @Inject(method = "removePlacement(Lch/endte/syncmatica/ServerPlacement;)V", at = @At("TAIL"))
     private void onRemovePlacement(ServerPlacement placement, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifySyncmaticShared) return;
-        Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.WHITE).append(
-                Text.literal(" remove a syncmatic. \nPlacement name : ").formatted(Formatting.RED)).append(
+        Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.RED).append(
+                Text.literal(" remove a syncmatic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW));
         System.out.println(message);
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
