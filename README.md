@@ -25,6 +25,11 @@ This is a Carpet mod extension made for Amateras SMP.
 > This was implemented in vanilla minecraft 1.21.
 
 
+### notifySyncmaticShared
+
+> Send notifications to chat when syncmatic shared.
+
+
 ### reloadPortalTicket
 
 > Reloads all nether portal chunk loading tickets on server start.

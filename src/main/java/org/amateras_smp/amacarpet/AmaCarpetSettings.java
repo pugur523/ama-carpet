@@ -8,9 +8,8 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
-
     @Rule(
-            categories = { AMA, SURVIVAL, OPTIMIZATION }
+            categories = { AMA, SURVIVAL, CREATIVE, OPTIMIZATION }
     )
     public static boolean disableSoundEngine = false;
 
@@ -36,7 +35,7 @@ public class AmaCarpetSettings {
     @Rule(
             categories = { AMA, SURVIVAL }
     )
-    public static boolean noticeSyncmaticaShared = false;
+    public static boolean notifySyncmaticShared = false;
 
     @Rule(
             categories = { AMA, SURVIVAL }

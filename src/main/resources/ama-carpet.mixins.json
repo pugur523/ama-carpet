@@ -5,6 +5,7 @@
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
     "sound.MixinWorld",
+    "syncmatica.MixinSyncmaticManager",
     "ticket.MixinEndGatewayBlockEntity",
     "ticket.MixinMinecraftServer",
     "ticket.MixinServerChunkManager",
