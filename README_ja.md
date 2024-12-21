@@ -7,11 +7,6 @@
 
 ## Rules
 
-### disableNetherPortalCollisionCheck (MC >= 1.19)
-
-> ネザーポータルを通過したエンティティのCollision Checkを無効化します。
-> これはChronos Carpet Additionからポートされました。
-
 
 ### disableSoundeEngine
 

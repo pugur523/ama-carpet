@@ -7,11 +7,6 @@ This is a Carpet mod extension made for Amateras SMP.
 
 ## Rules
 
-### disableNetherPortalCollisionCheck (MC >= 1.19)
-
-> Disables laggy portal collision check.
-> This was ported from Chronos Carpet Addition.
-
 
 ### disableSoundeEngine
 
