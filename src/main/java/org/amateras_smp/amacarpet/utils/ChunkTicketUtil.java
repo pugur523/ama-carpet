@@ -75,6 +75,7 @@ public class ChunkTicketUtil {
             HashSet<Long> nePortalTickets2 = new HashSet<>();
             HashSet<Long> endPortalTickets2 = new HashSet<>();
 
+            if (ticketData == null) return;
             if (ticketData.isJsonNull()) return;
             JsonArray owArray = null;
             JsonArray neArray = null;

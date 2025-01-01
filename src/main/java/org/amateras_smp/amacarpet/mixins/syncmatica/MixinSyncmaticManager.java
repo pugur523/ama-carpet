@@ -24,7 +24,6 @@ public class MixinSyncmaticManager {
                 Text.literal(" shared a syncmatic! \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW)).append(
                 Text.literal("\nDimension : " + placement.getDimension()).formatted(Formatting.WHITE));
-        System.out.println(message);
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
 
@@ -32,9 +31,8 @@ public class MixinSyncmaticManager {
     private void onRemovePlacement(ServerPlacement placement, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifySyncmaticShared) return;
         Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.RED).append(
-                Text.literal(" remove a syncmatic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
+                Text.literal(" removed a syncmatic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW));
-        System.out.println(message);
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
 }
