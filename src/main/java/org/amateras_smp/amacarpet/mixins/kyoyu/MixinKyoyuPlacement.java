@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Mixin(KyoyuPlacement.class)
 public class MixinKyoyuPlacement {
-    @Inject(method = "<init>", at = @At("TAIL"))
+    @Inject(method = "<init>", at = @At("CTOR_HEAD"))
     private void onAddKyoyuPlacement(UUID uuid, KyoyuRegion region, List<KyoyuRegion> subRegions, String ownerName, String updaterName, File file, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifyLitematicShared) return;
         KyoyuPlacement placement = (KyoyuPlacement)(Object) this;

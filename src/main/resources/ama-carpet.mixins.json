@@ -7,7 +7,7 @@
     "kyoyu.MixinKyoyuPlacement",
     "kyoyu.MixinRemovePlacementPacket",
     "sound.MixinWorld",
-    "syncmatica.MixinClientCommunicationManager",
+    "syncmatica.MixinServerCommunicationManager",
     "syncmatica.MixinSyncmaticManager",
     "ticket.MixinEndGatewayBlockEntity",
     "ticket.MixinMinecraftServer",

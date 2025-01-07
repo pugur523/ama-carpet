@@ -1,15 +1,14 @@
 package org.amateras_smp.amacarpet.mixins.syncmatica;
 
 import ch.endte.syncmatica.ServerPlacement;
-import ch.endte.syncmatica.communication.ClientCommunicationManager;
-import ch.endte.syncmatica.communication.CommunicationManager;
-import ch.endte.syncmatica.communication.ExchangeTarget;
-import ch.endte.syncmatica.communication.PacketType;
-import ch.endte.syncmatica.communication.exchange.Exchange;
+import ch.endte.syncmatica.communication.*;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,8 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
-@Mixin(ClientCommunicationManager.class)
-public abstract class MixinClientCommunicationManager extends CommunicationManager {
+@Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
+@Mixin(ServerCommunicationManager.class)
+public abstract class MixinServerCommunicationManager extends CommunicationManager {
     @Inject(method = "handle", at = @At("TAIL"))
     private void onRemovePlacement(ExchangeTarget source, Identifier id, PacketByteBuf packetBuf, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifyLitematicShared || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier)) return;
