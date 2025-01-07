@@ -56,6 +56,10 @@ public class InitHandler {
                 }
             }, 2, TimeUnit.SECONDS);
         });
+
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
+           HandShake.playerModStatus.remove(handler.getPlayer());
+        });
         //#endif
     }
 
