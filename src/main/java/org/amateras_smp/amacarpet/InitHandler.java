@@ -54,7 +54,7 @@ public class InitHandler {
                         player.networkHandler.disconnect(Text.literal("AmaCarpet-Client is required in this server.\nTry after install it from modrinth or github.").formatted(Formatting.RED));
                     }
                 }
-            }, 2, TimeUnit.SECONDS);
+            }, 500, TimeUnit.MILLISECONDS);
         });
 
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
