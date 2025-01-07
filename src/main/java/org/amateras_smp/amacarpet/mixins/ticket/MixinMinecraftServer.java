@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
+import java.util.function.BooleanSupplier;
 
 @Mixin(MinecraftServer.class)
 public class MixinMinecraftServer {
@@ -27,4 +28,9 @@ public class MixinMinecraftServer {
         ChunkTicketUtil.save();
     }
 
+    @Inject(method = "tickWorlds", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/crash/CrashReport;create(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/util/crash/CrashReport;"))
+    public void onCrash(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+        if (!AmaCarpetSettings.reloadPortalTicket) return;
+        ChunkTicketUtil.save();
+    }
 }
