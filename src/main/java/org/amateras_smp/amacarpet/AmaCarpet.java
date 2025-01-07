@@ -10,7 +10,7 @@ public class AmaCarpet implements ModInitializer {
 
     public static String MOD_NAME = "AmaCarpet";
     public static String MOD_ID = "ama-carpet";
-    private static String MOD_VERSION;
+    public static String MOD_VERSION;
     public static Logger LOGGER;
 
     @Override
@@ -30,6 +30,7 @@ public class AmaCarpet implements ModInitializer {
         public static final String amatweaks = "ama-tweaks";
         public static final String fabric_loader = "fabricloader";
         public static final String fabric_api = "fabric";
+        public static final String kyoyu = "kyoyu";
         public static final String malilib = "malilib";
         public static final String tweakeroo = "tweakeroo";
         public static final String tweakermore = "tweakermore";

@@ -141,7 +141,6 @@ public class ChunkTicketUtil {
             } else AmaCarpet.LOGGER.error(END + " is null");
 
             AmaCarpet.LOGGER.info("Portal tickets loaded successfully");
-            clearJson();
         } catch (IOException e) {
             AmaCarpet.LOGGER.error("Failed to load portal tickets", e);
         }
@@ -152,7 +151,10 @@ public class ChunkTicketUtil {
             AmaCarpet.LOGGER.error("portal ticket path is null");
         }
         JsonObject ticketData = getJsonObject();
-
+        if (ticketData.isJsonNull()) {
+            clearJson();
+            return;
+        }
         try {
             Files.writeString(portalTicketPath, gson.toJson(ticketData), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             AmaCarpet.LOGGER.info("Portal tickets saved to {}", portalTicketPath.toString());
@@ -161,7 +163,6 @@ public class ChunkTicketUtil {
         }
     }
 
-    @NotNull
     private static JsonObject getJsonObject() {
         JsonObject ticketData = new JsonObject();
 

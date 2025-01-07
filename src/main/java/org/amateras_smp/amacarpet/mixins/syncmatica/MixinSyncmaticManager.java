@@ -17,22 +17,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
 @Mixin(value = SyncmaticManager.class, remap = false)
 public class MixinSyncmaticManager {
-    @Inject(method = "addPlacement(Lch/endte/syncmatica/ServerPlacement;)V", at = @At("TAIL"))
+    @Inject(method = "addPlacement", at = @At("TAIL"))
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySyncmaticShared) return;
+        if (!AmaCarpetSettings.notifyLitematicShared) return;
         Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.GREEN).append(
-                Text.literal(" shared a syncmatic! \nPlacement name : ").formatted(Formatting.WHITE)).append(
+                Text.literal(" shared a litematic! \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW)).append(
                 Text.literal("\nDimension : " + placement.getDimension()).formatted(Formatting.WHITE));
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
 
-    @Inject(method = "removePlacement(Lch/endte/syncmatica/ServerPlacement;)V", at = @At("TAIL"))
+    /*
+    This is bad cuz cannot get name of the player that removed a litematic.
+    @Inject(method = "removePlacement", at = @At("TAIL"))
     private void onRemovePlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySyncmaticShared) return;
+        if (!AmaCarpetSettings.notifyLitematicShared) return;
         Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.RED).append(
-                Text.literal(" removed a syncmatic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
+                Text.literal(" removed a shared litematic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW));
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
+    */
 }

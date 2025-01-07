@@ -25,9 +25,9 @@
 > これと同様の仕様が1.21のバニラに実装されています。
 
 
-### noticeSyncmaticShared
+### noticeLitematicShared
 
-> syncmaticが共有されたときにプレイヤーのチャットに通知を送信します。
+> litematicがsyncmaticaやkyoyuを通じて共有されたときにプレイヤーのチャットに通知を送信します。
 
 
 ### reloadPortalTicket

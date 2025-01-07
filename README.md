@@ -25,9 +25,9 @@ This is a Carpet mod extension made for Amateras SMP.
 > This was implemented in vanilla minecraft 1.21.
 
 
-### notifySyncmaticShared
+### notifyLitematicShared
 
-> Send notifications to chat when syncmatic shared.
+> Send notifications to player chat when litematic shared with syncmatica or kyoyu.
 
 
 ### reloadPortalTicket

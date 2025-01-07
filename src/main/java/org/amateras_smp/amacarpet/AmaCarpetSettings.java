@@ -29,7 +29,7 @@ public class AmaCarpetSettings {
     */
 
     @Rule(categories = { AMA, SURVIVAL })
-    public static boolean notifySyncmaticShared = false;
+    public static boolean notifyLitematicShared = false;
 
 
     @Rule(categories = { AMA, SURVIVAL })

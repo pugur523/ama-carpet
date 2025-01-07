@@ -3,3 +3,4 @@ accessWidener	v1	named
 accessible field net/minecraft/server/world/ChunkTicketManager ticketsByPosition Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
 accessible class net/minecraft/server/world/ThreadedAnvilChunkStorage$TicketManager
 accessible field net/minecraft/server/world/ChunkTicket argument Ljava/lang/Object;
+accessible field com/vulpeus/kyoyu/placement/KyoyuPlacement ownerName Ljava/lang/String;

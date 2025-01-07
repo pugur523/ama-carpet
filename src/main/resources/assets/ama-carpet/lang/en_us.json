@@ -1,10 +1,12 @@
 {
   "carpet.category.ama": "ama",
 
+  "carpet.rule.cheatDetector.desc": "Detects not allowed client mod feature specified in the config file.",
   "carpet.rule.disableSoundEngine.desc": "Disables server-side sound engine to optimize",
   "carpet.rule.endGatewayChunkLoad.desc": "When an entity passes through end gateway portal it will loaded 3x3 chunk like a nether portal",
   "carpet.rule.endPortalChunkLoad.desc": "When an entity passes through end portal it will loaded 3x3 chunk like a nether portal",
   "carpet.rule.hopperLock.desc": "Locks all of the hoppers in the world",
-  "carpet.rule.notifySyncmaticShared.desc": "Sends a notification to the chat when a player shared a syncmatic.",
-  "carpet.rule.reloadPortalTicket.desc": "Reloads chunk loading tickets by nether portal on server restarts. Improves chunk loader reliability."
+  "carpet.rule.notifyLitematicShared.desc": "Sends a notification to the chat when a player shared a syncmatic.",
+  "carpet.rule.reloadPortalTicket.desc": "Reloads chunk loading tickets by nether portal on server restarts. Improves chunk loader reliability.",
+  "carpet.rule.requireAmaCarpetClient.desc": "Require AmaCarpet-Client to join the server.(Kicks all players without AmaCarpet-Client)."
 }

@@ -30,6 +30,7 @@ configurations {
     modImplementation.exclude group: 'io.github.prospector', module: 'modmenu'
 }
 // String tweakeroo_dependency = mcVersion >= 12100 ? "maven.modrinth:tweakeroo:${project.tweakeroo_version}" : "com.github.Andrews54757:tweakfork:${project.tweakfork_version}"
+String syncmatica_dependency = mcVersion >= 12004 ? "com.github.sakura-ryoko:syncmatica:${project.syncmatica_version}" : "maven.modrinth:syncmatica:${project.syncmatica_version}"
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -40,7 +41,12 @@ dependencies {
     modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
 
     modImplementation "maven.modrinth:carpet:${project.carpet_version}"
-    modImplementation "maven.modrinth:syncmatica:${project.syncmatica_version}"
+    modImplementation(syncmatica_dependency) {
+        exclude group: 'com.github.sakura-ryoko', module: 'malilib'
+        if (mcVersion == 12004 || mcVersion == 12006) exclude group: 'fi.dy.masa.malilib', module: 'malilib-fabric-1.20.6'
+    }
+    // modImplementation "maven.modrinth:kyoyu:${project.kyoyu_version}"
+    modImplementation files("../../lib/Kyoyu-${project.kyoyu_version}-fabric.jar")
 }
 
 JavaVersion JAVA_COMPATIBILITY
