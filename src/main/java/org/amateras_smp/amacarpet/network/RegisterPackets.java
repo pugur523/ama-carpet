@@ -8,8 +8,8 @@ import org.amateras_smp.amacarpet.network.packets.HandShake;
 import static org.amateras_smp.amacarpet.AmaCarpet.MOD_ID;
 
 public class RegisterPackets {
-    public static Identifier HANDSHAKE_S2C = new Identifier(MOD_ID, "handshake_s2c");
-    public static Identifier HANDSHAKE_C2S = new Identifier(MOD_ID, "handshake_c2s");
+    public static Identifier HANDSHAKE_S2C = Identifier.of(MOD_ID, "handshake_s2c");
+    public static Identifier HANDSHAKE_C2S = Identifier.of(MOD_ID, "handshake_c2s");
 
     public static void registerServer() {
         //#if MC < 12004
