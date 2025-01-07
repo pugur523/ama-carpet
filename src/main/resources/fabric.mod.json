@@ -32,5 +32,9 @@
     "fabric": "*",
     "carpet": "*",
     "minecraft": "${minecraft_dependency}"
+  },
+  "suggests": {
+    "syncmatica": "*",
+    "kyoyu": ""
   }
 }

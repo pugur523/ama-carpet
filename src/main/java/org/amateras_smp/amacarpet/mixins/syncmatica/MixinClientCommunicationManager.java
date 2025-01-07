@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Mixin(ClientCommunicationManager.class)
 public abstract class MixinClientCommunicationManager extends CommunicationManager {
-    @Inject(method = "handle(Lch/endte/syncmatica/communication/ExchangeTarget;Lnet/minecraft/util/Identifier;Lnet/minecraft/network/PacketByteBuf;)V", at = @At("TAIL"))
+    @Inject(method = "handle", at = @At("TAIL"))
     private void onRemovePlacement(ExchangeTarget source, Identifier id, PacketByteBuf packetBuf, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifyLitematicShared || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier)) return;
         UUID placementId = packetBuf.readUuid();
