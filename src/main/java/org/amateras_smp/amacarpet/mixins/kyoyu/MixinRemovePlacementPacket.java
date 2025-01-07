@@ -3,9 +3,12 @@ package org.amateras_smp.amacarpet.mixins.kyoyu;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.vulpeus.kyoyu.net.packets.RemovePlacementPacket;
 import com.vulpeus.kyoyu.placement.KyoyuPlacement;
+import me.fallenbreath.conditionalmixin.api.annotation.Condition;
+import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Restriction(require = @Condition(AmaCarpet.ModIds.kyoyu))
 @Mixin(RemovePlacementPacket.class)
 public class MixinRemovePlacementPacket {
     @Inject(method = "onServer(Lnet/minecraft/server/network/ServerPlayerEntity;)V", at = @At("TAIL"))
