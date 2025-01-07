@@ -32,6 +32,7 @@ public class HandShake {
     }
 
     public static void clientHandler(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packetByteBuf, PacketSender sender) {
+        //#if MC < 12005
         AmaCarpetClient.LOGGER.info("[AmaCarpetClient] received amacarpet-server({}) handshake packet!", Objects.requireNonNull(packetByteBuf.readNbt()).getString("mod_version"));
         PacketByteBuf packetByteBuf1 = new PacketByteBuf(Unpooled.buffer());
         packetByteBuf1.writeString(MOD_VERSION);
@@ -39,5 +40,6 @@ public class HandShake {
         NbtCompound nbt = new NbtCompound();
         nbt.put("mod_version", NbtString.of(MOD_VERSION));
         PacketHandler.sendC2S(HANDSHAKE_C2S, nbt);
+        //#endif
     }
 }

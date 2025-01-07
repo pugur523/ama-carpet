@@ -35,6 +35,7 @@ public class InitHandler {
     private static void initServer() {
         RegisterPackets.registerServer();
 
+        //#if MC < 12005
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             PacketByteBuf packetByteBuf =  new PacketByteBuf(Unpooled.buffer());
             packetByteBuf.writeString(MOD_VERSION);
@@ -55,6 +56,7 @@ public class InitHandler {
                 }
             }, 2, TimeUnit.SECONDS);
         });
+        //#endif
     }
 
     private static void initClient() {

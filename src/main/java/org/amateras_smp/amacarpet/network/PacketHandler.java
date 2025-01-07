@@ -15,6 +15,8 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.util.Identifier;
 
 public class PacketHandler {
+    // todo : support mc >= 12005 network compatibility
+    //#if MC < 12005
     private static PacketByteBuf makePacketInternal(Identifier id, NbtCompound nbt) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeString(id.toString());
@@ -65,4 +67,5 @@ public class PacketHandler {
             );
         }
     }
+    //#endif
 }
