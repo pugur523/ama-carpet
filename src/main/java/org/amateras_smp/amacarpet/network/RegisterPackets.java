@@ -12,13 +12,13 @@ public class RegisterPackets {
     public static Identifier HANDSHAKE_C2S = new Identifier(MOD_ID, "handshake_c2s");
 
     public static void registerServer() {
-        //#if MC < 12005
+        //#if MC < 12004
         ServerPlayNetworking.registerGlobalReceiver(HANDSHAKE_C2S, HandShake::serverHandler);
         //#endif
     }
 
     public static void registerClient() {
-        //#if MC < 12005
+        //#if MC < 12004
         ClientPlayNetworking.registerGlobalReceiver(HANDSHAKE_S2C, HandShake::clientHandler);
         //#endif
     }
