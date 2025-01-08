@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class PlayerUtil {
     private static final List<PlayerAuth> AUTH_PLAYERS = new ArrayList<>();
-    private static final int TIMEOUT_TICKS = 40;
+    private static final int TIMEOUT_TICKS = 50;
     private static final String DISCONNECT_MESSAGE = "AmaCarpet Client not found. This server requires the AmaCarpet Mod. Please install it from Modrinth or GitHub and try again.";
 
     public static void amaClientCheckCanJoinOnTick() {
