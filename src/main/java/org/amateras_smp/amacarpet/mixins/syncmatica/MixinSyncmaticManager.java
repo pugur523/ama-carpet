@@ -24,6 +24,7 @@ public class MixinSyncmaticManager {
                 Text.literal(" shared a litematic! \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW)).append(
                 Text.literal("\nDimension : " + placement.getDimension()).formatted(Formatting.WHITE));
+        AmaCarpetServer.LOGGER.info(message.getString());
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
 }

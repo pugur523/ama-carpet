@@ -12,7 +12,7 @@ import net.minecraft.util.WorldSavePath;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import org.amateras_smp.amacarpet.AmaCarpet;
+import org.amateras_smp.amacarpet.AmaCarpetServer;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class ChunkTicketUtil {
             portalTicketPath = saveDirectory.resolve(portalTicketFileName);
             Files.createDirectories(portalTicketPath.getParent());
         } catch (Exception e) {
-            AmaCarpet.LOGGER.error("Failed to set portal tickets path", e);
+            AmaCarpetServer.LOGGER.error("Failed to set portal tickets path", e);
         }
     }
 
@@ -51,13 +51,13 @@ public class ChunkTicketUtil {
         try (FileWriter writer = new FileWriter(String.valueOf(portalTicketPath))) {
             writer.write("");
         } catch (IOException e) {
-            AmaCarpet.LOGGER.error("failed clearing json : {}", e.getMessage());
+            AmaCarpetServer.LOGGER.error("failed clearing json : {}", e.getMessage());
         }
     }
 
     public static void load(MinecraftServer server) throws IOException {
         if (portalTicketPath == null) {
-            AmaCarpet.LOGGER.error("Portal ticket path is not set.");
+            AmaCarpetServer.LOGGER.error("Portal ticket path is not set.");
             return;
         }
 
@@ -115,39 +115,39 @@ public class ChunkTicketUtil {
             if (ow != null) {
                 for (long pos : owPortalTickets2) {
                     ChunkPos chunkPos = new ChunkPos(pos);
-                    AmaCarpet.LOGGER.info("{}'s {}, {} portal ticket has reloaded", ow.getRegistryKey().getValue(), chunkPos.x, chunkPos.z);
+                    AmaCarpetServer.LOGGER.info("portal ticket at the chunk({}, {}) of {} has been reloaded", chunkPos.x, chunkPos.z, ow.getRegistryKey().getValue());
                     BlockPos blockPos = chunkPos.getBlockPos(0, 0, 0);
                     ow.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(blockPos), 3, blockPos);
                 }
-            } else AmaCarpet.LOGGER.error(OW + " is null");
+            } else AmaCarpetServer.LOGGER.error(OW + " is null");
 
             if (ne != null) {
                 for (long pos : nePortalTickets2) {
                     ChunkPos chunkPos = new ChunkPos(pos);
-                    AmaCarpet.LOGGER.info("{}'s {}, {} portal ticket has reloaded", ne.getRegistryKey().getValue(), chunkPos.x, chunkPos.z);
+                    AmaCarpetServer.LOGGER.info("portal ticket at the chunk({}, {}) of {} has been reloaded", chunkPos.x, chunkPos.z, ne.getRegistryKey().getValue());
                     BlockPos blockPos = chunkPos.getBlockPos(0, 0, 0);
                     ne.getChunkManager().addTicket(ChunkTicketType.PORTAL, chunkPos, 3, blockPos);
                 }
-            } else AmaCarpet.LOGGER.error(NE + " is null");
+            } else AmaCarpetServer.LOGGER.error(NE + " is null");
 
             if (end != null) {
                 for (long pos : endPortalTickets2) {
                     ChunkPos chunkPos = new ChunkPos(pos);
-                    AmaCarpet.LOGGER.info("{}'s {}, {} portal ticket has reloaded", end.getRegistryKey().getValue(), chunkPos.x, chunkPos.z);
+                    AmaCarpetServer.LOGGER.info("portal ticket at the chunk({}, {}) of {} has been reloaded", chunkPos.x, chunkPos.z, end.getRegistryKey().getValue());
                     BlockPos blockPos = chunkPos.getBlockPos(0, 0, 0);
                     end.getChunkManager().addTicket(ChunkTicketType.PORTAL, chunkPos, 3, blockPos);
                 }
-            } else AmaCarpet.LOGGER.error(END + " is null");
+            } else AmaCarpetServer.LOGGER.error(END + " is null");
 
-            AmaCarpet.LOGGER.info("Portal tickets loaded successfully");
+            AmaCarpetServer.LOGGER.info("All portal tickets have been reloaded successfully");
         } catch (IOException e) {
-            AmaCarpet.LOGGER.error("Failed to load portal tickets", e);
+            AmaCarpetServer.LOGGER.error("Failed to reload portal tickets", e);
         }
     }
 
     public static void save() {
         if (portalTicketPath == null) {
-            AmaCarpet.LOGGER.error("portal ticket path is null");
+            AmaCarpetServer.LOGGER.error("portal ticket path is null");
         }
         JsonObject ticketData = getJsonObject();
         if (ticketData.isJsonNull()) {
@@ -156,9 +156,9 @@ public class ChunkTicketUtil {
         }
         try {
             Files.writeString(portalTicketPath, gson.toJson(ticketData), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-            AmaCarpet.LOGGER.info("Portal tickets saved to {}", portalTicketPath.toString());
+            AmaCarpetServer.LOGGER.info("Portal tickets saved to {}", portalTicketPath.toString());
         } catch (IOException e) {
-            AmaCarpet.LOGGER.error("Failed to save portal tickets", e);
+            AmaCarpetServer.LOGGER.error("Failed to save portal tickets", e);
         }
     }
 
@@ -194,7 +194,7 @@ public class ChunkTicketUtil {
         } else if (dimension == World.END) {
             endPortalTickets.add(chunkPosLong);
         } else {
-            AmaCarpet.LOGGER.info("unknown dimension : {}", dimension.getValue());
+            AmaCarpetServer.LOGGER.error("unknown dimension : {}", dimension.getValue());
         }
     }
 }
