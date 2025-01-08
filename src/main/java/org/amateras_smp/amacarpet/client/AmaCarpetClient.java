@@ -16,6 +16,6 @@ public class AmaCarpetClient implements ClientModInitializer {
 
         ClientInitHandler.init();
 
-        LOGGER.info("{} client has initialized! (v{})", AmaCarpet.MOD_NAME, AmaCarpet.getVersion());
+        LOGGER.info("{} client has initialized! (version: {})", AmaCarpet.MOD_NAME, AmaCarpet.getVersion());
     }
 }

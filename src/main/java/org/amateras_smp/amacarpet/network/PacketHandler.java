@@ -3,8 +3,6 @@ package org.amateras_smp.amacarpet.network;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.amateras_smp.amacarpet.AmaCarpet;
-import org.amateras_smp.amacarpet.AmaCarpetServer;
-import org.amateras_smp.amacarpet.client.AmaCarpetClient;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
 
 import java.io.*;
@@ -77,12 +75,10 @@ public class PacketHandler {
 
     public static void sendC2S(IPacket packet) {
         AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(encode(packet));
-        AmaCarpetClient.LOGGER.info("[AmaCarpet] sending packet to server : {}", packetPayload);
         packetPayload.sendC2S();
     }
     public static void sendS2C(IPacket packet, ServerPlayerEntity player) {
         AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(encode(packet));
-        AmaCarpetServer.LOGGER.info("[AmaCarpet] sending packet to {} : {}", player, packetPayload);
         packetPayload.sendS2C(player);
     }
 }
