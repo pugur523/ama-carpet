@@ -6,30 +6,31 @@ import net.minecraft.util.Formatting;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PlayerUtil {
-    private static final CopyOnWriteArrayList<PlayerAuth> AUTH_PLAYERS = new CopyOnWriteArrayList<>();
+    private static final List<PlayerAuth> AUTH_PLAYERS = new ArrayList<>();
     private static final int TIMEOUT_TICKS = 40;
     private static final String DISCONNECT_MESSAGE = "AmaCarpet Client not found. This server requires the AmaCarpet Mod. Please install it from Modrinth or GitHub and try again.";
 
     public static void amaClientCheckCanJoinOnTick() {
         if (!AmaCarpetSettings.requireAmaCarpetClient) return;
 
-        Iterator<PlayerAuth> iterator = AUTH_PLAYERS.iterator();
-        while (iterator.hasNext()) {
-            PlayerAuth auth = iterator.next();
-            if (auth.isAuthorized()) {
-                iterator.remove();
-            } else if (auth.incrementLoginTick() >= TIMEOUT_TICKS) {
-                ServerPlayerEntity player = AmaCarpetServer.minecraft_server.getPlayerManager().getPlayer(auth.getName());
-                if (player != null) {
-                    player.networkHandler.disconnect(Text.literal(DISCONNECT_MESSAGE).formatted(Formatting.RED));
+        synchronized (AUTH_PLAYERS) {
+            AUTH_PLAYERS.removeIf(auth -> {
+                if (auth.isAuthorized()) {
+                    return true;
+                } else if (auth.incrementLoginTick() >= TIMEOUT_TICKS) {
+                    ServerPlayerEntity player = AmaCarpetServer.minecraft_server.getPlayerManager().getPlayer(auth.getName());
+                    if (player != null) {
+                        player.networkHandler.disconnect(Text.literal(DISCONNECT_MESSAGE).formatted(Formatting.RED));
+                    }
+                    return true;
                 }
-                iterator.remove();
-            }
+                return false;
+            });
         }
     }
 
