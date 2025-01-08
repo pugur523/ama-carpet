@@ -4,11 +4,13 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.amateras_smp.amacarpet.mixins.network.AccessorServerLoginNetworkHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,18 +22,24 @@ public class PlayerUtil {
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     public static void amaClientCheckCanJoin(ServerLoginNetworkHandler handler) {
+        AmaCarpetServer.LOGGER.info("Checking if client can join");
+        if (!AmaCarpetSettings.requireAmaCarpetClient) return;
+        if (!waitingPlayers.contains(handler)) return;
+        GameProfile profile = ((AccessorServerLoginNetworkHandler)handler).getProfile();
+        if (verifiedPlayers.contains(profile)) {
+            waitingPlayers.remove(handler);
+            verifiedPlayers.remove(profile);
+            return;
+        }
         scheduler.schedule(() -> {
-            if (!AmaCarpetSettings.requireAmaCarpetClient) return true;
-            if (!waitingPlayers.contains(handler)) return true;
-            GameProfile profile = ((AccessorServerLoginNetworkHandler)handler).getProfile();
+            AmaCarpetServer.LOGGER.info("Checking if client has AmaCarpetClient.");
             if (verifiedPlayers.contains(profile)) {
                 waitingPlayers.remove(handler);
                 verifiedPlayers.remove(profile);
-                return true;
+            } else {
+                waitingPlayers.remove(handler);
+                Objects.requireNonNull(AmaCarpetServer.minecraft_server.getPlayerManager().getPlayer(profile.getId())).networkHandler.disconnect(Text.literal(dcMessage).formatted(Formatting.RED));
             }
-            waitingPlayers.remove(handler);
-            handler.disconnect(Text.literal(dcMessage).formatted(Formatting.RED));
-            return false;
         }, 1, TimeUnit.SECONDS);
     }
 }
