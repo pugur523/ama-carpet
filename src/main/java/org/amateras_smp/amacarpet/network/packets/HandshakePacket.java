@@ -30,7 +30,7 @@ public class HandshakePacket extends IPacket {
     @Override
     public void onServer(ServerPlayerEntity player) {
         AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpetClient({}).", player.getName().getString(), version);
-        PlayerUtil.markAsVerified(player.getGameProfile());
+        PlayerUtil.markAsVerified(player.getName().getString());
         HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
         PacketHandler.sendS2C(handshakePacket, player);
     }
@@ -39,5 +39,4 @@ public class HandshakePacket extends IPacket {
     public void onClient() {
         AmaCarpetClient.LOGGER.info("[AmaCarpet] Logging into AmaCarpetServer({}).", version);
     }
-
 }

@@ -1,9 +1,7 @@
 package org.amateras_smp.amacarpet.mixins.network;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.utils.PlayerUtil;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,23 +15,19 @@ public abstract class MixinServerLoginNetworkHandler {
     //#if MC <= 12002
     @Shadow
     GameProfile profile;
-    //#endif
-
-    @Inject(method = "tick", at = @At("RETURN"))
-    private void onTick(CallbackInfo ci) {
-        AmaCarpetServer.LOGGER.info("debug: on tick");
-        PlayerUtil.amaClientCheckCanJoinOnTick();
-    }
-
-    //#if MC >= 12002
-    //$$ @Inject(method = "sendSuccessPacket(Lcom/mojang/authlib/GameProfile;)V", at = @At("HEAD"))
-    //$$ private void onAccept(GameProfile profile, CallbackInfo ci) {
     //#else
-    @Inject(method = "acceptPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginNetworkHandler;addToServer(Lnet/minecraft/server/network/ServerPlayerEntity;)V"))
-    private void onAccept(CallbackInfo ci, @Local(ordinal = 1) ServerPlayerEntity serverPlayerEntity2) {
+    //$$ @Shadow
+    //$$ String profileName;
     //#endif
-        AmaCarpetServer.LOGGER.info("debug: on accept");
+
+    @Inject(method = "onHello", at = @At(value = "RETURN"))
+    private void onHello(CallbackInfo ci) {
+        AmaCarpetServer.LOGGER.info("debug: on hello");
+        //#if MC <= 12002
         if (profile == null) return;
-        PlayerUtil.addShouldAuthPlayer(profile);
+        String profileName = profile.getName();
+        //#endif
+        if (profileName == null || profileName.isBlank()) return;
+        PlayerUtil.addShouldAuthPlayer(profileName);
     }
 }
