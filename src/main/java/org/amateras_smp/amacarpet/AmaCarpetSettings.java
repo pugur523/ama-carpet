@@ -8,11 +8,10 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
-
-    @Rule(categories = { AMA, SURVIVAL })
-    public static boolean cheatDetector = false;
-
     // todo : implement this.
+    // @Rule(categories = { AMA, SURVIVAL })
+    // public static boolean cheatDetector = false;
+
     // @Rule(categories = { AMA, SURVIVAL, OPTIMIZATION })
     // public static boolean disableAnimalSpawnOnWorldGen = false;
 
