@@ -1,71 +1,88 @@
 package org.amateras_smp.amacarpet.network;
 
-import io.netty.buffer.Unpooled;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.PacketCallbacks;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.util.Identifier;
+import net.minecraft.server.network.ServerPlayerEntity;
+import org.amateras_smp.amacarpet.AmaCarpet;
+import org.amateras_smp.amacarpet.AmaCarpetServer;
+import org.amateras_smp.amacarpet.client.AmaCarpetClient;
+import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PacketHandler {
-    // todo : support mc >= 12005 network compatibility
-    //#if MC < 12005
-    private static PacketByteBuf makePacketInternal(Identifier id, NbtCompound nbt) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-        buf.writeString(id.toString());
-        buf.writeNbt(nbt);
-        return buf;
+    private static final List<Packet> packetRegistry = new ArrayList<>();
+
+    private record Packet(String key, Class<? extends IPacket> clazz) {
     }
 
-    private static CustomPayloadS2CPacket makeS2CPacket(Identifier id, NbtCompound nbt) {
-        PacketByteBuf buf = makePacketInternal(id, nbt);
-        return new CustomPayloadS2CPacket(buf);
+    static {
+        packetRegistry.add(new Packet("handshake", HandshakePacket.class));
     }
 
-    private static CustomPayloadC2SPacket makeC2SPacket(Identifier id, NbtCompound nbt) {
-        PacketByteBuf buf = makePacketInternal(id, nbt);
-        return new CustomPayloadC2SPacket(buf);
-    }
+    private static IPacket decode(byte[] raw) {
+        try (ByteArrayInputStream bais = new ByteArrayInputStream(raw); DataInputStream dis = new DataInputStream(bais)) {
+            String key = dis.readUTF();
+            int len = dis.readInt();
+            byte[] data = new byte[len]; dis.readFully(data);
 
-    public static void sendS2C(ServerPlayNetworkHandler networkHandler, Identifier id, NbtCompound nbt) {
-        sendS2C(networkHandler, id, nbt, () -> {});
-    }
-
-    public static void sendS2C(ServerPlayNetworkHandler networkHandler, Identifier id, NbtCompound nbt, Runnable doneCallback) {
-        CustomPayloadS2CPacket packet = makeS2CPacket(id, nbt);
-        //#if MC >= 12002
-        //$$ networkHandler.send(
-        //#else
-        networkHandler.sendPacket(
-        //#endif
-                packet,
-                PacketCallbacks.always(doneCallback)
-        );
-    }
-
-    public static void sendC2S(Identifier id, NbtCompound nbt) {
-        sendC2S(id, nbt, () -> {});
-    }
-
-    public static void sendC2S(Identifier id, NbtCompound nbt, Runnable doneCallback) {
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
-            throw new RuntimeException("Trying to send AmaCarpet C2S packet on a dedicated server");
+            for (Packet packet: packetRegistry) if (key.equals(packet.key)) {
+                try {
+                    return packet.clazz.getConstructor(byte[].class).newInstance((Object) data);
+                } catch (Exception e) {
+                    AmaCarpet.LOGGER.error("Failed to decode packet {}", key);
+                    AmaCarpet.LOGGER.error(e);
+                    return null;
+                }
+            }
+            AmaCarpet.LOGGER.error("Unknown Packet {}", key);
+        } catch (IOException e) {
+            AmaCarpet.LOGGER.error("Unknown Error: \n" + e);
         }
-        CustomPayloadC2SPacket packet = makeC2SPacket(id, nbt);
-        ClientPlayNetworkHandler networkHandler = MinecraftClient.getInstance().getNetworkHandler();
-        if (networkHandler != null) {
-            networkHandler.getConnection().send(
-                    packet,
-                    PacketCallbacks.always(doneCallback)
-            );
+
+        return null;
+    }
+
+    private static byte[] encode(IPacket packet) {
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); DataOutputStream dos = new DataOutputStream(baos)) {
+            String key = null;
+            for (Packet p: packetRegistry) if (packet.getClass() == p.clazz) {
+                key = p.key; break;
+            }
+            if (key == null) return null;
+
+            byte[] data = packet.encode();
+            dos.writeUTF(key);
+            dos.writeInt(data.length);
+            dos.write(data);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            AmaCarpet.LOGGER.error(e);
+            return null;
         }
     }
-    //#endif
+
+    public static void handleC2SPacket(AmaCarpetPacketPayload payload, ServerPlayNetworkHandler handler) {
+        IPacket packet = decode(payload.content);
+        if (packet == null) return;
+        packet.onServer(handler.player);
+    }
+
+    public static void handleS2CPacket(AmaCarpetPacketPayload payload) {
+        IPacket packet = decode(payload.content);
+        if (packet == null) return;
+        packet.onClient();
+    }
+
+    public static void sendC2S(IPacket packet) {
+        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(encode(packet));
+        AmaCarpetClient.LOGGER.info("[AmaCarpet] sending packet to server : {}", packetPayload);
+        packetPayload.sendC2S();
+    }
+    public static void sendS2C(IPacket packet, ServerPlayerEntity player) {
+        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(encode(packet));
+        AmaCarpetServer.LOGGER.info("[AmaCarpet] sending packet to {} : {}", player, packetPayload);
+        packetPayload.sendS2C(player);
+    }
 }

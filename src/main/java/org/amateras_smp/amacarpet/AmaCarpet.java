@@ -1,5 +1,6 @@
 package org.amateras_smp.amacarpet;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
@@ -12,10 +13,13 @@ public class AmaCarpet implements ModInitializer {
     public static String MOD_ID = "ama-carpet";
     public static String MOD_VERSION;
     public static Logger LOGGER;
+    public static boolean IS_CLIENT;
 
     @Override
     public void onInitialize() {
-        MOD_VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+        FabricLoader fabricLoader = FabricLoader.getInstance();
+        MOD_VERSION = fabricLoader.getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+        IS_CLIENT =fabricLoader.getEnvironmentType() == EnvType.CLIENT;
         LOGGER = LogManager.getLogger(MOD_NAME);
         InitHandler.init();
         LOGGER.info("{} has initialized! (v{})", MOD_NAME, getVersion());

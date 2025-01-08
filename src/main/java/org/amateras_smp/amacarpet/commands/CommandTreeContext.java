@@ -5,13 +5,13 @@ import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.server.command.ServerCommandSource;
 
 //#if MC >= 11900
-//$$ import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.CommandRegistryAccess;
 //#endif
 
 public abstract class CommandTreeContext
 {
     //#if MC >= 11900
-    //$$ public final CommandRegistryAccess commandBuildContext;
+    public final CommandRegistryAccess commandBuildContext;
     //#endif
 
     /*
@@ -22,26 +22,26 @@ public abstract class CommandTreeContext
 
     protected CommandTreeContext(
             //#if MC >= 11900
-            //$$ CommandRegistryAccess commandBuildContext
+            CommandRegistryAccess commandBuildContext
             //#endif
     )
     {
         //#if MC >= 11900
-        //$$ this.commandBuildContext = commandBuildContext;
+        this.commandBuildContext = commandBuildContext;
         //#endif
     }
 
     public static Register of(
             CommandDispatcher<ServerCommandSource> dispatcher
             //#if MC >= 11900
-            //$$ , CommandRegistryAccess commandBuildContext
+            , CommandRegistryAccess commandBuildContext
             //#endif
     )
     {
         return new Register(
                 dispatcher
                 //#if MC >= 11900
-                //$$ , commandBuildContext
+                , commandBuildContext
                 //#endif
         );
     }
@@ -49,14 +49,14 @@ public abstract class CommandTreeContext
     public static Node of(
             ArgumentBuilder<ServerCommandSource, ?> node
             //#if MC >= 11900
-            //$$ , CommandRegistryAccess commandBuildContext
+            , CommandRegistryAccess commandBuildContext
             //#endif
     )
     {
         return new Node(
                 node
                 //#if MC >= 11900
-                //$$ , commandBuildContext
+                , commandBuildContext
                 //#endif
         );
     }
@@ -65,15 +65,15 @@ public abstract class CommandTreeContext
      * For mc1.19+
      * Warning: {@link #commandBuildContext} will be null
      * <p>
-     * TODO: make an interface with getCommandBuildContext() method.
-     * then make this method returns a impl that getCommandBuildContext() throws
+     * TODO: make an interface with getCommandRegistryAccess() method.
+     * then make this method returns a impl that getCommandRegistryAccess() throws
      */
     public static Node ofNonContext(ArgumentBuilder<ServerCommandSource, ?> node)
     {
         return of(
                 node
                 //#if MC >= 11900
-                //$$ , null
+                , null
                 //#endif
         );
     }
@@ -92,7 +92,7 @@ public abstract class CommandTreeContext
         return of(
                 node
                 //#if MC >= 11900
-                //$$ , commandBuildContext
+                , commandBuildContext
                 //#endif
         );
     }
@@ -104,13 +104,13 @@ public abstract class CommandTreeContext
         private Register(
                 CommandDispatcher<ServerCommandSource> dispatcher
                 //#if MC >= 11900
-                //$$ , CommandRegistryAccess commandBuildContext
+                , CommandRegistryAccess commandBuildContext
                 //#endif
         )
         {
             super(
                     //#if MC >= 11900
-                    //$$ commandBuildContext
+                    commandBuildContext
                     //#endif
             );
             this.dispatcher = dispatcher;
@@ -130,13 +130,13 @@ public abstract class CommandTreeContext
         private Node(
                 ArgumentBuilder<ServerCommandSource, ?> node
                 //#if MC >= 11900
-                //$$ , CommandRegistryAccess commandBuildContext
+                , CommandRegistryAccess commandBuildContext
                 //#endif
         )
         {
             super(
                     //#if MC >= 11900
-                    //$$ commandBuildContext
+                    commandBuildContext
                     //#endif
             );
             this.node = node;

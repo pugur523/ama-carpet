@@ -35,9 +35,6 @@ public class AmaCarpetSettings {
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean reloadPortalTicket = false;
 
-    // todo : support mc >= 12005 network compatibility
-    //#if MC < 12005
     @Rule(categories = { AMA })
     public static boolean requireAmaCarpetClient = false;
-    //#endif
 }
