@@ -9,7 +9,7 @@
     "network.CustomPayloadC2SPacketMixin",
     "network.CustomPayloadS2CPacketAccessor",
     "network.CustomPayloadS2CPacketMixin",
-    "network.MixinServerLoginNetworkHandler",
+    "network.MixinPlayerManager",
     "network.MixinServerPlayNetworkHandler",
     "sound.MixinWorld",
     "syncmatica.MixinServerCommunicationManager",
