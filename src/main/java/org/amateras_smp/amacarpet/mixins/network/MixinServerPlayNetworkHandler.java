@@ -5,7 +5,6 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.util.Identifier;
 import org.amateras_smp.amacarpet.network.AmaCarpetPacketPayload;
 import org.amateras_smp.amacarpet.network.PacketHandler;
-import org.amateras_smp.amacarpet.utils.NetworkUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -35,7 +34,7 @@ public abstract class MixinServerPlayNetworkHandler {
         Identifier channel = ((CustomPayloadC2SPacketAccessor)packet).getChannel();
         if (AmaCarpetPacketPayload.identifier.equals(channel))
         {
-            AmaCarpetPacketPayload amaCustomPayload = new AmaCarpetPacketPayload(NetworkUtil.read(packet.getData()));
+            AmaCarpetPacketPayload amaCustomPayload = new AmaCarpetPacketPayload(packet.getData().readByteArray());
             PacketHandler.handleC2SPacket(amaCustomPayload, (ServerPlayNetworkHandler)(Object)this);
             ci.cancel();
         }

@@ -8,11 +8,11 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
-import org.amateras_smp.amacarpet.utils.NetworkUtil;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PacketHandler {
     private static final List<Packet> packetRegistry = new ArrayList<>();
@@ -90,12 +90,12 @@ public class PacketHandler {
     }
 
     public static void sendC2S(IPacket packet) {
-        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(NetworkUtil.read(encode(packet)));
+        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(Objects.requireNonNull(encode(packet)).readByteArray());
         packetPayload.sendC2S();
     }
 
     public static void sendS2C(IPacket packet, ServerPlayerEntity player) {
-        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(NetworkUtil.read(encode(packet)));
+        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(Objects.requireNonNull(encode(packet)).readByteArray());
         AmaCarpet.LOGGER.info("sending custom packet s2c");
         packetPayload.sendS2C(player);
     }
