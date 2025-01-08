@@ -119,17 +119,12 @@ fullProjectVersion = project.minecraft_version + '-' + project.mod_version
 fullArtifactVersion = artifactVersion + '-mc' + project.minecraft_version
 version = fullProjectVersion
 
-static def getGitBranchName() {
-    def branch = 'git rev-parse --abbrev-ref HEAD'.execute().text.trim()
-    return branch ?: 'unknown-branch'
-}
-
-def branchName = getGitBranchName()
+String branchName = getGitBranchName()
 
 
 if (branchName != "main") {
     // rename jar file when it's not main branch
-    base.archivesName = project.archives_base_name + "-" + branchName
+    base.archivesName = (project.archives_base_name + "-" + branchName)
 }
 
 // See https://youtrack.jetbrains.com/issue/IDEA-296490
@@ -205,4 +200,12 @@ publishing {
         // retrieving dependencies.
     }
     */
+}
+
+static String getGitBranchName() {
+    def branch = 'git rev-parse --abbrev-ref HEAD'.execute().text.trim()
+    if (branch.contains("/")) {
+        branch = branch.substring(0, branch.indexOf("/"))
+    }
+    return branch ?: 'unknown-branch'
 }

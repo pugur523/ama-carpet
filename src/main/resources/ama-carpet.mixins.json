@@ -18,7 +18,8 @@
     "ticket.MixinMinecraftServer",
     "ticket.MixinServerChunkManager",
     "ticket.MixinServerWorld",
-    "ticket.MixinThreadedAnvilChunkStorage"
+    "ticket.MixinThreadedAnvilChunkStorage",
+    "util.MixinMinecraftServer"
   ],
   "injectors": {
     "defaultRequire": 1

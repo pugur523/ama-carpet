@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinClientPlayNetworkHandlerForHandshake {
     @Inject(method = "onGameJoin", at = @At("RETURN"))
     private void sendHandshakePacket(GameJoinS2CPacket packet, CallbackInfo ci) {
-        AmaCarpetClient.LOGGER.info("[AmaCarpetClientDebug] onGameJoin() send hand shake packet");
+        AmaCarpetClient.LOGGER.info("[AmaCarpetClientDebug] onHello() send hand shake packet");
         HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
         PacketHandler.sendC2S(handshakePacket);
     }

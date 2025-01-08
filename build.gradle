@@ -24,12 +24,6 @@ preprocess {
     mc1206.link(mc1214, file('versions/mapping-1.20.6-1.21.4.txt') as File)
 }
 
-static def getGitBranchName() {
-    def branch = 'git rev-parse --abbrev-ref HEAD'.execute().text.trim()
-    return branch ?: 'unknown-branch'
-}
-
-
 tasks.register('buildAndGather') {
     group = 'build'
     subprojects {
@@ -91,4 +85,12 @@ tasks.register('cleanBuilds') {
             }
         }
     }
+}
+
+static String getGitBranchName() {
+    def branch = 'git rev-parse --abbrev-ref HEAD'.execute().text.trim()
+    if (branch.contains("/")) {
+        branch = branch.substring(0, branch.indexOf("/"))
+    }
+    return branch ?: 'unknown-branch'
 }

@@ -4,6 +4,7 @@
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
     "MixinMinecraftClient",
+    "network.AccessorClientLoginNetworkingHandler",
     "network.MixinClientPlayNetworkHandler",
     "network.MixinClientPlayNetworkHandlerForHandshake"
   ],

@@ -22,7 +22,7 @@ public class AmaCarpet implements ModInitializer {
         IS_CLIENT =fabricLoader.getEnvironmentType() == EnvType.CLIENT;
         LOGGER = LogManager.getLogger(MOD_NAME);
         InitHandler.init();
-        LOGGER.info("{} has initialized! (v{})", MOD_NAME, getVersion());
+        LOGGER.info("{}({}) has initialized!", MOD_NAME, getVersion());
     }
 
     public static String getVersion() {
