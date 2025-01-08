@@ -31,7 +31,7 @@ public class HandshakePacket extends IPacket {
     @Override
     public void onServer(ServerPlayerEntity player) {
         AmaCarpetServer.minecraft_server.execute(() -> {
-            AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpetClient({}).", player.getName().getString(), version);
+            AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpet-Client version {}.", player.getName().getString(), version);
             PlayerUtil.markAsVerified(player.getName().getString());
             HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
             PacketHandler.sendS2C(handshakePacket, player);
@@ -41,7 +41,7 @@ public class HandshakePacket extends IPacket {
     @Override
     public void onClient() {
         MinecraftClient.getInstance().execute(() -> {
-            AmaCarpetClient.LOGGER.info("[AmaCarpet] Logging into AmaCarpetServer({}).", version);
+            AmaCarpetClient.LOGGER.info("[AmaCarpet] Logging into AmaCarpet-Server version {}.", version);
         });
     }
 }

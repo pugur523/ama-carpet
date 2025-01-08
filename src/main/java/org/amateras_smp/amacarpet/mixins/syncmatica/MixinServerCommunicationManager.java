@@ -38,6 +38,7 @@ public abstract class MixinServerCommunicationManager extends CommunicationManag
         Text message = Text.literal(source.serverPlayNetworkHandler.player.getName().getString()).formatted(Formatting.RED).append(
                 Text.literal(" removed a shared litematic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW));
+        AmaCarpetServer.LOGGER.info(message.getString());
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
 }

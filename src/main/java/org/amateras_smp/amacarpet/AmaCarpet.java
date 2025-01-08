@@ -11,7 +11,7 @@ public class AmaCarpet implements ModInitializer {
 
     public static String MOD_NAME = "AmaCarpet";
     public static String MOD_ID = "ama-carpet";
-    public static String MOD_VERSION;
+    private static String MOD_VERSION;
     public static Logger LOGGER;
     public static boolean IS_CLIENT;
 

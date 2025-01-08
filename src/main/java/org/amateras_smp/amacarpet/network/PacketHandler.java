@@ -69,22 +69,18 @@ public class PacketHandler {
     }
 
     public static void handleC2SPacket(AmaCarpetPacketPayload payload, ServerPlayNetworkHandler handler) {
-        AmaCarpet.LOGGER.info("received c2s packet");
         AmaCarpetServer.minecraft_server.execute(() -> {
             IPacket packet = decode(payload.content);
             if (packet == null) return;
-            AmaCarpet.LOGGER.info("call server packet handler asap");
             packet.onServer(handler.player);
         });
 
     }
 
     public static void handleS2CPacket(AmaCarpetPacketPayload payload) {
-        AmaCarpet.LOGGER.info("received s2c packet");
         MinecraftClient.getInstance().execute(() -> {
             IPacket packet = decode(payload.content);
             if (packet == null) return;
-            AmaCarpet.LOGGER.info("call client packet handler asap");
             packet.onClient();
         });
     }
@@ -96,7 +92,6 @@ public class PacketHandler {
 
     public static void sendS2C(IPacket packet, ServerPlayerEntity player) {
         AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(Objects.requireNonNull(encode(packet)).readByteArray());
-        AmaCarpet.LOGGER.info("sending custom packet s2c");
         packetPayload.sendS2C(player);
     }
 }
