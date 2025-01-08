@@ -8,11 +8,7 @@ public abstract class IPacket {
         return new byte[0];
     }
 
-    public void onServer(ServerPlayerEntity player) {
-        // noop
-    }
+    public abstract void onServer(ServerPlayerEntity player);
 
-    public void onClient() {
-        // noop
-    }
+    public abstract void onClient();
 }

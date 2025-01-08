@@ -8,7 +8,6 @@ import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.utils.PlayerUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,8 +19,11 @@ public abstract class MixinServerLoginNetworkHandler {
     GameProfile profile;
     //#endif
 
-    @Unique
-    boolean addedPlayer = false;
+    @Inject(method = "tick", at = @At("RETURN"))
+    private void onTick(CallbackInfo ci) {
+        AmaCarpetServer.LOGGER.info("debug: on tick");
+        PlayerUtil.amaClientCheckCanJoinOnTick();
+    }
 
     //#if MC >= 12002
     //$$ @Inject(method = "sendSuccessPacket(Lcom/mojang/authlib/GameProfile;)V", at = @At("HEAD"))
@@ -32,10 +34,6 @@ public abstract class MixinServerLoginNetworkHandler {
     //#endif
         AmaCarpetServer.LOGGER.info("debug: on accept");
         if (profile == null) return;
-        if (!addedPlayer) {
-            PlayerUtil.waitingPlayers.add((ServerLoginNetworkHandler)(Object)this);
-            addedPlayer = true;
-        }
-        PlayerUtil.amaClientCheckCanJoin((ServerLoginNetworkHandler)(Object)this);
+        PlayerUtil.addShouldAuthPlayer(profile);
     }
 }

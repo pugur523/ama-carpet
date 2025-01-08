@@ -1,12 +1,9 @@
 package org.amateras_smp.amacarpet.network.packets;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.client.AmaCarpetClient;
-import org.amateras_smp.amacarpet.mixins.network.AccessorServerLoginNetworkHandler;
 import org.amateras_smp.amacarpet.network.IPacket;
 import org.amateras_smp.amacarpet.network.PacketHandler;
 import org.amateras_smp.amacarpet.utils.PlayerUtil;
@@ -33,7 +30,7 @@ public class HandshakePacket extends IPacket {
     @Override
     public void onServer(ServerPlayerEntity player) {
         AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpetClient({}).", player.getName().getString(), version);
-        PlayerUtil.verifiedPlayers.add(player.getGameProfile());
+        PlayerUtil.markAsVerified(player.getGameProfile());
         HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
         PacketHandler.sendS2C(handshakePacket, player);
     }
@@ -42,4 +39,5 @@ public class HandshakePacket extends IPacket {
     public void onClient() {
         AmaCarpetClient.LOGGER.info("[AmaCarpet] Logging into AmaCarpetServer({}).", version);
     }
+
 }
