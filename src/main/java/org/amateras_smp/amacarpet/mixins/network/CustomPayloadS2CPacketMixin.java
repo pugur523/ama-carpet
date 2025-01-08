@@ -8,6 +8,5 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Restriction(require = @Condition(value = AmaCarpet.ModIds.minecraft, versionPredicates = ">=1.20.2-alpha.0"))
 @Mixin(Dummy.class)
-public abstract class CustomPayloadS2CPacketMixin
-{
+public abstract class CustomPayloadS2CPacketMixin {
 }

@@ -4,9 +4,10 @@
   "package": "org.amateras_smp.amacarpet.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
+    "network.AccessorServerLoginNetworkHandler",
     "network.CustomPayloadC2SPacketAccessor",
-    "network.CustomPayloadS2CPacketAccessor",
     "network.CustomPayloadC2SPacketMixin",
+    "network.CustomPayloadS2CPacketAccessor",
     "network.CustomPayloadS2CPacketMixin",
     "network.MixinServerLoginNetworkHandler",
     "network.MixinServerPlayNetworkHandler",

@@ -26,16 +26,4 @@ public class MixinSyncmaticManager {
                 Text.literal("\nDimension : " + placement.getDimension()).formatted(Formatting.WHITE));
         AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
     }
-
-    /*
-    This is bad cuz cannot get name of the player that removed a litematic.
-    @Inject(method = "removePlacement", at = @At("TAIL"))
-    private void onRemovePlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifyLitematicShared) return;
-        Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.RED).append(
-                Text.literal(" removed a shared litematic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
-                Text.literal(placement.getName()).formatted(Formatting.YELLOW));
-        AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
-    }
-    */
 }
