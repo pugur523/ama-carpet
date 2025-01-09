@@ -3,6 +3,7 @@ package org.amateras_smp.amacarpet.client.mixins.network;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.util.Identifier;
+import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.mixins.network.CustomPayloadS2CPacketAccessor;
 import org.amateras_smp.amacarpet.network.AmaCarpetPacketPayload;
 import org.amateras_smp.amacarpet.network.PacketHandler;
@@ -35,8 +36,8 @@ public abstract class MixinClientPlayNetworkHandler {
             at = @At("HEAD"),
             cancellable = true
     )
-    private void onCustomPayload(CustomPayloadS2CPacket packet, CallbackInfo ci)
-    {
+    private void onCustomPayload(CustomPayloadS2CPacket packet, CallbackInfo ci) {
+        AmaCarpet.LOGGER.debug("onCustomPayload(s2c)");
         //#if MC >= 12002
         //$$ if (packet.payload() instanceof AmaCarpetPacketPayload amaCustomPayload) {
         //$$    PacketHandler.handleS2CPacket(amaCustomPayload);
@@ -44,8 +45,7 @@ public abstract class MixinClientPlayNetworkHandler {
         //$$ }
         //#else
         Identifier channel = ((CustomPayloadS2CPacketAccessor)packet).getChannel();
-        if (AmaCarpetPacketPayload.identifier.equals(channel))
-        {
+        if (AmaCarpetPacketPayload.identifier.equals(channel)) {
             AmaCarpetPacketPayload amaCustomPayload = new AmaCarpetPacketPayload(packet.getData().readByteArray());
             PacketHandler.handleS2CPacket(amaCustomPayload);
             ci.cancel();
