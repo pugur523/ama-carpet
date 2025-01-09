@@ -3,8 +3,10 @@ package org.amateras_smp.amacarpet;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
 
 public class AmaCarpet implements ModInitializer {
@@ -17,12 +19,16 @@ public class AmaCarpet implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        LOGGER = LogManager.getLogger(MOD_NAME);
+
+        Configurator.setLevel(LOGGER, Level.DEBUG);
+
         FabricLoader fabricLoader = FabricLoader.getInstance();
         MOD_VERSION = fabricLoader.getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
         IS_CLIENT =fabricLoader.getEnvironmentType() == EnvType.CLIENT;
-        LOGGER = LogManager.getLogger(MOD_NAME);
         InitHandler.init();
         LOGGER.info("{}({}) has initialized!", MOD_NAME, getVersion());
+        LOGGER.debug("[AmaCarpet] debug log is enabled.");
     }
 
     public static String getVersion() {

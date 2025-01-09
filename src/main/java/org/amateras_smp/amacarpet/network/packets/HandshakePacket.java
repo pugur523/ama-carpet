@@ -32,7 +32,7 @@ public class HandshakePacket extends IPacket {
     public void onServer(ServerPlayerEntity player) {
         AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
             AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpet-Client version {}.", player.getName().getString(), version);
-            PlayerUtil.markAsVerified(player.getName().getString());
+            PlayerUtil.markAsAuthenticated(player.getName().getString());
             HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
             PacketHandler.sendS2C(handshakePacket, player);
         });
