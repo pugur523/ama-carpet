@@ -25,6 +25,6 @@ public class MixinSyncmaticManager {
                 Text.literal(placement.getName()).formatted(Formatting.YELLOW)).append(
                 Text.literal("\nDimension : " + placement.getDimension()).formatted(Formatting.WHITE));
         AmaCarpetServer.LOGGER.info(message.getString());
-        AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
+        AmaCarpetServer.MINECRAFT_SERVER.getPlayerManager().broadcast(message, false);
     }
 }

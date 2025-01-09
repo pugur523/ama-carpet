@@ -69,7 +69,7 @@ public class PacketHandler {
     }
 
     public static void handleC2SPacket(AmaCarpetPacketPayload payload, ServerPlayNetworkHandler handler) {
-        AmaCarpetServer.minecraft_server.execute(() -> {
+        AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
             IPacket packet = decode(payload.content);
             if (packet == null) return;
             packet.onServer(handler.player);
