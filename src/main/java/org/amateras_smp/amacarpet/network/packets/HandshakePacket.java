@@ -30,7 +30,7 @@ public class HandshakePacket extends IPacket {
 
     @Override
     public void onServer(ServerPlayerEntity player) {
-        AmaCarpetServer.minecraft_server.execute(() -> {
+        AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
             AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpet-Client version {}.", player.getName().getString(), version);
             PlayerUtil.markAsVerified(player.getName().getString());
             HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());

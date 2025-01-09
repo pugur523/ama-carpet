@@ -23,7 +23,7 @@ public class PlayerUtil {
                 if (auth.isAuthorized()) {
                     return true;
                 } else if (auth.incrementLoginTick() >= TIMEOUT_TICKS) {
-                    ServerPlayerEntity player = AmaCarpetServer.minecraft_server.getPlayerManager().getPlayer(auth.getName());
+                    ServerPlayerEntity player = AmaCarpetServer.MINECRAFT_SERVER.getPlayerManager().getPlayer(auth.getName());
                     if (player != null) {
                         player.networkHandler.disconnect(Text.literal(DISCONNECT_MESSAGE).formatted(Formatting.RED));
                     }

@@ -20,9 +20,9 @@ import net.minecraft.command.CommandRegistryAccess;
 public class AmaCarpetServer implements CarpetExtension {
 
     private static final AmaCarpetServer INSTANCE = new AmaCarpetServer();
-    public static final String compactName = AmaCarpet.MOD_ID.replaceAll("-","");  // amacarpet
+    public static final String COMPACT_NAME = AmaCarpet.MOD_ID.replaceAll("-","");  // should be `amacarpet`
     public static final Logger LOGGER = AmaCarpet.LOGGER;
-    public static MinecraftServer minecraft_server;
+    public static MinecraftServer MINECRAFT_SERVER;
 
     @Override
     public String version()
@@ -49,7 +49,7 @@ public class AmaCarpetServer implements CarpetExtension {
     @Override
     public void onServerLoaded(MinecraftServer server)
     {
-        minecraft_server = server;
+        MINECRAFT_SERVER = server;
     }
 
     @Override
