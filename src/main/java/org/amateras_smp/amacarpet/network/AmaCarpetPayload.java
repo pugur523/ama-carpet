@@ -25,7 +25,7 @@ import net.minecraft.server.MinecraftServer;
 
 public class AmaCarpetPayload
         //#if MC >= 12005
-        //$$ implements CustomPayload
+        //$$ implements CustomPacketPayload
         //#endif
 {
     public final byte[] content;
