@@ -8,7 +8,7 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
-    // todo : implement this.
+    // TODO : implement this.
     // @Rule(categories = { AMA, SURVIVAL })
     // public static boolean cheatDetector = false;
 

@@ -1,10 +1,7 @@
 package org.amateras_smp.amacarpet.network;
 
-import io.netty.buffer.Unpooled;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
@@ -12,12 +9,18 @@ import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class PacketHandler {
     private static final List<Packet> packetRegistry = new ArrayList<>();
 
-    private record Packet(String key, Class<? extends IPacket> clazz) {
+    private static class Packet {
+        private final String key;
+        private final Class<? extends IPacket> clazz;
+
+        Packet(String key, Class<? extends IPacket> clazz) {
+            this.key = key;
+            this.clazz = clazz;
+        }
     }
 
     static {
@@ -25,7 +28,7 @@ public class PacketHandler {
     }
 
     private static IPacket decode(byte[] raw) {
-        try (ByteArrayInputStream bais = new ByteArrayInputStream(raw); DataInputStream dis = new DataInputStream(bais)) {
+        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(raw); DataInputStream dis = new DataInputStream(byteArrayInputStream)) {
             String key = dis.readUTF();
             int len = dis.readInt();
             byte[] data = new byte[len]; dis.readFully(data);
@@ -47,8 +50,8 @@ public class PacketHandler {
         return null;
     }
 
-    private static PacketByteBuf encode(IPacket packet) {
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); DataOutputStream dos = new DataOutputStream(baos)) {
+    private static byte[] encode(IPacket packet) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); DataOutputStream dos = new DataOutputStream(byteArrayOutputStream)) {
             String key = null;
             for (Packet p : packetRegistry) if (packet.getClass() == p.clazz) {
                 key = p.key; break;
@@ -59,31 +62,28 @@ public class PacketHandler {
             dos.writeUTF(key);
             dos.writeInt(data.length);
             dos.write(data);
-            PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-            buf.writeByteArray(baos.toByteArray());
-            return buf;
+            return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
             AmaCarpet.LOGGER.error(e);
             return null;
         }
     }
 
-    public static void handleC2SPacket(AmaCarpetPacketPayload payload, ServerPlayNetworkHandler handler) {
+    public static void handleC2S(byte[] data, ServerPlayer player) {
         AmaCarpet.LOGGER.debug("handling c2s packet");
         AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
-            AmaCarpet.LOGGER.debug("handling c2s actually executed");
-            IPacket packet = decode(payload.content);
+            AmaCarpet.LOGGER.debug("handling c2s executed by server thread");
+            IPacket packet = decode(data);
             if (packet == null) return;
-            packet.onServer(handler.player);
+            packet.onServer(player);
         });
-
     }
 
-    public static void handleS2CPacket(AmaCarpetPacketPayload payload) {
+    public static void handleS2C(byte[] data) {
         AmaCarpet.LOGGER.debug("handling s2c packet");
-        MinecraftClient.getInstance().execute(() -> {
-            AmaCarpet.LOGGER.debug("handling s2c actually executed");
-            IPacket packet = decode(payload.content);
+        Minecraft.getInstance().execute(() -> {
+            AmaCarpet.LOGGER.debug("handling s2c executed by client thread");
+            IPacket packet = decode(data);
             if (packet == null) return;
             packet.onClient();
         });
@@ -91,13 +91,13 @@ public class PacketHandler {
 
     public static void sendC2S(IPacket packet) {
         AmaCarpet.LOGGER.debug("sending c2s packet");
-        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(Objects.requireNonNull(encode(packet)).readByteArray());
+        AmaCarpetPayload packetPayload = new AmaCarpetPayload(encode(packet));
         packetPayload.sendC2S();
     }
 
-    public static void sendS2C(IPacket packet, ServerPlayerEntity player) {
+    public static void sendS2C(IPacket packet, ServerPlayer player) {
         AmaCarpet.LOGGER.debug("sending s2c packet");
-        AmaCarpetPacketPayload packetPayload = new AmaCarpetPacketPayload(Objects.requireNonNull(encode(packet)).readByteArray());
+        AmaCarpetPayload packetPayload = new AmaCarpetPayload(encode(packet));
         packetPayload.sendS2C(player);
     }
 }

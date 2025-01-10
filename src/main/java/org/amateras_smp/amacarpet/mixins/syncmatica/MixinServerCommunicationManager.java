@@ -4,9 +4,9 @@ import ch.endte.syncmatica.ServerPlacement;
 import ch.endte.syncmatica.communication.*;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 //#if MC < 12004
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 //#else
 //$$ import ch.endte.syncmatica.network.PacketType;
 //#endif
@@ -27,18 +27,18 @@ import net.minecraft.util.Identifier;
 public abstract class MixinServerCommunicationManager extends CommunicationManager {
     @Inject(method = "handle", at = @At("TAIL"))
     //#if MC < 12004
-    private void onRemovePlacement(ExchangeTarget source, Identifier id, PacketByteBuf packetBuf, CallbackInfo ci) {
+    private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifyLitematicShared || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier)) return;
     //#else
-    //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, PacketByteBuf packetBuf, CallbackInfo ci) {
+    //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
     //$$     if (!AmaCarpetSettings.notifyLitematicShared || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
     //#endif
-        UUID placementId = packetBuf.readUuid();
+        UUID placementId = packetBuf.readUUID();
         ServerPlacement placement = context.getSyncmaticManager().getPlacement(placementId);
-        Text message = Text.literal(source.serverPlayNetworkHandler.player.getName().getString()).formatted(Formatting.RED).append(
-                Text.literal(" removed a shared litematic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
-                Text.literal(placement.getName()).formatted(Formatting.YELLOW));
+        Component message = Component.literal(source.serverPlayNetworkHandler.player.getName().getString()).withStyle(ChatFormatting.RED).append(
+                Component.literal(" removed a shared litematic. \nPlacement name : ").withStyle(ChatFormatting.WHITE)).append(
+                Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW));
         AmaCarpetServer.LOGGER.info(message.getString());
-        AmaCarpetServer.MINECRAFT_SERVER.getPlayerManager().broadcast(message, false);
+        AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().broadcastSystemMessage(message, false);
     }
 }

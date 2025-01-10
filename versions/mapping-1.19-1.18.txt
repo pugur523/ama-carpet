@@ -9,9 +9,3 @@ carpet.api.settings.RuleCategory carpet.settings.RuleCategory
 carpet.api.settings.SettingsManager carpet.settings.SettingsManager
 carpet.api.settings.Validator carpet.settings.Validator
 carpet.api.settings.Rule carpet.settings.Rule
-
-net.minecraft.text.MutableText net.minecraft.text.BaseText
-net.minecraft.registry.Registries net.minecraft.util.registry.Registry
-net.minecraft.world.dimension.DimensionType ultrawarm() isUltrawarm()
-net.minecraft.world.dimension.DimensionTypes net.minecraft.world.dimension.DimensionOptions
-net.minecraft.world.World getDimensionKey() getRegistryKey()

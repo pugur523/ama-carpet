@@ -6,8 +6,9 @@ import carpet.api.settings.SettingsManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
 import org.amateras_smp.amacarpet.commands.CommandTreeContext;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import net.minecraft.command.CommandRegistryAccess;
 
 public class AmaCarpetServer implements CarpetExtension {
 
@@ -58,9 +58,9 @@ public class AmaCarpetServer implements CarpetExtension {
 
     @Override
     public void registerCommands(
-            CommandDispatcher<ServerCommandSource> dispatcher
+            CommandDispatcher<CommandSourceStack> dispatcher
             //#if MC >= 11900
-            , CommandRegistryAccess commandBuildContext
+            , CommandBuildContext commandBuildContext
             //#endif
     ) {
         CommandTreeContext.Register context = CommandTreeContext.of(

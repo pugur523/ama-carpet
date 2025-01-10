@@ -4,8 +4,8 @@ import ch.endte.syncmatica.ServerPlacement;
 import ch.endte.syncmatica.SyncmaticManager;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
@@ -20,11 +20,11 @@ public class MixinSyncmaticManager {
     @Inject(method = "addPlacement", at = @At("TAIL"))
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifyLitematicShared) return;
-        Text message = Text.literal(placement.getOwner().getName()).formatted(Formatting.GREEN).append(
-                Text.literal(" shared a litematic! \nPlacement name : ").formatted(Formatting.WHITE)).append(
-                Text.literal(placement.getName()).formatted(Formatting.YELLOW)).append(
-                Text.literal("\nDimension : " + placement.getDimension()).formatted(Formatting.WHITE));
+        Component message = Component.literal(placement.getOwner().getName()).withStyle(ChatFormatting.GREEN).append(
+                Component.literal(" shared a litematic! \nPlacement name : ").withStyle(ChatFormatting.WHITE)).append(
+                Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(
+                Component.literal("\nDimension : " + placement.getDimension()).withStyle(ChatFormatting.WHITE));
         AmaCarpetServer.LOGGER.info(message.getString());
-        AmaCarpetServer.MINECRAFT_SERVER.getPlayerManager().broadcast(message, false);
+        AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().broadcastSystemMessage(message, false);
     }
 }
