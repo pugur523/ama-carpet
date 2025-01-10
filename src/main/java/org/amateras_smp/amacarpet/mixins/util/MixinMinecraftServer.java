@@ -10,8 +10,9 @@ import java.util.function.BooleanSupplier;
 
 @Mixin(MinecraftServer.class)
 public class MixinMinecraftServer {
-    @Inject(method = "tick", at = @At("RETURN"))
+    @Inject(method = "tickServer", at = @At("RETURN"))
     private void onTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
         // on tick utility
+        // currently no-op
     }
 }

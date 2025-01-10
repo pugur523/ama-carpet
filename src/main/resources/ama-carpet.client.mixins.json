@@ -3,9 +3,8 @@
   "package": "org.amateras_smp.amacarpet.client.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
-    "network.AccessorClientLoginNetworkingHandler",
     "network.MixinClientPlayNetworkHandler",
-    "network.MixinClientPlayNetworkHandlerForHandshake"
+    "network.MixinClientPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1

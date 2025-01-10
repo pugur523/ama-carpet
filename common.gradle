@@ -34,10 +34,9 @@ String syncmatica_dependency = mcVersion >= 12004 ? "com.github.sakura-ryoko:syn
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    // mappings loom.officialMojangMappings()
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    mappings loom.officialMojangMappings()
+    // mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
 
@@ -46,8 +45,13 @@ dependencies {
         exclude group: 'com.github.sakura-ryoko', module: 'malilib'
         if (mcVersion == 12004 || mcVersion == 12006) exclude group: 'fi.dy.masa.malilib', module: 'malilib-fabric-1.20.6'
     }
+
+    modImplementation "maven.modrinth:kyoyu:${project.kyoyu_version}-fabric"
     // modImplementation "maven.modrinth:kyoyu:${project.kyoyu_version}"
-    modImplementation files("../../lib/Kyoyu-${project.kyoyu_version}-fabric.jar")
+    // modImplementation files("../../lib/Kyoyu-${project.kyoyu_version}-fabric.jar")
+
+    include(modImplementation(fabricApi.module("fabric-networking-api-v1", project.fabric_version)))
+    include(modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_version)))
 }
 
 JavaVersion JAVA_COMPATIBILITY

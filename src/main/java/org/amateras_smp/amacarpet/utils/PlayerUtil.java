@@ -1,8 +1,8 @@
 package org.amateras_smp.amacarpet.utils;
 
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
@@ -31,10 +31,10 @@ public class PlayerUtil {
             if (!AmaCarpetSettings.requireAmaCarpetClient) {
                 return;
             }
-            ServerPlayerEntity player = AmaCarpetServer.MINECRAFT_SERVER.getPlayerManager().getPlayer(auth.getName());
+            ServerPlayer player = AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayerByName(auth.getName());
             if (player != null) {
                 AmaCarpet.LOGGER.debug("disconnect player due to timeout");
-                player.networkHandler.disconnect(Text.literal(DISCONNECT_MESSAGE).formatted(Formatting.RED));
+                player.connection.disconnect(Component.literal(DISCONNECT_MESSAGE).withStyle(ChatFormatting.RED));
             }
         }
     }

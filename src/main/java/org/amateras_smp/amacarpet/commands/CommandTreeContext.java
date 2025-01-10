@@ -2,16 +2,16 @@ package org.amateras_smp.amacarpet.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 
 //#if MC >= 11900
-import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.commands.CommandBuildContext;
 //#endif
 
 public abstract class CommandTreeContext
 {
     //#if MC >= 11900
-    public final CommandRegistryAccess commandBuildContext;
+    public final CommandBuildContext commandBuildContext;
     //#endif
 
     /*
@@ -22,7 +22,7 @@ public abstract class CommandTreeContext
 
     protected CommandTreeContext(
             //#if MC >= 11900
-            CommandRegistryAccess commandBuildContext
+            CommandBuildContext commandBuildContext
             //#endif
     )
     {
@@ -32,9 +32,9 @@ public abstract class CommandTreeContext
     }
 
     public static Register of(
-            CommandDispatcher<ServerCommandSource> dispatcher
+            CommandDispatcher<CommandSourceStack> dispatcher
             //#if MC >= 11900
-            , CommandRegistryAccess commandBuildContext
+            , CommandBuildContext commandBuildContext
             //#endif
     )
     {
@@ -47,9 +47,9 @@ public abstract class CommandTreeContext
     }
 
     public static Node of(
-            ArgumentBuilder<ServerCommandSource, ?> node
+            ArgumentBuilder<CommandSourceStack, ?> node
             //#if MC >= 11900
-            , CommandRegistryAccess commandBuildContext
+            , CommandBuildContext commandBuildContext
             //#endif
     )
     {
@@ -65,10 +65,10 @@ public abstract class CommandTreeContext
      * For mc1.19+
      * Warning: {@link #commandBuildContext} will be null
      * <p>
-     * TODO: make an interface with getCommandRegistryAccess() method.
-     * then make this method returns a impl that getCommandRegistryAccess() throws
+     * TODO: make an interface with getCommandBuildContext() method.
+     * then make this method returns a impl that getCommandBuildContext() throws
      */
-    public static Node ofNonContext(ArgumentBuilder<ServerCommandSource, ?> node)
+    public static Node ofNonContext(ArgumentBuilder<CommandSourceStack, ?> node)
     {
         return of(
                 node
@@ -87,7 +87,7 @@ public abstract class CommandTreeContext
     /**
      * Creates a {@link Node} context based on self's basic information
      */
-    public Node node(ArgumentBuilder<ServerCommandSource, ?> node)
+    public Node node(ArgumentBuilder<CommandSourceStack, ?> node)
     {
         return of(
                 node
@@ -99,12 +99,12 @@ public abstract class CommandTreeContext
 
     public static class Register extends CommandTreeContext
     {
-        public final CommandDispatcher<ServerCommandSource> dispatcher;
+        public final CommandDispatcher<CommandSourceStack> dispatcher;
 
         private Register(
-                CommandDispatcher<ServerCommandSource> dispatcher
+                CommandDispatcher<CommandSourceStack> dispatcher
                 //#if MC >= 11900
-                , CommandRegistryAccess commandBuildContext
+                , CommandBuildContext commandBuildContext
                 //#endif
         )
         {
@@ -125,12 +125,12 @@ public abstract class CommandTreeContext
 
     public static class Node extends CommandTreeContext
     {
-        public final ArgumentBuilder<ServerCommandSource, ?> node;
+        public final ArgumentBuilder<CommandSourceStack, ?> node;
 
         private Node(
-                ArgumentBuilder<ServerCommandSource, ?> node
+                ArgumentBuilder<CommandSourceStack, ?> node
                 //#if MC >= 11900
-                , CommandRegistryAccess commandBuildContext
+                , CommandBuildContext commandBuildContext
                 //#endif
         )
         {
