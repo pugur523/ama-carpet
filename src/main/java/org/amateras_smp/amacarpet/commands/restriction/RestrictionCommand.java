@@ -50,6 +50,7 @@ public class RestrictionCommand extends AbstractCommand {
     public void registerCommand(CommandTreeContext.Register context) {
         initializeFeatureSuggestions();
         LiteralArgumentBuilder<CommandSourceStack> builder = literal("restriction")
+                .executes(this::printAllState)
                 .requires((player) -> CarpetModUtil.canUseCommand(player, AmaCarpetSettings.commandRestriction))
                 .then(argument("featureName", StringArgumentType.word())
                     .suggests(FEATURE_NAME_SUGGESTIONS)
@@ -62,7 +63,7 @@ public class RestrictionCommand extends AbstractCommand {
     }
 
     private static String isRestricted(boolean b) {
-        return b ? "restricted" : "allowed";
+        return b ? "prohibited" : "allowed";
     }
 
     public int changeSetting(CommandContext<CommandSourceStack> context) {
@@ -88,6 +89,16 @@ public class RestrictionCommand extends AbstractCommand {
         }
         boolean value = CheatRestrictionConfig.getInstance().get(featureName);
         context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.state"), featureName, isRestricted(value))).withStyle(ChatFormatting.AQUA));
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private int printAllState(CommandContext<CommandSourceStack> context) {
+        StringBuilder builder = new StringBuilder();
+        for (String feature : FEATURE_SUGGESTIONS) {
+            boolean value = CheatRestrictionConfig.getInstance().get(feature);
+            builder.append(feature).append(":").append(isRestricted(value)).append("\n");
+        }
+        context.getSource().sendSystemMessage(Component.literal(builder.toString()).withStyle(ChatFormatting.LIGHT_PURPLE));
         return Command.SINGLE_SUCCESS;
     }
 

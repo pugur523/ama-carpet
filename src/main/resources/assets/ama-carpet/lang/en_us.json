@@ -3,9 +3,9 @@
 
   "ama.message.on_cheat_dc": "You are using %s, which is not allowed in this server.\nRejoin after disabling this feature.",
   "ama.message.on_timeout_dc": "AmaCarpet Client not found. This server requires the AmaCarpet mod to join. Please install it from Modrinth or GitHub.",
-  "ama.message.restriction.changed": "Restriction settings changed. Feature `%s` is now %s.",
+  "ama.message.restriction.changed": "Restriction settings changed. %s is now %s.",
   "ama.message.restriction.invalid": "Invalid feature name! Use one of the suggested feature names.",
-  "ama.message.restriction.state": "Feature `%s` is currently %s.",
+  "ama.message.restriction.state": "%s is %s.",
   "carpet.rule.cheatRestriction.desc": "Detects features specified in the config file as not allowed. Config can be modify with /restriction command. Only work in dedicated server.",
   "carpet.rule.commandRestriction.desc": "Enables /restriction command for restrict client mod features.",
   "carpet.rule.disableAnimalSpawnOnChunkGen.desc": "Disables animal spawn on chunk generation.",
