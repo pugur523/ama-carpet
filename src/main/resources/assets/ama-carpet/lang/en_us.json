@@ -1,13 +1,19 @@
 {
   "carpet.category.ama": "ama",
 
-  "carpet.rule.cheatDetector.desc": "Detects not allowed client mod feature specified in the config file.",
+  "ama.message.on_cheat_dc": "You are using %s, which is not allowed in this server.\nRejoin after disabling this feature.",
+  "ama.message.on_timeout_dc": "AmaCarpet Client not found. This server requires the AmaCarpet mod to join. Please install it from Modrinth or GitHub.",
+  "ama.message.restriction.changed": "Restriction settings changed. %s is now %s.",
+  "ama.message.restriction.invalid": "Invalid feature name! Use one of the suggested feature names.",
+  "ama.message.restriction.state": "%s is %s.",
+  "carpet.rule.cheatRestriction.desc": "Detects features specified in the config file as not allowed. Config can be modify with /restriction command. Only work in dedicated server.",
+  "carpet.rule.commandRestriction.desc": "Enables /restriction command for restrict client mod features.",
   "carpet.rule.disableAnimalSpawnOnChunkGen.desc": "Disables animal spawn on chunk generation.",
   "carpet.rule.disableSoundEngine.desc": "Disables server-side sound engine to optimize",
   "carpet.rule.endGatewayChunkLoad.desc": "When an entity passes through end gateway portal it will loaded 3x3 chunk like a nether portal",
   "carpet.rule.endPortalChunkLoad.desc": "When an entity passes through end portal it will loaded 3x3 chunk like a nether portal",
   "carpet.rule.hopperLock.desc": "Locks all of the hoppers in the world",
-  "carpet.rule.notifyLitematicShared.desc": "Sends a notification to the chat when a player shared a syncmatic.",
+  "carpet.rule.notifyLitematicShared.desc": "Sends a notification to the chat when a player shared a litematic.",
   "carpet.rule.reloadPortalTicket.desc": "Reloads chunk loading tickets by nether portal on server restarts. Improves chunk loader reliability.",
   "carpet.rule.requireAmaCarpetClient.desc": "Requires AmaCarpet installed Client to join the server.(Reject all players to login without AmaCarpet).",
   "carpet.rule.requireAmaCarpetClientTimeOutSeconds.desc": "Timeout duration for checking if the client has AmaCarpet."

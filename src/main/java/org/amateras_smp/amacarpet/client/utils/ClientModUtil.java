@@ -1,13 +1,18 @@
+// Copyright (c) 2025 The AmaCarpet Authors
+// This file is part of the AmaCarpet project and is licensed under the terms of
+// the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
+
 package org.amateras_smp.amacarpet.client.utils;
 
 import com.google.common.collect.ImmutableList;
+import fi.dy.masa.malilib.config.IConfigBoolean;
 import net.fabricmc.loader.api.FabricLoader;
 import org.amateras_smp.amacarpet.AmaCarpet;
-import org.amateras_smp.amacarpet.client.AmaCarpetClient;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ClientModUtil {
     public static final ImmutableList<String> tweakerooFeaturesWatchList = ImmutableList.of(
@@ -25,16 +30,20 @@ public class ClientModUtil {
     );
 
     public static final ImmutableList<String> tweakerooYeetsWatchList = ImmutableList.of(
-            // contains masa addition
+            "slime_block_slowdown"
+    );
+
+    public static final ImmutableList<String> masaAdditionsYeetsWatchList = ImmutableList.of(
             "honey_block_slowdown",
             "honey_block_jumping",
-            "slime_block_bouncing",
-            "slime_block_slowdown"
+            "slime_block_bouncing"
     );
 
     public static final ImmutableList<String> tweakermoreWatchList = ImmutableList.of(
             "auto_pick_schematic_block",
             "disable_darkness_effect",
+            "disable_honey_block_effect",
+            "disable_slime_block_bouncing",
             "fake_night_vision",
             "schematic_block_placement_restriction",
             "schematic_pro_place"
@@ -45,34 +54,43 @@ public class ClientModUtil {
             "placement_restriction"
     );
 
-    public static boolean isFeatureEnable(String className, String fieldName) {
+    private static boolean checkMalilibConfigBoolean(String className, String feature) {
         try {
             Class<?> clazz = Class.forName(className);
-            Field field = clazz.getDeclaredField(fieldName);
-            if (!Modifier.isStatic(field.getModifiers())) {
-                AmaCarpetClient.LOGGER.error("the field must be static");
-                return false;
-            }
+            Field field = clazz.getDeclaredField(feature);
             field.setAccessible(true);
-            return field.getBoolean(null);
-        } catch (ClassNotFoundException e) {
-            return false;
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            AmaCarpetClient.LOGGER.error(e);
-            return false;
+            Object value = field.get(null);
+
+            if (value instanceof IConfigBoolean configBoolean) {
+                return configBoolean.getBooleanValue();
+            }
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            AmaCarpet.LOGGER.error("can't get tweakeroo feature state for {}", feature);
+        }
+        return false;
+    }
+
+    private static void addFeatures(Map<String, Boolean> map, String modId, List<String> features, String className, String featurePrefix) {
+        boolean isModLoaded = FabricLoader.getInstance().isModLoaded(modId);
+        for (String feature : features) {
+            boolean value = false;
+            if (isModLoaded) {
+                if (featurePrefix == null) featurePrefix = "";
+                String featureFormatted = featurePrefix + feature.toUpperCase();
+                value = checkMalilibConfigBoolean(className, featureFormatted);
+            }
+            map.put(feature, value);
         }
     }
 
     public static HashMap<String, Boolean> createConfigDataMap() {
-        FabricLoader loader = FabricLoader.getInstance();
         HashMap<String, Boolean> map = new HashMap<>();
 
-        if (loader.isModLoaded(AmaCarpet.ModIds.tweakeroo)) {
-        } if (loader.isModLoaded(AmaCarpet.ModIds.tweakermore)) {
-
-        } if (loader.isModLoaded(AmaCarpet.ModIds.litematica)) {
-
-        }
+        addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooFeaturesWatchList, "fi.dy.masa.tweakeroo.config.FeatureToggle", "TWEAK_");
+        addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooYeetsWatchList, "fi.dy.masa.tweakeroo.config.Configs$Disable", "DISABLE_");
+        addFeatures(map, AmaCarpet.ModIds.masaadditions, masaAdditionsYeetsWatchList, "com.red.masaadditions.tweakeroo_additions.config.ConfigsExtended$Disable", "DISABLE_");
+        addFeatures(map, AmaCarpet.ModIds.tweakermore, tweakermoreWatchList, "me.fallenbreath.tweakermore.config.TweakerMoreConfigs", "");
+        addFeatures(map, AmaCarpet.ModIds.litematica, litematicaWatchList, "fi.dy.masa.litematica.config.Configs$Generic", "");
 
         return map;
     }

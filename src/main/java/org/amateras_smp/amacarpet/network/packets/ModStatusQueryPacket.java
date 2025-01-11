@@ -11,7 +11,13 @@ import org.amateras_smp.amacarpet.client.utils.ClientModUtil;
 import java.util.HashMap;
 
 public class ModStatusQueryPacket extends IPacket {
-    public ModStatusQueryPacket() {}
+    public ModStatusQueryPacket() {
+        // noop
+    }
+
+    public ModStatusQueryPacket(byte[] bytes) {
+        // noop
+    }
 
     @Override
     public void onClient() {

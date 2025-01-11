@@ -4,8 +4,6 @@
 
 package org.amateras_smp.amacarpet.network.packets;
 
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
@@ -64,7 +62,7 @@ public class ModStatusResponsePacket extends IPacket {
     public void onServer(ServerPlayer player) {
         if (!AmaCarpetSettings.cheatRestriction) return;
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
-            if (entry.getValue() && !CheatRestrictionConfig.getInstance().get(entry.getKey()).equals("true")) {
+            if (entry.getValue() && CheatRestrictionConfig.getInstance().get(entry.getKey())) {
                 PlayerUtil.onCatchCheater(player, entry.getKey());
             }
         }

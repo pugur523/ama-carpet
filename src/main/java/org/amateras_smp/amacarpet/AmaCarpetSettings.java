@@ -15,6 +15,9 @@ public class AmaCarpetSettings {
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean cheatRestriction = false;
 
+    @Rule(categories = { AMA, SURVIVAL, COMMAND })
+    public static String commandRestriction = "ops";
+
     @Rule(categories = { AMA, SURVIVAL, OPTIMIZATION })
     public static boolean disableAnimalSpawnOnChunkGen = false;
 
@@ -43,6 +46,6 @@ public class AmaCarpetSettings {
     @Rule(categories = { AMA })
     public static boolean requireAmaCarpetClient = false;
 
-    @Rule(categories = { AMA }, options = {"3", "5", "10"})
+    @Rule(categories = { AMA }, options = {"3", "5", "10"}, strict = false)
     public static int requireAmaCarpetClientTimeOutSeconds = 5;
 }
