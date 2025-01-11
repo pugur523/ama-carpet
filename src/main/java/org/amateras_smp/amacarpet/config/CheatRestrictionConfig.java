@@ -79,7 +79,9 @@ public class CheatRestrictionConfig {
     }
 
     public boolean get(String key) {
-        return Objects.equals(getStringValue(key), "true");
+        String value = getStringValue(key);
+        if (value == null) return false;
+        return Objects.equals(value, "true");
     }
 
     public void set(String key, String value) {

@@ -11,6 +11,8 @@ import org.amateras_smp.amacarpet.AmaCarpet;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ClientModUtil {
     public static final ImmutableList<String> tweakerooFeaturesWatchList = ImmutableList.of(
@@ -48,8 +50,7 @@ public class ClientModUtil {
             "placement_restriction"
     );
 
-    public static boolean checkMalilibConfigBoolean(String className, String feature) {
-        // assert that tweakeroo (or tweakfork) is already loaded.
+    private static boolean checkMalilibConfigBoolean(String className, String feature) {
         try {
             Class<?> clazz = Class.forName(className);
             Field field = clazz.getDeclaredField(feature);
@@ -65,49 +66,26 @@ public class ClientModUtil {
         return false;
     }
 
+    private static void addFeatures(Map<String, Boolean> map, String modId, List<String> features, String className, String featurePrefix) {
+        boolean isModLoaded = FabricLoader.getInstance().isModLoaded(modId);
+        for (String feature : features) {
+            boolean value = false;
+            if (isModLoaded) {
+                if (featurePrefix == null) featurePrefix = "";
+                String featureFormatted = featurePrefix + feature.toUpperCase();
+                value = checkMalilibConfigBoolean(className, featureFormatted);
+            }
+            map.put(feature, value);
+        }
+    }
+
     public static HashMap<String, Boolean> createConfigDataMap() {
-        FabricLoader loader = FabricLoader.getInstance();
         HashMap<String, Boolean> map = new HashMap<>();
 
-        if (loader.isModLoaded(AmaCarpet.ModIds.tweakeroo)) {
-            for (String feature : tweakerooFeaturesWatchList) {
-                feature = "TWEAK_" + feature.toUpperCase();
-                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.FeatureToggle", feature));
-            }
-            for (String feature : tweakerooYeetsWatchList) {
-                feature = "DISABLE_" + feature.toUpperCase();
-                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.Configs$Disable", feature));
-            }
-        } else {
-            for (String feature : tweakerooFeaturesWatchList) {
-                map.put(feature, false);
-            }
-            for (String feature : tweakerooYeetsWatchList) {
-                map.put(feature, false);
-            }
-        }
-
-        if (loader.isModLoaded(AmaCarpet.ModIds.tweakermore)) {
-            for (String feature : tweakermoreWatchList) {
-                feature = feature.toUpperCase();
-                map.put(feature, checkMalilibConfigBoolean("me.fallenbreath.tweakermore.config.TweakerMoreConfigs", feature));
-            }
-        } else {
-            for (String feature : tweakermoreWatchList) {
-                map.put(feature, false);
-            }
-        }
-
-        if (loader.isModLoaded(AmaCarpet.ModIds.litematica)) {
-            for (String feature : litematicaWatchList) {
-                feature = feature.toUpperCase();
-                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.litematica.config.Configs$Generic", feature));
-            }
-        } else {
-            for (String feature : litematicaWatchList) {
-                map.put(feature, false);
-            }
-        }
+        addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooFeaturesWatchList, "fi.dy.masa.tweakeroo.config.FeatureToggle", "TWEAK_");
+        addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooYeetsWatchList, "fi.dy.masa.tweakeroo.config.Configs$Disable", "DISABLE_");
+        addFeatures(map, AmaCarpet.ModIds.tweakermore, tweakermoreWatchList, "me.fallenbreath.tweakermore.config.TweakerMoreConfigs", "");
+        addFeatures(map, AmaCarpet.ModIds.litematica, litematicaWatchList, "fi.dy.masa.litematica.config.Configs$Generic", "");
 
         return map;
     }

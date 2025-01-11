@@ -31,7 +31,7 @@ public class EnableSpecifiedFeaturePacket extends IPacket {
     @Override
     public void onServer(ServerPlayer player) {
         if (!AmaCarpetSettings.cheatRestriction) return;
-        if (!CheatRestrictionConfig.getInstance().getStringValue(featureName).equals("true")) {
+        if (!CheatRestrictionConfig.getInstance().get(featureName)) {
             PlayerUtil.onCatchCheater(player, featureName);
         }
     }
