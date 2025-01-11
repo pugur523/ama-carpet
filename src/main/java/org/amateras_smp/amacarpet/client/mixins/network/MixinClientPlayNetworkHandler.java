@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPacketListener.class)
 public class MixinClientPlayNetworkHandler {
-    @Inject(method = "handleLogin", at = @At("TAIL"))
+    @Inject(method = "handleLogin", at = @At("RETURN"))
     private void sendHandshakePacket(ClientboundLoginPacket clientboundLoginPacket, CallbackInfo ci) {
         HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
         PacketHandler.sendC2S(handshakePacket);

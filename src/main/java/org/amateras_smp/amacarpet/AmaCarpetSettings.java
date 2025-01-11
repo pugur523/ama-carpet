@@ -38,10 +38,12 @@ public class AmaCarpetSettings {
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean notifyLitematicShared = false;
 
-
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean reloadPortalTicket = false;
 
     @Rule(categories = { AMA })
     public static boolean requireAmaCarpetClient = false;
+
+    @Rule(categories = { AMA }, options = {"3", "5", "10"})
+    public static int requireAmaCarpetClientTimeOutSeconds = 5;
 }

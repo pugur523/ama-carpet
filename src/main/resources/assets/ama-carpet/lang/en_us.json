@@ -8,5 +8,6 @@
   "carpet.rule.hopperLock.desc": "Locks all of the hoppers in the world",
   "carpet.rule.notifyLitematicShared.desc": "Sends a notification to the chat when a player shared a syncmatic.",
   "carpet.rule.reloadPortalTicket.desc": "Reloads chunk loading tickets by nether portal on server restarts. Improves chunk loader reliability.",
-  "carpet.rule.requireAmaCarpetClient.desc": "Require AmaCarpet-Client to join the server.(Kicks all players without AmaCarpet-Client)."
+  "carpet.rule.requireAmaCarpetClient.desc": "Requires AmaCarpet installed Client to join the server.(Reject all players to login without AmaCarpet).",
+  "carpet.rule.requireAmaCarpetClientTimeOutSeconds.desc": "Timeout duration for checking if the client has AmaCarpet."
 }
