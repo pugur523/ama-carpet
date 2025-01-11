@@ -3,7 +3,7 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
-  "description": "A carpet addition made for Amateras SMP",
+  "description": "A carpet mod extension made for Amateras SMP",
   "authors": [
     "pugur"
   ],
@@ -11,7 +11,6 @@
     "homepage": "https://modrinth.com/mod/amacarpet",
     "sources": "https://github.com/pugur523/ama-carpet"
   },
-  "license": "MIT",
   "icon": "assets/ama-carpet/icon.png",
   "environment": "*",
   "accessWidener": "ama-carpet.accesswidener",
@@ -32,5 +31,9 @@
     "fabric": "*",
     "carpet": "*",
     "minecraft": "${minecraft_dependency}"
+  },
+  "suggests": {
+    "syncmatica": "*",
+    "kyoyu": ""
   }
 }

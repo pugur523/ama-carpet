@@ -1,3 +1,7 @@
+// Copyright (c) 2025 The AmaCarpet Authors
+// This file is part of the AmaCarpet project and is licensed under the terms of
+// the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
+
 package org.amateras_smp.amacarpet;
 
 import carpet.CarpetExtension;
@@ -6,26 +10,23 @@ import carpet.api.settings.SettingsManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
+import org.amateras_smp.amacarpet.commands.CommandTreeContext;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-//#if MC >= 11900
-import net.minecraft.command.CommandRegistryAccess;
-//#endif
-
 public class AmaCarpetServer implements CarpetExtension {
 
     private static final AmaCarpetServer INSTANCE = new AmaCarpetServer();
-    public static final String compactName = AmaCarpet.MOD_ID.replaceAll("-","");  // amacarpet
+    public static final String COMPACT_NAME = AmaCarpet.MOD_ID.replaceAll("-","");  // should be `amacarpet`
     public static final Logger LOGGER = AmaCarpet.LOGGER;
-    public static MinecraftServer minecraft_server;
+    public static MinecraftServer MINECRAFT_SERVER;
 
     @Override
     public String version()
@@ -52,7 +53,7 @@ public class AmaCarpetServer implements CarpetExtension {
     @Override
     public void onServerLoaded(MinecraftServer server)
     {
-        minecraft_server = server;
+        MINECRAFT_SERVER = server;
     }
 
     @Override
@@ -61,18 +62,18 @@ public class AmaCarpetServer implements CarpetExtension {
 
     @Override
     public void registerCommands(
-            CommandDispatcher<ServerCommandSource> dispatcher
+            CommandDispatcher<CommandSourceStack> dispatcher
             //#if MC >= 11900
-            , CommandRegistryAccess commandBuildContext
+            , CommandBuildContext commandBuildContext
             //#endif
     ) {
-        /*
         CommandTreeContext.Register context = CommandTreeContext.of(
                 dispatcher
                 //#if MC >= 11900
                 , commandBuildContext
                 //#endif
         );
+        /*
         Lists.newArrayList(
                 // HopperLockCommand.getInstance();
         ).forEach(command ->

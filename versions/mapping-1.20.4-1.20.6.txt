@@ -1,1 +1,1 @@
-net.minecraft.world.World getDimensionKey() getRegistryKey()
+

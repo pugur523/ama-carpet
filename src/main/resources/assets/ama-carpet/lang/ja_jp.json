@@ -1,9 +1,0 @@
-{
-  "carpet.category.ama": "ama",
-
-  "carpet.rule.disableSoundEngine.desc": "サーバーの音処理エンジンを無効化します。",
-  "carpet.rule.endGatewayChunkLoad.desc": "エンドゲートウェイポータルを通過したエンティティが、ネザーポータルを通過したエンティティのようにチャンクをロードします。",
-  "carpet.rule.endPortalChunkLoad.desc": "エンドポータルを通過したエンティティが、ネザーポータルを通過したエンティティのようにチャンクをロードします。",
-  "carpet.rule.hopperLock.desc": "サーバー内のすべてのホッパーの吸引、排出を無効化します。",
-  "carpet.rule.reloadPortalTicket.desc": "ポータルのチャンクロードチケットをサーバー再起動時に再読み込みします。チャンクローダーがサーバー再起動で壊れにくくなります。"
-}
