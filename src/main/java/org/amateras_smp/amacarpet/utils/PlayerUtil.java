@@ -20,27 +20,28 @@ import java.util.concurrent.TimeUnit;
 
 public class PlayerUtil {
     private static final Set<PlayerAuth> waitingPlayers = new HashSet<>();
-    private static final int TIMEOUT_MS = 2000;
     private static final String DISCONNECT_MESSAGE = "AmaCarpet Client not found. This server requires the AmaCarpet Mod. Please install it from Modrinth or GitHub and try again.";
     private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     private static void scheduleAuthentication(String playerName) {
+        if (!AmaCarpetSettings.requireAmaCarpetClient) return;
         PlayerAuth auth = new PlayerAuth(playerName);
-        waitingPlayers.add(auth);
-        scheduler.schedule(() -> amaClientCheckForPlayer(auth), TIMEOUT_MS, TimeUnit.MILLISECONDS);
+        if (!waitingPlayers.contains(auth)) {
+            waitingPlayers.add(auth);
+            scheduler.schedule(() -> amaClientCheckForPlayer(auth), AmaCarpetSettings.requireAmaCarpetClientTimeOutSeconds, TimeUnit.SECONDS);
+        }
     }
 
     private static void amaClientCheckForPlayer(PlayerAuth auth) {
         if (!auth.isAuthorized()) {
-            if (!AmaCarpetSettings.requireAmaCarpetClient) {
-                return;
-            }
+            if (!AmaCarpetSettings.requireAmaCarpetClient) return;
             ServerPlayer player = AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayerByName(auth.getName());
             if (player != null) {
                 AmaCarpet.LOGGER.debug("disconnect player due to timeout");
                 player.connection.disconnect(Component.literal(DISCONNECT_MESSAGE).withStyle(ChatFormatting.RED));
             }
         }
+        waitingPlayers.remove(auth);
     }
 
     public static void addShouldAuthPlayer(String name) {

@@ -17,7 +17,7 @@ public class ResourceLocationUtil
     public static ResourceLocation ofVanilla(String id)
     {
         //#if MC >= 12100
-        //$$ return ResourceLocation.of(id);
+        //$$ return ResourceLocation.withDefaultNamespace(id);
         //#else
         return new ResourceLocation(id);
         //#endif
