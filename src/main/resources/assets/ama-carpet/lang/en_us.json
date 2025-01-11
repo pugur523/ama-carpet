@@ -1,7 +1,8 @@
 {
   "carpet.category.ama": "ama",
 
-  "carpet.rule.cheatRestriction.desc": "Detects features specified in the config file as not allowed. Config can be modify with `restriction` command.",
+  "carpet.rule.cheatRestriction.desc": "Detects features specified in the config file as not allowed. Config can be modify with /restriction command.",
+  "carpet.rule.commandRestriction.desc": "Enables /restriction command for restrict client mod features.",
   "carpet.rule.disableAnimalSpawnOnChunkGen.desc": "Disables animal spawn on chunk generation.",
   "carpet.rule.disableSoundEngine.desc": "Disables server-side sound engine to optimize",
   "carpet.rule.endGatewayChunkLoad.desc": "When an entity passes through end gateway portal it will loaded 3x3 chunk like a nether portal",
