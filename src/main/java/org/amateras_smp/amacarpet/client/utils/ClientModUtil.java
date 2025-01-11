@@ -71,12 +71,12 @@ public class ClientModUtil {
 
         if (loader.isModLoaded(AmaCarpet.ModIds.tweakeroo)) {
             for (String feature : tweakerooFeaturesWatchList) {
-                feature = feature.toUpperCase();
+                feature = "TWEAK_" + feature.toUpperCase();
                 map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.FeatureToggle", feature));
             }
             for (String feature : tweakerooYeetsWatchList) {
                 feature = "DISABLE_" + feature.toUpperCase();
-                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.Configs.Disable", feature));
+                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.Configs$Disable", feature));
             }
         } else {
             for (String feature : tweakerooFeaturesWatchList) {
@@ -101,7 +101,7 @@ public class ClientModUtil {
         if (loader.isModLoaded(AmaCarpet.ModIds.litematica)) {
             for (String feature : litematicaWatchList) {
                 feature = feature.toUpperCase();
-                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.litematica.config.Configs.Generic", feature));
+                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.litematica.config.Configs$Generic", feature));
             }
         } else {
             for (String feature : litematicaWatchList) {
