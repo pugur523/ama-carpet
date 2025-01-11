@@ -6,13 +6,15 @@
   "mixins": [
     "network.MixinPlayerList",
     "sound.MixinLevel",
+    "spawn.MixinFlatLevelSource",
+    "spawn.MixinNoiseBasedChunkGenerator",
     "syncmatica.MixinServerCommunicationManager",
     "syncmatica.MixinSyncmaticManager",
-    "ticket.MixinTheEndGatewayBlockEntity",
+    "ticket.MixinChunkMap",
     "ticket.MixinMinecraftServer",
     "ticket.MixinServerChunkCache",
     "ticket.MixinServerLevel",
-    "ticket.MixinChunkMap",
+    "ticket.MixinTheEndGatewayBlockEntity",
     "util.MixinMinecraftServer"
   ],
   "injectors": {
