@@ -9,6 +9,14 @@ import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 
 public abstract class IPacket {
+    public IPacket() {
+        // noop
+    }
+
+    public IPacket(byte[] bytes) {
+        // noop
+    }
+
     public byte[] encode() {
         return new byte[0];
     }

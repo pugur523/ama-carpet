@@ -54,8 +54,9 @@ public class RestrictionCommand extends AbstractCommand {
                 .then(argument("featureName", StringArgumentType.word())
                     .suggests(FEATURE_NAME_SUGGESTIONS)
                     .executes(this::getState)
-                    .then(argument("allow", BoolArgumentType.bool()))
+                    .then(argument("allow", BoolArgumentType.bool())
                         .executes(this::changeSetting)
+                    )
                 );
         context.dispatcher.register(builder);
     }

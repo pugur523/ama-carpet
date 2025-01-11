@@ -15,6 +15,10 @@ public class ModStatusQueryPacket extends IPacket {
         // noop
     }
 
+    public ModStatusQueryPacket(byte[] bytes) {
+        // noop
+    }
+
     @Override
     public void onClient() {
         HashMap<String, Boolean> config = ClientModUtil.createConfigDataMap();
