@@ -6,6 +6,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ChunkPos;
+
+import java.io.IOException;
+
+import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -21,10 +25,13 @@ public abstract class MixinServerLevel {
     @Unique
     private void issuePortalTicket(Entity entity) {
         if (!AmaCarpetSettings.endPortalChunkLoad) return;
-        ServerLevel world = (ServerLevel) (Object) this;
-        if (world.dimension() == ServerLevel.END) {
-            BlockPos pos = entity.getOnPos();
-            world.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(pos), 3, pos);
+        try (ServerLevel level = (ServerLevel) (Object) this) {
+            if (level.dimension() == ServerLevel.END) {
+                BlockPos pos = entity.getOnPos();
+                level.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(pos), 3, pos);
+            }
+        } catch (IOException e) {
+            AmaCarpetServer.LOGGER.error("Error in MixinServerLevel.issuePortalTicket() : ", e);
         }
     }
 
