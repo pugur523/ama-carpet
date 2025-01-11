@@ -1,6 +1,6 @@
 // Copyright (c) 2025 The AmaCarpet Authors
 // This file is part of the AmaCarpet project and is licensed under the terms of
-// the GNU Lesser General Public License, version 3. See the LICENSE file for details.
+// the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
 package org.amateras_smp.amacarpet.network;
 
@@ -9,9 +9,9 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.utils.ResourceLocationUtil;
+import net.minecraft.server.level.ServerPlayer;
 //#if MC < 12005
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -45,7 +45,7 @@ public class AmaCarpetPayload
     public static final ResourceLocation identifier = ResourceLocationUtil.of(AmaCarpet.MOD_ID, "amacm");
 
     //#if MC >= 12005
-    //$$ public static final Type<AmaCarpetPayload> TYPE = new Id<>(identifier);
+    //$$ public static final Type<AmaCarpetPayload> TYPE = new Type<>(identifier);
     //$$ private static final StreamCodec<RegistryFriendlyByteBuf, AmaCarpetPayload> CODEC = StreamCodec.composite(
     //$$         ByteBufCodecs.BYTE_ARRAY, AmaCarpetPayload::content, AmaCarpetPayload::new
     //$$ );
@@ -75,7 +75,7 @@ public class AmaCarpetPayload
         } else {
             ServerPlayNetworking.registerGlobalReceiver(
                     //#if MC >= 12005
-                    //$$ TYPE, AmaCarpetPayload::onPacketClient
+                    //$$ TYPE, AmaCarpetPayload::onPacketServer
                     //#else
                     identifier, (server, player, handler, buf, responseSender) -> {
                         AmaCarpetPayload packetPayload = new AmaCarpetPayload(buf.readByteArray());

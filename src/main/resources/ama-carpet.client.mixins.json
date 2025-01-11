@@ -4,7 +4,6 @@
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
     "network.MixinClientPlayNetworkHandler",
-    "network.MixinClientPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1
