@@ -9,7 +9,7 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 ## Rules
 
 
-### disableSoundeEngine
+### disableSoundEngine
 
 > Disables all process of serverside sound engine.
 

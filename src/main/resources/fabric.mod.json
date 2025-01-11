@@ -4,6 +4,7 @@
   "version": "${version}",
   "name": "${name}",
   "description": "A carpet mod extension made for Amateras SMP",
+  "license": "LGPL-3",
   "authors": [
     "pugur"
   ],

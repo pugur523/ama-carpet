@@ -47,14 +47,8 @@ public class ChunkTicketUtil {
     private static Path portalTicketPath;
     private static final Gson gson = new Gson();
 
-    public static void setPath(MinecraftServer server) {
-        try {
-            Path saveDirectory = server.getWorldPath(LevelResource.ROOT);
-            portalTicketPath = saveDirectory.resolve(portalTicketFileName);
-            Files.createDirectories(portalTicketPath.getParent());
-        } catch (Exception e) {
-            AmaCarpetServer.LOGGER.error("Failed to set portal tickets path", e);
-        }
+    public static void setPath() {
+        portalTicketPath = FileUtil.getWorldConfigDir().resolve(portalTicketFileName);
     }
 
     private static void clearJson() {
@@ -65,7 +59,7 @@ public class ChunkTicketUtil {
         }
     }
 
-    public static void load(MinecraftServer server) throws IOException {
+    public static void load() throws IOException {
         if (portalTicketPath == null) {
             AmaCarpetServer.LOGGER.error("Portal ticket path is not set.");
             return;
@@ -118,11 +112,11 @@ public class ChunkTicketUtil {
                 }
             }
 
-            ServerLevel ow = server.getLevel(Level.OVERWORLD);
+            ServerLevel ow = AmaCarpetServer.MINECRAFT_SERVER.getLevel(Level.OVERWORLD);
             loadDimension(ow, owPortalTickets2, Level.OVERWORLD);
-            ServerLevel ne = server.getLevel(Level.NETHER);
+            ServerLevel ne = AmaCarpetServer.MINECRAFT_SERVER.getLevel(Level.NETHER);
             loadDimension(ne, nePortalTickets2, Level.NETHER);
-            ServerLevel end = server.getLevel(Level.END);
+            ServerLevel end = AmaCarpetServer.MINECRAFT_SERVER.getLevel(Level.END);
             loadDimension(end, endPortalTickets2, Level.END);
 
             AmaCarpetServer.LOGGER.info("All portal tickets have been reloaded successfully");
