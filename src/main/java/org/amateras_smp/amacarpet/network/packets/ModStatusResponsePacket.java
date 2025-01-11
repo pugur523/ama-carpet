@@ -62,7 +62,7 @@ public class ModStatusResponsePacket extends IPacket {
     public void onServer(ServerPlayer player) {
         if (!AmaCarpetSettings.cheatRestriction) return;
         for (Map.Entry<String, Boolean> entry : map.entrySet()) {
-            if (entry.getValue() && !CheatRestrictionConfig.getInstance().get(entry.getKey()).equals("true")) {
+            if (entry.getValue() && !CheatRestrictionConfig.getInstance().getStringValue(entry.getKey()).equals("true")) {
                 PlayerUtil.onCatchCheater(player, entry.getKey());
             }
         }

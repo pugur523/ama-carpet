@@ -10,6 +10,7 @@ import org.amateras_smp.amacarpet.utils.FileUtil;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.Objects;
 import java.util.Properties;
 
 public class CheatRestrictionConfig {
@@ -69,12 +70,16 @@ public class CheatRestrictionConfig {
         }
     }
 
-    public String get(String key) {
+    public String getStringValue(String key) {
         String value = properties.getProperty(key);
-        if (value == null) {
+        if (value == null || value.isBlank()) {
             AmaCarpet.LOGGER.warn("Property not found for key: " + key);
         }
         return value;
+    }
+
+    public boolean get(String key) {
+        return Objects.equals(getStringValue(key), "true");
     }
 
     public void set(String key, String value) {

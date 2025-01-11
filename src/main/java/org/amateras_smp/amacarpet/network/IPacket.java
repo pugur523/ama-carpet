@@ -6,6 +6,7 @@ package org.amateras_smp.amacarpet.network;
 
 
 import net.minecraft.server.level.ServerPlayer;
+import org.amateras_smp.amacarpet.AmaCarpet;
 
 public abstract class IPacket {
     public byte[] encode() {
@@ -13,10 +14,10 @@ public abstract class IPacket {
     }
 
     public void onServer(ServerPlayer player) {
-        // noop
+        AmaCarpet.LOGGER.warn("[AmaCarpet] unhandled packet received from client.");
     }
 
     public void onClient() {
-        // noop
+        AmaCarpet.LOGGER.warn("[AmaCarpet] unhandled packet received from server.");
     }
 }
