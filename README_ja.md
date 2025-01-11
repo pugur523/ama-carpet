@@ -3,7 +3,7 @@
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
-AmaCarpetはAmateras SMPのために作られたCarpet extensionです
+AmaCarpetはAmateras SMPのために作られたCarpet mod extensionです
 
 ## Rules
 
@@ -15,17 +15,17 @@ AmaCarpetはAmateras SMPのために作られたCarpet extensionです
 
 ### endGatewayChunkLoad (MC < 1.21)
 
-> エンドゲートウェイポータルをくぐったエンティティが3x3チャンクをロードするようにする。
+> エンドゲートウェイポータルを通過したエンティティが3x3チャンクをロードするようにする。
 > 1.21で実装された機能のbackport。
 
 
 ### endPortalChunkLoad (MC < 1.21)
 
-> エンドポータルをくぐったエンティティが3x3チャンクをロードするようにする。
+> エンドポータルを通過したエンティティが3x3チャンクをロードするようにする。
 > 1.21で実装された機能のbackport。
 
 
-### noticeLitematicShared
+### notifyLitematicShared
 
 > litematicが[syncmatica](https://modrinth.com/mod/syncmatica)や[kyoyu](https://modrinth.com/mod/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
 > [!NOTE] kyoyuへの対応は準備中。
