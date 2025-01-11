@@ -16,7 +16,6 @@ import org.amateras_smp.amacarpet.utils.PlayerUtil;
 import java.nio.charset.StandardCharsets;
 
 public class HandshakePacket extends IPacket {
-
     private final String version;
 
     public HandshakePacket(String version) {

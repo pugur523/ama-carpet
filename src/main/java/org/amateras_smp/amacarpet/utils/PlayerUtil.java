@@ -66,7 +66,7 @@ public class PlayerUtil {
         }
     }
 
-    public static class PlayerAuth {
+    private static class PlayerAuth {
         private final String name;
         private boolean authorized;
 
@@ -99,5 +99,10 @@ public class PlayerUtil {
         public int hashCode() {
             return Objects.hash(name);
         }
+    }
+
+    public static void onCatchCheater(ServerPlayer player, String cheatName) {
+        String reason = "You are using {}, which is not allowed in this server.\nRejoin after disabling this feature.";
+        player.connection.disconnect(Component.literal(reason).withStyle(ChatFormatting.RED));
     }
 }

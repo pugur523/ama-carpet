@@ -2,7 +2,7 @@
 // This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
-package org.amateras_smp.amacarpet.mixins.syncmatica;
+package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
 
 import ch.endte.syncmatica.ServerPlacement;
 import ch.endte.syncmatica.SyncmaticManager;

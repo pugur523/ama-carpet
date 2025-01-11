@@ -75,11 +75,9 @@ public class PacketHandler {
 
     public static void handleC2S(byte[] data, ServerPlayer player) {
         AmaCarpet.LOGGER.debug("handling c2s packet");
-        // AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
         IPacket packet = decode(data);
         if (packet == null) return;
         packet.onServer(player);
-        // });
     }
 
     public static void handleS2C(byte[] data) {

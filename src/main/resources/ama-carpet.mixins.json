@@ -8,14 +8,14 @@
     "sound.MixinLevel",
     "spawn.MixinFlatLevelSource",
     "spawn.MixinNoiseBasedChunkGenerator",
-    "syncmatica.MixinServerCommunicationManager",
-    "syncmatica.MixinSyncmaticManager",
+    "addon.syncmatica.MixinServerCommunicationManager",
+    "addon.syncmatica.MixinSyncmaticManager",
     "ticket.MixinChunkMap",
     "ticket.MixinMinecraftServer",
     "ticket.MixinServerChunkCache",
     "ticket.MixinServerLevel",
     "ticket.MixinTheEndGatewayBlockEntity",
-    "util.MixinMinecraftServer"
+    "utils.MixinMinecraftServer"
   ],
   "injectors": {
     "defaultRequire": 1

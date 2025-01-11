@@ -12,9 +12,8 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
-    // TODO : implement this.
-    // @Rule(categories = { AMA, SURVIVAL })
-    // public static boolean cheatDetector = false;
+    @Rule(categories = { AMA, SURVIVAL })
+    public static boolean cheatRestriction = false;
 
     @Rule(categories = { AMA, SURVIVAL, OPTIMIZATION })
     public static boolean disableAnimalSpawnOnChunkGen = false;
