@@ -40,6 +40,8 @@ public class ClientModUtil {
     public static final ImmutableList<String> tweakermoreWatchList = ImmutableList.of(
             "auto_pick_schematic_block",
             "disable_darkness_effect",
+            "disable_honey_block_effect",
+            "disable_slime_block_bouncing",
             "fake_night_vision",
             "schematic_block_placement_restriction",
             "schematic_pro_place"

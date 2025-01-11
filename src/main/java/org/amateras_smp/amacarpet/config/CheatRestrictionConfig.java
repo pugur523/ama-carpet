@@ -17,7 +17,7 @@ public class CheatRestrictionConfig {
 
     private static final Properties properties = new Properties();
     private static final String configFileName = "cheat_restriction.properties";
-    private static final String configComment = "Cheat Restriction Config File - `true` means the feature is allowed";
+    private static final String configComment = "Cheat Restriction Config File - `true` means the feature is not allowed";
     private static final CheatRestrictionConfig instance = new CheatRestrictionConfig();
 
     private CheatRestrictionConfig() {
@@ -49,16 +49,16 @@ public class CheatRestrictionConfig {
 
     private void setDefaultProperties() {
         for (String feature : ClientModUtil.tweakerooFeaturesWatchList) {
-            properties.setProperty(feature, "true");
+            properties.setProperty(feature, "false");
         }
         for (String yeet : ClientModUtil.tweakerooYeetsWatchList) {
-            properties.setProperty(yeet, "true");
+            properties.setProperty(yeet, "false");
         }
         for (String feature : ClientModUtil.tweakermoreWatchList) {
-            properties.setProperty(feature, "true");
+            properties.setProperty(feature, "false");
         }
         for (String feature : ClientModUtil.litematicaWatchList) {
-            properties.setProperty(feature, "true");
+            properties.setProperty(feature, "false");
         }
     }
 

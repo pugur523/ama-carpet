@@ -54,15 +54,15 @@ public class RestrictionCommand extends AbstractCommand {
                 .then(argument("featureName", StringArgumentType.word())
                     .suggests(FEATURE_NAME_SUGGESTIONS)
                     .executes(this::getState)
-                    .then(argument("allow", BoolArgumentType.bool())
+                    .then(argument("prohibit", BoolArgumentType.bool())
                         .executes(this::changeSetting)
                     )
                 );
         context.dispatcher.register(builder);
     }
 
-    private static String isAllowed(boolean b) {
-        return b ? "allowed" : "restricted";
+    private static String isRestricted(boolean b) {
+        return b ? "restricted" : "allowed";
     }
 
     public int changeSetting(CommandContext<CommandSourceStack> context) {
@@ -73,9 +73,9 @@ public class RestrictionCommand extends AbstractCommand {
             return 0;
         }
 
-        boolean value = BoolArgumentType.getBool(context, "allow");
+        boolean value = BoolArgumentType.getBool(context, "prohibit");
         CheatRestrictionConfig.getInstance().set(featureName, (value ? "true" : "false"));
-        context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.changed"), featureName, isAllowed(value))).withStyle(ChatFormatting.YELLOW));
+        context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.changed"), featureName, isRestricted(value))).withStyle(ChatFormatting.YELLOW));
         return Command.SINGLE_SUCCESS;
     }
 
@@ -87,7 +87,7 @@ public class RestrictionCommand extends AbstractCommand {
             return 0;
         }
         boolean value = CheatRestrictionConfig.getInstance().get(featureName);
-        context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.state"), featureName, isAllowed(value))).withStyle(ChatFormatting.AQUA));
+        context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.state"), featureName, isRestricted(value))).withStyle(ChatFormatting.AQUA));
         return Command.SINGLE_SUCCESS;
     }
 

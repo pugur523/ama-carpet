@@ -23,7 +23,7 @@ public class MixinConfigBoolean {
         String changed = self.getName();
         String sneak_changed = StringUtil.camelToSneak(changed);
         for (String feature : ClientModUtil.tweakerooFeaturesWatchList) {
-            if (sneak_changed.equals(feature)) {
+            if (sneak_changed.equals("tweak_" + feature)) {
                 PacketHandler.sendC2S(new EnableSpecifiedFeaturePacket(feature));
             }
         }
