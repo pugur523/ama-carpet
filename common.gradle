@@ -42,6 +42,11 @@ dependencies {
     modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
 
     modImplementation "maven.modrinth:carpet:${project.carpet_version}"
+    modImplementation "maven.modrinth:malilib:${project.malilib_version}"
+    modImplementation "maven.modrinth:tweakeroo:${project.tweakeroo_version}"
+    modImplementation "maven.modrinth:tweakermore:${project.tweakermore_version}"
+    modImplementation "maven.modrinth:litematica:${project.litematica_version}"
+
     modImplementation(syncmatica_dependency) {
         exclude group: 'com.github.sakura-ryoko', module: 'malilib'
         if (mcVersion == 12004 || mcVersion == 12006) exclude group: 'fi.dy.masa.malilib', module: 'malilib-fabric-1.20.6'

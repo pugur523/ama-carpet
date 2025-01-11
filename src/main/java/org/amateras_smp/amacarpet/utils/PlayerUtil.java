@@ -4,6 +4,7 @@
 
 package org.amateras_smp.amacarpet.utils;
 
+import carpet.utils.Translations;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 
 public class PlayerUtil {
     private static final Set<PlayerAuth> waitingPlayers = new HashSet<>();
-    private static final String DISCONNECT_MESSAGE = "AmaCarpet Client not found. This server requires the AmaCarpet Mod. Please install it from Modrinth or GitHub and try again.";
     private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     private static void scheduleAuthentication(String playerName) {
@@ -38,7 +38,7 @@ public class PlayerUtil {
             ServerPlayer player = AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayerByName(auth.getName());
             if (player != null) {
                 AmaCarpet.LOGGER.debug("disconnect player due to timeout");
-                player.connection.disconnect(Component.literal(DISCONNECT_MESSAGE).withStyle(ChatFormatting.RED));
+                player.connection.disconnect(Component.literal(Translations.tr("ama.message.on_timeout_dc")).withStyle(ChatFormatting.RED));
             }
         }
         waitingPlayers.remove(auth);
@@ -102,7 +102,6 @@ public class PlayerUtil {
     }
 
     public static void onCatchCheater(ServerPlayer player, String cheatName) {
-        String reason = "You are using {}, which is not allowed in this server.\nRejoin after disabling this feature.";
-        player.connection.disconnect(Component.literal(reason).withStyle(ChatFormatting.RED));
+        player.connection.disconnect(Component.literal(String.format(Translations.tr("ama.message.on_cheat_dc"), cheatName)).withStyle(ChatFormatting.RED));
     }
 }

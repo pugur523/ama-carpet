@@ -10,5 +10,7 @@
   "carpet.rule.notifyLitematicShared.desc": "Sends a notification to the chat when a player shared a syncmatic.",
   "carpet.rule.reloadPortalTicket.desc": "Reloads chunk loading tickets by nether portal on server restarts. Improves chunk loader reliability.",
   "carpet.rule.requireAmaCarpetClient.desc": "Requires AmaCarpet installed Client to join the server.(Reject all players to login without AmaCarpet).",
-  "carpet.rule.requireAmaCarpetClientTimeOutSeconds.desc": "Timeout duration for checking if the client has AmaCarpet."
+  "carpet.rule.requireAmaCarpetClientTimeOutSeconds.desc": "Timeout duration for checking if the client has AmaCarpet.",
+  "ama.message.on_cheat_dc": "You are using %s, which is not allowed in this server.\nRejoin after disabling this feature.",
+  "ama.message.on_timeout_dc": "AmaCarpet Client not found. This server requires the AmaCarpet mod to join. Please install it from Modrinth or GitHub."
 }

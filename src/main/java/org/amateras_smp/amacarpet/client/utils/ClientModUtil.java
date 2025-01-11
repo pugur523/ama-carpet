@@ -1,12 +1,15 @@
+// Copyright (c) 2025 The AmaCarpet Authors
+// This file is part of the AmaCarpet project and is licensed under the terms of
+// the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
+
 package org.amateras_smp.amacarpet.client.utils;
 
 import com.google.common.collect.ImmutableList;
+import fi.dy.masa.malilib.config.IConfigBoolean;
 import net.fabricmc.loader.api.FabricLoader;
 import org.amateras_smp.amacarpet.AmaCarpet;
-import org.amateras_smp.amacarpet.client.AmaCarpetClient;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.HashMap;
 
 public class ClientModUtil {
@@ -45,22 +48,21 @@ public class ClientModUtil {
             "placement_restriction"
     );
 
-    public static boolean isFeatureEnable(String className, String fieldName) {
+    public static boolean checkMalilibConfigBoolean(String className, String feature) {
+        // assert that tweakeroo (or tweakfork) is already loaded.
         try {
             Class<?> clazz = Class.forName(className);
-            Field field = clazz.getDeclaredField(fieldName);
-            if (!Modifier.isStatic(field.getModifiers())) {
-                AmaCarpetClient.LOGGER.error("the field must be static");
-                return false;
-            }
+            Field field = clazz.getDeclaredField(feature);
             field.setAccessible(true);
-            return field.getBoolean(null);
-        } catch (ClassNotFoundException e) {
-            return false;
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            AmaCarpetClient.LOGGER.error(e);
-            return false;
+            Object value = field.get(null);
+
+            if (value instanceof IConfigBoolean configBoolean) {
+                return configBoolean.getBooleanValue();
+            }
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            AmaCarpet.LOGGER.error("can't get tweakeroo feature state for class {} : ", className,  e);
         }
+        return false;
     }
 
     public static HashMap<String, Boolean> createConfigDataMap() {
@@ -68,10 +70,43 @@ public class ClientModUtil {
         HashMap<String, Boolean> map = new HashMap<>();
 
         if (loader.isModLoaded(AmaCarpet.ModIds.tweakeroo)) {
-        } if (loader.isModLoaded(AmaCarpet.ModIds.tweakermore)) {
+            for (String feature : tweakerooFeaturesWatchList) {
+                feature = feature.toUpperCase();
+                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.FeatureToggle", feature));
+            }
+            for (String feature : tweakerooYeetsWatchList) {
+                feature = "DISABLE_" + feature.toUpperCase();
+                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.tweakeroo.config.Configs.Disable", feature));
+            }
+        } else {
+            for (String feature : tweakerooFeaturesWatchList) {
+                map.put(feature, false);
+            }
+            for (String feature : tweakerooYeetsWatchList) {
+                map.put(feature, false);
+            }
+        }
 
-        } if (loader.isModLoaded(AmaCarpet.ModIds.litematica)) {
+        if (loader.isModLoaded(AmaCarpet.ModIds.tweakermore)) {
+            for (String feature : tweakermoreWatchList) {
+                feature = feature.toUpperCase();
+                map.put(feature, checkMalilibConfigBoolean("me.fallenbreath.tweakermore.config.TweakerMoreConfigs", feature));
+            }
+        } else {
+            for (String feature : tweakermoreWatchList) {
+                map.put(feature, false);
+            }
+        }
 
+        if (loader.isModLoaded(AmaCarpet.ModIds.litematica)) {
+            for (String feature : litematicaWatchList) {
+                feature = feature.toUpperCase();
+                map.put(feature, checkMalilibConfigBoolean("fi.dy.masa.litematica.config.Configs.Generic", feature));
+            }
+        } else {
+            for (String feature : litematicaWatchList) {
+                map.put(feature, false);
+            }
         }
 
         return map;
