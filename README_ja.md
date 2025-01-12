@@ -33,7 +33,7 @@ AmaCarpetはAmateras SMPのために作られたCarpet mod extensionです
 ### notifyLitematicShared
 
 > litematicが[syncmatica](https://modrinth.com/mod/syncmatica)や[kyoyu](https://modrinth.com/mod/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
-> [!NOTE] kyoyuへの対応は準備中。
+[!NOTE] kyoyuへの対応は準備中。
 
 
 ### reloadPortalTicket
