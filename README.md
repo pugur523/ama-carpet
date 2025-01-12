@@ -35,7 +35,7 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 > Send notifications to player chat when litematic shared with [syncmatica](https://modrinth.com/mod/syncmatica) or [kyoyu](https://modrinth.com/mod/kyoyu).
 
-[!NOTE] currently kyoyu support is under development.
+> [!NOTE] currently kyoyu support is under development.
 
 
 ### reloadPortalTicket
