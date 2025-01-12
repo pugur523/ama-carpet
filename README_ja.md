@@ -8,7 +8,12 @@ AmaCarpetはAmateras SMPのために作られたCarpet mod extensionです
 ## Rules
 
 
-### disableSoundeEngine
+### disableAnimalSpawnOnChunkGen
+
+> 地形生成時の動物のスポーンを無効化する。ワールドサイズの縮小が期待される。
+
+
+### disableSoundEngine
 
 > サーバー側で処理されるすべての音エンジンを無効化して軽量化する。
 
