@@ -1,17 +1,20 @@
+# ![Logo](src/main/resources/assets/icon.png) AmaCarpet
+
 [日本語の説明はこちら](https://github.com/pugur523/ama-carpet/blob/main/README_ja.md)<br><br>
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
-AmaCarpet is a Carpet mod extension made for Amateras SMP.
-Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or [contribute to this mod](https://github.com/pugur523/ama-carpet/pulls).
+*AmaCarpet* is an extension of the Carpet Mod specifically designed for the *Amateras SMP*.
+Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or [contribute to this mod](https://github.com/pugur523/ama-carpet/pulls).
+
 
 ## Rules
 
 
 ### cheatRestriction
 
-> Prohibits certain features on client mods such as [tweakeroo](https://modrinth.com/mod/tweakeroo), [tweakermore](https://modrinth.com/mod/tweakermore), [litematica](https://modrinth.com/mod/litematica). Features to prohibit can be configured with `/restriction` command.
+> Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica). The features to restrict can be configured using the `/restriction` command.
 
 - Type: `boolean`
 - Default value: `false`
@@ -20,7 +23,7 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### commandRestriction
 
-> Enables `/restriction` command to configure features prohibited by [cheatRestriction](#cheatrestriction).
+> Enables `/restriction` command to configure features restricted by [cheatRestriction](#cheatrestriction).
 
 - Type: `String`
 - Default value: `ops`
@@ -29,7 +32,7 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### disableAnimalSpawnOnChunkGen
 
-> Disables animal spawning on chunk generation.
+> Disables animal spawning during chunk generation.
 
 - Type: `boolean`
 - Default value: `false`
@@ -38,7 +41,7 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### disableSoundEngine
 
-> Disables all process of server-side sound engine.
+> Disables all server-side sound engine processes.
  
 - Type: `boolean`
 - Default value: `false`
@@ -47,8 +50,8 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### endGatewayChunkLoad (MC < 1.21)
 
-> Entities go through end portal gateway will load 3x3 chunks like a nether portal.
-> This is a backport feature implemented in vanilla minecraft 1.21.
+> Allows entities traveling through end gateway portals to load a 3x3 chunk area, similar to nether portals.
+> This is a backport of a feature implemented in Minecraft 1.21.
 
 - Type: `boolean`
 - Default value: `false`
@@ -57,8 +60,8 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### endPortalChunkLoad (MC < 1.21)
 
-> Entities go through end portal will load 3x3 chunks like a nether portal.
-> This is a backport feature implemented in vanilla minecraft 1.21.
+> Allows entities traveling through end portals to load a 3x3 chunk area, similar to nether portals.
+> This is a backport of a feature implemented in Minecraft 1.21.
 
 - Type: `boolean`
 - Default value: `false`
@@ -66,10 +69,11 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 - Categories: `AMA`, `SURVIVAL`
 
 ### notifySchematicShare
-> [!NOTE] 
-> currently kyoyu support is under development.
+> Sends notifications to player's chat when a schematic is shared or unshared using [Syncmatica](https://modrinth.com/mod/syncmatica) or [Kyoyu](https://modrinth.com/mod/kyoyu).
 
-> Sends notifications to player's chat when a schematic is shared or unshared using [syncmatica](https://modrinth.com/mod/syncmatica) or [kyoyu](https://modrinth.com/mod/kyoyu).
+> [!NOTE] 
+> Support for Kyoyu is currently under development.
+
 
 - Type: `boolean`
 - Default value: `false`
@@ -78,9 +82,9 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### reloadPortalTicket
 
-> Reloads all nether portal chunk loading tickets on server start.
-> Chunk loaders may not be broken on server restarts.
-> This was implemented in snapshot 25w05a so would be a backport.
+> Reloads all Nether portal chunk-loading tickets during server startup.
+> This ensures that chunk loaders remain functional after server restarts.
+> This feature is a backport of the implementation in snapshot 25w05a.
 
 - Type: `boolean`
 - Default value: `false`
@@ -89,7 +93,8 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 ### requireAmaCarpetClient
 
-> Prohibits client login without ama-carpet. The timeout duration can be configure with [requireAmaCarpetClientTimeOutSeconds](#requireamacarpetclienttimeoutseconds)
+> Prevents clients without AmaCarpet installed from logging in.
+> The timeout duration can be configured with [requireAmaCarpetClientTimeOutSeconds](#requireamacarpetclienttimeoutseconds).
 
 - Type: `boolean`
 - Default value: `false`
