@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinSyncmaticManager {
     @Inject(method = "addPlacement", at = @At("TAIL"))
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifyLitematicShared) return;
+        if (!AmaCarpetSettings.notifySchematicShare) return;
         Component message = Component.literal(placement.getOwner().getName()).withStyle(ChatFormatting.GREEN).append(
                 Component.literal(" shared a litematic! \nPlacement name : ").withStyle(ChatFormatting.WHITE)).append(
                 Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(

@@ -32,10 +32,10 @@ public abstract class MixinServerCommunicationManager extends CommunicationManag
     @Inject(method = "handle", at = @At("TAIL"))
     //#if MC < 12004
     private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifyLitematicShared || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier)) return;
+        if (!AmaCarpetSettings.notifySchematicShare || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier)) return;
     //#else
     //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-    //$$     if (!AmaCarpetSettings.notifyLitematicShared || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
+    //$$     if (!AmaCarpetSettings.notifySchematicShare || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
     //#endif
         UUID placementId = packetBuf.readUUID();
         ServerPlacement placement = context.getSyncmaticManager().getPlacement(placementId);

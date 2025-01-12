@@ -2,6 +2,7 @@
 BEFORE_RELEASE_TODO.md
 .idea/
 /lib/
+/.vscode/
 
 *.iml
 *.ipr

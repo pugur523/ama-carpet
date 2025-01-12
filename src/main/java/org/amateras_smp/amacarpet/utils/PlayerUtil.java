@@ -28,7 +28,7 @@ public class PlayerUtil {
         PlayerAuth auth = new PlayerAuth(playerName);
         if (!waitingPlayers.contains(auth)) {
             waitingPlayers.add(auth);
-            scheduler.schedule(() -> amaClientCheckForPlayer(auth), AmaCarpetSettings.requireAmaCarpetClientTimeOutSeconds, TimeUnit.SECONDS);
+            scheduler.schedule(() -> amaClientCheckForPlayer(auth), AmaCarpetSettings.requireAmaCarpetClientTimeoutSeconds, TimeUnit.SECONDS);
         }
     }
 
