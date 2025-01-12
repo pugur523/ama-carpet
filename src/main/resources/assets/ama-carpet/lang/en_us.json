@@ -6,6 +6,8 @@
   "ama.message.restriction.changed": "Restriction settings changed. %s is now %s.",
   "ama.message.restriction.invalid": "Invalid feature name! Use one of the suggested feature names.",
   "ama.message.restriction.state": "%s is %s.",
+  "ama.message.schematic.shared": " shared a schematic!\nPlacement name : ",
+  "ama.message.schematic.unshared": " unshared a schematic\nPlacement name : ",
   "carpet.rule.cheatRestriction.desc": "Prohibits specific features in client-side mods such as tweakeroo, tweakermore, litematica. The features to restrict can be configure using the /restriction command. Only works in server side",
   "carpet.rule.commandRestriction.desc": "Enables /restriction command to configure features restricted by cheatRestriction.",
   "carpet.rule.disableAnimalSpawnOnChunkGen.desc": "Disables animal spawning during chunk generation.",

@@ -2,16 +2,17 @@
 // This file is part of the AmaCarpet project and is licensed under the terms of
 // the GNU Lesser General Public License, version 3.0. See the LICENSE file for details.
 
-package org.amateras_smp.amacarpet.mixins.kyoyu;
+package org.amateras_smp.amacarpet.mixins.addon.kyoyu;
 
+import carpet.utils.Translations;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.vulpeus.kyoyu.net.packets.RemovePlacementPacket;
 import com.vulpeus.kyoyu.placement.KyoyuPlacement;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
@@ -21,14 +22,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Restriction(require = @Condition(AmaCarpet.ModIds.kyoyu))
-@Mixin(RemovePlacementPacket.class)
+@Mixin(value = RemovePlacementPacket.class, remap = false)
 public class MixinRemovePlacementPacket {
-    @Inject(method = "onServer(Lnet/minecraft/server/network/ServerPlayerEntity;)V", at = @At("TAIL"))
-    private void onRemoveKyoyuPlacement(ServerPlayerEntity serverPlayer, CallbackInfo ci, @Local KyoyuPlacement kyoyuPlacement) {
-        if (!AmaCarpetSettings.notifyLitematicShared || kyoyuPlacement == null) return;
-        Text message = Text.literal(serverPlayer.getName().getString()).formatted(Formatting.RED).append(
-                Text.literal(" removed a shared litematic. \nPlacement name : ").formatted(Formatting.WHITE)).append(
-                Text.literal(kyoyuPlacement.getName()).formatted(Formatting.YELLOW));
-        AmaCarpetServer.minecraft_server.getPlayerManager().broadcast(message, false);
+    @Inject(method = "onServer", at = @At("TAIL"))
+    private void onRemoveKyoyuPlacement(ServerPlayer serverPlayer, CallbackInfo ci, @Local KyoyuPlacement kyoyuPlacement) {
+        if (!AmaCarpetSettings.notifySchematicShare || kyoyuPlacement == null) return;
+        Component message = Component.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.RED).append(
+                Component.literal(Translations.tr("ama.message.schematic.unshared")).withStyle(ChatFormatting.WHITE)).append(
+                Component.literal(kyoyuPlacement.getName()).withStyle(ChatFormatting.YELLOW));
+        AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().broadcastSystemMessage(message, false);
     }
 }

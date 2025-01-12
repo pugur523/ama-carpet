@@ -4,6 +4,7 @@
 
 package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
 
+import carpet.utils.Translations;
 import ch.endte.syncmatica.ServerPlacement;
 import ch.endte.syncmatica.communication.*;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
@@ -29,7 +30,7 @@ import net.minecraft.resources.ResourceLocation;
 @Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
 @Mixin(ServerCommunicationManager.class)
 public abstract class MixinServerCommunicationManager extends CommunicationManager {
-    @Inject(method = "handle", at = @At("TAIL"))
+    @Inject(method = "handle", at = @At("HEAD"))
     //#if MC < 12004
     private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifySchematicShare || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier)) return;
@@ -37,10 +38,11 @@ public abstract class MixinServerCommunicationManager extends CommunicationManag
     //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
     //$$     if (!AmaCarpetSettings.notifySchematicShare || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;
     //#endif
-        UUID placementId = packetBuf.readUUID();
+        FriendlyByteBuf copiedBuf = new FriendlyByteBuf(packetBuf.copy());
+        UUID placementId = copiedBuf.readUUID();
         ServerPlacement placement = context.getSyncmaticManager().getPlacement(placementId);
         Component message = Component.literal(source.serverPlayNetworkHandler.player.getName().getString()).withStyle(ChatFormatting.RED).append(
-                Component.literal(" removed a shared litematic. \nPlacement name : ").withStyle(ChatFormatting.WHITE)).append(
+                Component.literal(Translations.tr("ama.message.schematic.unshared")).withStyle(ChatFormatting.WHITE)).append(
                 Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW));
         AmaCarpetServer.LOGGER.info(message.getString());
         AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().broadcastSystemMessage(message, false);

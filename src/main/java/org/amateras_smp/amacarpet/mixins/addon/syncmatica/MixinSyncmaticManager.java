@@ -4,10 +4,13 @@
 
 package org.amateras_smp.amacarpet.mixins.addon.syncmatica;
 
+import carpet.utils.Translations;
 import ch.endte.syncmatica.ServerPlacement;
 import ch.endte.syncmatica.SyncmaticManager;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import org.amateras_smp.amacarpet.AmaCarpet;
@@ -21,11 +24,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Restriction(require = @Condition(AmaCarpet.ModIds.syncmatica))
 @Mixin(value = SyncmaticManager.class, remap = false)
 public class MixinSyncmaticManager {
-    @Inject(method = "addPlacement", at = @At("TAIL"))
+    @Inject(method = "addPlacement", at = @At("HEAD"))
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySchematicShare) return;
+        if (!AmaCarpetSettings.notifySchematicShare || AmaCarpet.IS_CLIENT) return;
         Component message = Component.literal(placement.getOwner().getName()).withStyle(ChatFormatting.GREEN).append(
-                Component.literal(" shared a litematic! \nPlacement name : ").withStyle(ChatFormatting.WHITE)).append(
+                Component.literal(Translations.tr("ama.message.schematic.shared")).withStyle(ChatFormatting.WHITE)).append(
                 Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(
                 Component.literal("\nDimension : " + placement.getDimension()).withStyle(ChatFormatting.WHITE));
         AmaCarpetServer.LOGGER.info(message.getString());
