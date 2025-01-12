@@ -12,14 +12,16 @@ public class AmaCarpetSettings {
 
     private static final String AMA = "AMA";
 
-    // TODO : implement this.
-    // @Rule(categories = { AMA, SURVIVAL })
-    // public static boolean cheatDetector = false;
+    @Rule(categories = { AMA, SURVIVAL })
+    public static boolean cheatRestriction = false;
 
-    @Rule(categories = { AMA, SURVIVAL, OPTIMIZATION })
+    @Rule(categories = { AMA, COMMAND, SURVIVAL })
+    public static String commandRestriction = "ops";
+
+    @Rule(categories = { AMA, OPTIMIZATION, SURVIVAL })
     public static boolean disableAnimalSpawnOnChunkGen = false;
 
-    @Rule(categories = { AMA, SURVIVAL, CREATIVE, OPTIMIZATION })
+    @Rule(categories = { AMA, CREATIVE, OPTIMIZATION, SURVIVAL })
     public static boolean disableSoundEngine = false;
 
     //#if MC < 12100
@@ -36,7 +38,7 @@ public class AmaCarpetSettings {
     */
 
     @Rule(categories = { AMA, SURVIVAL })
-    public static boolean notifyLitematicShared = false;
+    public static boolean notifySchematicShare = false;
 
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean reloadPortalTicket = false;
@@ -44,6 +46,6 @@ public class AmaCarpetSettings {
     @Rule(categories = { AMA })
     public static boolean requireAmaCarpetClient = false;
 
-    @Rule(categories = { AMA }, options = {"3", "5", "10"})
-    public static int requireAmaCarpetClientTimeOutSeconds = 5;
+    @Rule(categories = { AMA }, options = {"3", "5", "10"}, strict = false)
+    public static int requireAmaCarpetClientTimeoutSeconds = 5;
 }

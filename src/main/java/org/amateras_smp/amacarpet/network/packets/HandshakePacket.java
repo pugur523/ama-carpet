@@ -16,7 +16,6 @@ import org.amateras_smp.amacarpet.utils.PlayerUtil;
 import java.nio.charset.StandardCharsets;
 
 public class HandshakePacket extends IPacket {
-
     private final String version;
 
     public HandshakePacket(String version) {
@@ -37,8 +36,8 @@ public class HandshakePacket extends IPacket {
         AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
             AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpet-Client version {}.", player.getName().getString(), version);
             PlayerUtil.markAsAuthenticated(player.getName().getString());
-            HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
-            PacketHandler.sendS2C(handshakePacket, player);
+            PacketHandler.sendS2C(new HandshakePacket(AmaCarpet.getVersion()), player);
+            PacketHandler.sendS2C(new ModStatusQueryPacket(), player);
         });
     }
 

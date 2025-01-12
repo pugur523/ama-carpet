@@ -7,6 +7,7 @@ package org.amateras_smp.amacarpet;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
+import com.google.common.collect.Lists;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
@@ -14,6 +15,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 import org.amateras_smp.amacarpet.commands.CommandTreeContext;
+import org.amateras_smp.amacarpet.commands.restriction.RestrictionCommand;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
 import java.io.IOException;
@@ -73,14 +75,12 @@ public class AmaCarpetServer implements CarpetExtension {
                 , commandBuildContext
                 //#endif
         );
-        /*
+
         Lists.newArrayList(
-                // HopperLockCommand.getInstance();
+                RestrictionCommand.getInstance()
         ).forEach(command ->
                 command.registerCommand(context)
         );
-
-         */
     }
 
     //#if MC >= 11900

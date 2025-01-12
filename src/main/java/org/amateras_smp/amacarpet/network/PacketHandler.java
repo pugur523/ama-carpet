@@ -7,8 +7,10 @@ package org.amateras_smp.amacarpet.network;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
-import org.amateras_smp.amacarpet.AmaCarpetServer;
+import org.amateras_smp.amacarpet.network.packets.EnableSpecifiedFeaturePacket;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
+import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
+import org.amateras_smp.amacarpet.network.packets.ModStatusResponsePacket;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,7 +30,10 @@ public class PacketHandler {
     }
 
     static {
+        packetRegistry.add(new Packet("enable_specified_feature", EnableSpecifiedFeaturePacket.class));
         packetRegistry.add(new Packet("handshake", HandshakePacket.class));
+        packetRegistry.add(new Packet("mod_status_query", ModStatusQueryPacket.class));
+        packetRegistry.add(new Packet("mod_status_response", ModStatusResponsePacket.class));
     }
 
     private static IPacket decode(byte[] raw) {
@@ -75,11 +80,9 @@ public class PacketHandler {
 
     public static void handleC2S(byte[] data, ServerPlayer player) {
         AmaCarpet.LOGGER.debug("handling c2s packet");
-        // AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
         IPacket packet = decode(data);
         if (packet == null) return;
         packet.onServer(player);
-        // });
     }
 
     public static void handleS2C(byte[] data) {

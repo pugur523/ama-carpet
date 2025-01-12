@@ -20,9 +20,9 @@ public class MixinMinecraftServer {
 
     @Inject(method = "prepareLevels", at = @At("HEAD"))
     private void onPrepareLevels(ChunkProgressListener chunkProgressListener, CallbackInfo ci) throws IOException {
-        ChunkTicketUtil.setPath((MinecraftServer) (Object) this);
+        ChunkTicketUtil.setPath();
         if (!AmaCarpetSettings.reloadPortalTicket) return;
-        ChunkTicketUtil.load((MinecraftServer) (Object) this);
+        ChunkTicketUtil.load();
     }
 
     @Inject(method = "stopServer", at = @At("TAIL"))

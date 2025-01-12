@@ -4,18 +4,19 @@
   "package": "org.amateras_smp.amacarpet.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "mixins": [
+    "addon.carpet.MixinSettingsManager",
+    "addon.syncmatica.MixinServerCommunicationManager",
+    "addon.syncmatica.MixinSyncmaticManager",
     "network.MixinPlayerList",
     "sound.MixinLevel",
     "spawn.MixinFlatLevelSource",
     "spawn.MixinNoiseBasedChunkGenerator",
-    "syncmatica.MixinServerCommunicationManager",
-    "syncmatica.MixinSyncmaticManager",
     "ticket.MixinChunkMap",
     "ticket.MixinMinecraftServer",
     "ticket.MixinServerChunkCache",
     "ticket.MixinServerLevel",
     "ticket.MixinTheEndGatewayBlockEntity",
-    "util.MixinMinecraftServer"
+    "utils.MixinMinecraftServer"
   ],
   "injectors": {
     "defaultRequire": 1
