@@ -3,7 +3,7 @@
 
   "ama.message.on_cheat_dc": "You are using %s, which is not allowed in this server.\nRejoin after disabling this feature.",
   "ama.message.on_timeout_dc": "AmaCarpet Client not found. This server requires the AmaCarpet mod to join. Please install it from Modrinth or GitHub.",
-  "ama.message.restriction.changed": "Restriction settings changed. %s is now %s.",
+  "ama.message.restriction.changed": "Restriction settings changed. %s is %s.",
   "ama.message.restriction.invalid": "Invalid feature name! Use one of the suggested feature names.",
   "ama.message.restriction.state": "%s is %s.",
   "ama.message.schematic.shared": " shared a schematic!\nPlacement name : ",

@@ -15,6 +15,7 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.amateras_smp.amacarpet.client.utils.ClientModUtil;
@@ -99,12 +100,14 @@ public class RestrictionCommand extends AbstractCommand {
     }
 
     private int printAllState(CommandContext<CommandSourceStack> context) {
-        StringBuilder builder = new StringBuilder();
+        MutableComponent message = Component.literal("CheatRestriction : ").withStyle(ChatFormatting.AQUA)
+                .append(Component.literal(AmaCarpetSettings.cheatRestriction ? "true\n\n" : "false\n\n").withStyle(AmaCarpetSettings.cheatRestriction ? ChatFormatting.RED : ChatFormatting.GREEN));
         for (String feature : FEATURE_SUGGESTIONS) {
             boolean value = CheatRestrictionConfig.getInstance().get(feature);
-            builder.append(feature).append(":").append(isRestricted(value)).append("\n");
+            message.append(Component.literal(feature + " : ").withStyle(ChatFormatting.YELLOW)
+                    .append(Component.literal(isRestricted(value) + "\n").withStyle(value ? ChatFormatting.RED : ChatFormatting.GREEN)));
         }
-        context.getSource().sendSystemMessage(Component.literal(builder.toString()).withStyle(ChatFormatting.LIGHT_PURPLE));
+        context.getSource().sendSystemMessage(message);
         return Command.SINGLE_SUCCESS;
     }
 
