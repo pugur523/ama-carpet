@@ -77,7 +77,6 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 > [!NOTE] 
 > Support for Kyoyu is currently under development.
 
-
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`

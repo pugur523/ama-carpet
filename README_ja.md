@@ -16,6 +16,9 @@
 
 > [tweakeroo](https://modrinth.com/mod/tweakeroo)や[tweakermore](https://modrinth.com/mod/tweakermore)、[litematica](https://modrinth.com/mod/litematica)の中の指定された機能を禁止する。禁止する機能は`/restriction`コマンドで指定できる。
 
+> [!NOTE]
+> サーバー側でのみ機能します。
+
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
@@ -39,7 +42,7 @@
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`
 
-### disableSoundeEngine
+### disableSoundEngine
 
 > サーバー側で処理されるすべての音エンジンを無効化して軽量化する。
 
@@ -72,7 +75,8 @@
 
 > schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)や[kyoyu](https://modrinth.com/mod/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
 
-> [!NOTE] kyoyuへの対応は準備中。
+> [!NOTE] 
+> kyoyuへの対応は準備中。
 
 - Type: `boolean`
 - Default value: `false`
