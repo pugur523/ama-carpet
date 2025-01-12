@@ -1,9 +1,11 @@
+# ![Logo](amacarpet_icon_64.png) AmaCarpet
+
 [English readme here](https://github.com/pugur523/ama-carpet/blob/main/README.md)<br><br>
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
-AmaCarpetはAmateras SMPのために作られたCarpet mod extensionです
+**AmaCarpet**は**Amateras SMP**のために作られたCarpet Mod Extensionです
 
 ## Rules
 
@@ -78,7 +80,7 @@ AmaCarpetはAmateras SMPのために作られたCarpet mod extensionです
 
 > サーバーの起動時に、すべての記録されていたポータルチャンクロードチケットを再読み込みさせる。
 > これによりチャンクローダーがサーバーの再起動で壊れなくなる。
-> 25w05a(スナップショット)にて実装されたのでbackportになる可能性あり。
+> 25w05aで実装された機能のbackport。
 
 - Type: `boolean`
 - Default value: `false`
