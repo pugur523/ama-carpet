@@ -75,7 +75,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 > Sends notifications to player's chat when a schematic is shared or unshared using [Syncmatica](https://modrinth.com/mod/syncmatica) or [Kyoyu](https://modrinth.com/mod/kyoyu).
 
 > [!NOTE] 
-> Support for Kyoyu is currently under development.
+> Only works in server side.
 
 - Type: `boolean`
 - Default value: `false`
