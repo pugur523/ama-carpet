@@ -30,11 +30,13 @@ public class ClientModUtil {
     );
 
     public static final ImmutableList<String> tweakerooYeetsWatchList = ImmutableList.of(
-            // contains masa addition
+            "slime_block_slowdown"
+    );
+
+    public static final ImmutableList<String> masaAdditionsYeetsWatchList = ImmutableList.of(
             "honey_block_slowdown",
             "honey_block_jumping",
-            "slime_block_bouncing",
-            "slime_block_slowdown"
+            "slime_block_bouncing"
     );
 
     public static final ImmutableList<String> tweakermoreWatchList = ImmutableList.of(
@@ -63,7 +65,7 @@ public class ClientModUtil {
                 return configBoolean.getBooleanValue();
             }
         } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
-            AmaCarpet.LOGGER.error("can't get tweakeroo feature state for class {} : ", className,  e);
+            AmaCarpet.LOGGER.error("can't get tweakeroo feature state for {}", feature);
         }
         return false;
     }
@@ -86,6 +88,7 @@ public class ClientModUtil {
 
         addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooFeaturesWatchList, "fi.dy.masa.tweakeroo.config.FeatureToggle", "TWEAK_");
         addFeatures(map, AmaCarpet.ModIds.tweakeroo, tweakerooYeetsWatchList, "fi.dy.masa.tweakeroo.config.Configs$Disable", "DISABLE_");
+        addFeatures(map, AmaCarpet.ModIds.masaadditions, masaAdditionsYeetsWatchList, "com.red.masaadditions.tweakeroo_additions.config.ConfigsExtended$Disable", "DISABLE_");
         addFeatures(map, AmaCarpet.ModIds.tweakermore, tweakermoreWatchList, "me.fallenbreath.tweakermore.config.TweakerMoreConfigs", "");
         addFeatures(map, AmaCarpet.ModIds.litematica, litematicaWatchList, "fi.dy.masa.litematica.config.Configs$Generic", "");
 

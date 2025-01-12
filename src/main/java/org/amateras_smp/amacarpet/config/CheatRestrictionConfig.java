@@ -18,7 +18,11 @@ public class CheatRestrictionConfig {
     private static final Properties properties = new Properties();
     private static final String configFileName = "cheat_restriction.properties";
     private static final String configComment = "Cheat Restriction Config File - `true` means the feature is not allowed";
-    private static final CheatRestrictionConfig instance = new CheatRestrictionConfig();
+    private static CheatRestrictionConfig instance;
+
+    public static void init() {
+        instance = new CheatRestrictionConfig();
+    }
 
     private CheatRestrictionConfig() {
         setDefaultProperties();
@@ -34,6 +38,7 @@ public class CheatRestrictionConfig {
     }
 
     public static CheatRestrictionConfig getInstance() {
+        if (instance == null) init();
         return instance;
     }
 
@@ -52,6 +57,9 @@ public class CheatRestrictionConfig {
             properties.setProperty(feature, "false");
         }
         for (String yeet : ClientModUtil.tweakerooYeetsWatchList) {
+            properties.setProperty(yeet, "false");
+        }
+        for (String yeet : ClientModUtil.masaAdditionsYeetsWatchList) {
             properties.setProperty(yeet, "false");
         }
         for (String feature : ClientModUtil.tweakermoreWatchList) {

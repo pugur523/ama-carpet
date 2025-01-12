@@ -48,6 +48,7 @@ public class AmaCarpet implements ModInitializer {
         public static final String malilib = "malilib";
         public static final String tweakeroo = "tweakeroo";
         public static final String tweakermore = "tweakermore";
+        public static final String masaadditions = "masaadditions";
         public static final String itemscroller = "itemscroller";
         public static final String litematica = "litematica";
         public static final String syncmatica = "syncmatica";

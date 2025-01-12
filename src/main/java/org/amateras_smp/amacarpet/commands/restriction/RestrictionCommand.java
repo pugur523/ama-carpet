@@ -15,11 +15,14 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
+import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.AmaCarpetSettings;
 import org.amateras_smp.amacarpet.client.utils.ClientModUtil;
 import org.amateras_smp.amacarpet.commands.AbstractCommand;
 import org.amateras_smp.amacarpet.commands.CommandTreeContext;
 import org.amateras_smp.amacarpet.config.CheatRestrictionConfig;
+import org.amateras_smp.amacarpet.network.PacketHandler;
+import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
 import org.amateras_smp.amacarpet.utils.CarpetModUtil;
 
 import java.util.ArrayList;
@@ -77,6 +80,9 @@ public class RestrictionCommand extends AbstractCommand {
         boolean value = BoolArgumentType.getBool(context, "prohibit");
         CheatRestrictionConfig.getInstance().set(featureName, (value ? "true" : "false"));
         context.getSource().sendSystemMessage(Component.literal(String.format(Translations.tr("ama.message.restriction.changed"), featureName, isRestricted(value))).withStyle(ChatFormatting.YELLOW));
+        AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayers().forEach(
+                (serverPlayer -> PacketHandler.sendS2C(new ModStatusQueryPacket(), serverPlayer))
+        );
         return Command.SINGLE_SUCCESS;
     }
 
