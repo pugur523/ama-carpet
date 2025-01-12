@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Restriction(require = @Condition(AmaCarpet.ModIds.tweakeroo))
-@Mixin(FeatureToggle.class)
+@Mixin(value = FeatureToggle.class, remap = false)
 public class MixinFeatureToggle {
     @Inject(method = "setBooleanValue(Z)V", at = @At("HEAD"))
     private void onSetBooleanValue(boolean value, CallbackInfo ci) {
         // FeatureToggle overrides setBooleanValue() so this is needed.
-        AmaCarpet.LOGGER.debug("setBooleanValue to {}", value ? "true" : "false");
+        AmaCarpet.LOGGER.debug("setBooleanValue to {} in FeatureToggle", value ? "true" : "false");
         if (!value) return;
         FeatureToggle self = (FeatureToggle)(Object) this;
         String changed = self.getName();
