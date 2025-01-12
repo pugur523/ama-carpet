@@ -1,4 +1,4 @@
-# ![Logo](amacarpet_icon_64.png) AmaCarpet
+# ![Logo](https://github.com/pugur523/ama-carpet/blob/main/amacarpet_icon_64.png) AmaCarpet
 
 [English readme here](https://github.com/pugur523/ama-carpet/blob/main/README.md)<br><br>
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/MIT)
