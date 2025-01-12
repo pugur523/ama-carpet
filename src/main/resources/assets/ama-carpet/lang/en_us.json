@@ -11,6 +11,7 @@
   "carpet.rule.cheatRestriction.desc": "Prohibits specific features in client-side mods such as tweakeroo, tweakermore, litematica. The features to restrict can be configure using the /restriction command. Only works in server side",
   "carpet.rule.commandListRestriction.desc": "Enables /listrestriction command to display features restricted by cheatRestriction.\n/listrestriction command provides the same output as /restriction when used with no arguments.\nHowever, unlike /restriction, this command can be executed by players without operator permissions by default.",
   "carpet.rule.commandRestriction.desc": "Enables /restriction command to configure features restricted by cheatRestriction.",
+  "carpet.rule.debugModeAmaCarpet.desc": "Enables debug print for AmaCarpet developers.",
   "carpet.rule.disableAnimalSpawnOnChunkGen.desc": "Disables animal spawning during chunk generation.",
   "carpet.rule.disableSoundEngine.desc": "Disables all server-side sound engine processes",
   "carpet.rule.endGatewayChunkLoad.desc": "Allows entities traveling through end gateway portals to load a 3x3 chunk area, similar to nether portals.",

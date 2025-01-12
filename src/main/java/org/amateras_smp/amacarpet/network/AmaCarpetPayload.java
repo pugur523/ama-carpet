@@ -4,31 +4,37 @@
 
 package org.amateras_smp.amacarpet.network;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
+import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.utils.ResourceLocationUtil;
 import net.minecraft.server.level.ServerPlayer;
-//#if MC < 12005
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
+
+//#if MC < 12004
 import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
+//#else
+//$$ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+//$$ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+//$$ import org.jetbrains.annotations.NotNull;
+//#if MC == 12004
+//$$ import net.minecraft.network.FriendlyByteBuf;
 //#else
 //$$ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 //$$ import net.minecraft.network.codec.ByteBufCodecs;
 //$$ import net.minecraft.network.codec.StreamCodec;
-//$$ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 //$$ import net.minecraft.network.RegistryFriendlyByteBuf;
-//$$ import org.jetbrains.annotations.NotNull;
+//#endif
+//#endif
+//#if MC >= 12002
+//$$ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 //#endif
 
 public class AmaCarpetPayload
-        //#if MC >= 12005
+        //#if MC >= 12002
         //$$ implements CustomPacketPayload
         //#endif
 {
@@ -37,6 +43,12 @@ public class AmaCarpetPayload
     public AmaCarpetPayload(byte[] content) {
         this.content = content;
     }
+
+    //#if MC == 12002
+    //$$ public AmaCarpetPayload(FriendlyByteBuf friendlyByteBuf) {
+    //$$     this.content = friendlyByteBuf.readByteArray();
+    //$$ }
+    //#endif
 
     public byte[] content() {
         return this.content;
@@ -55,83 +67,56 @@ public class AmaCarpetPayload
     //$$ }
     //#endif
 
-    public static void register() {
-        //#if MC >= 12005
-        //$$ PayloadTypeRegistry.playC2S().register(TYPE, CODEC);
-        //$$ PayloadTypeRegistry.playS2C().register(TYPE, CODEC);
-        //#endif
-
-        if (AmaCarpet.IS_CLIENT) {
-            ClientPlayNetworking.registerGlobalReceiver(
-                    //#if MC >= 12005
-                    //$$ TYPE, AmaCarpetPayload::onPacketClient
-                    //#else
-                    identifier, (client, handler, buf, responseSender) -> {
-                        AmaCarpetPayload packetPayload = new AmaCarpetPayload(buf.readByteArray());
-                        packetPayload.onPacketClient(client, handler, responseSender);
-                    }
-                    //#endif
-            );
+    public void sendC2S() {
+        ClientPacketListener networkHandler = Minecraft.getInstance().getConnection();
+        if (AmaCarpet.kIsClient && networkHandler != null) {
+            //#if MC >= 12004
+            //$$ ClientPlayNetworking.send(this);
+            //#else
+            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+            AmaCarpet.LOGGER.debug("making c2s packet, identifier : {}, content : {}", identifier, content);
+            write(buf);
+            //#if MC == 12002
+            //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
+            //#else
+            ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(buf);
+            //#endif
+            networkHandler.send(packet);
+            //#endif
         } else {
-            ServerPlayNetworking.registerGlobalReceiver(
-                    //#if MC >= 12005
-                    //$$ TYPE, AmaCarpetPayload::onPacketServer
-                    //#else
-                    identifier, (server, player, handler, buf, responseSender) -> {
-                        AmaCarpetPayload packetPayload = new AmaCarpetPayload(buf.readByteArray());
-                        packetPayload.onPacketServer(server, player, handler, responseSender);
-                    }
-                    //#endif
-            );
+            AmaCarpet.LOGGER.debug("this is not client or client connection is null");
         }
     }
 
-    public void sendC2S() {
-        //#if MC >= 12005
-        //$$ ClientPlayNetworking.send(this);
-        //#else
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        buf.writeByteArray(content);
-        ClientPlayNetworking.send(identifier, buf);
-        //#endif
-    }
-
     public void sendS2C(ServerPlayer player) {
-        //#if MC >= 12005
+        //#if MC >= 12004
         //$$ ServerPlayNetworking.send(player, this);
         //#else
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        buf.writeByteArray(content);
-        ServerPlayNetworking.send(player, identifier, buf);
-        //#endif
-    }
-
-    public void onPacketServer(
-        //#if MC >= 12005
-        //$$ ServerPlayNetworking.Context context
+        write(buf);
+        //#if MC == 12002
+        //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
         //#else
-        MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl listener, PacketSender sender
+        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(buf);
         //#endif
-    ) {
-        AmaCarpet.LOGGER.debug("onPacketServer");
-        PacketHandler.handleC2S(
-                this.content,
-                //#if MC >= 12005
-                //$$ (ServerPlayer) context.player()
-                //#else
-                player
-                //#endif
-        );
+        player.connection.send(packet);
+        //#endif
     }
 
-    public void onPacketClient(
-            //#if MC >= 12005
-            //$$ ClientPlayNetworking.Context context
-            //#else
-            Minecraft client, ClientPacketListener listener, PacketSender sender
-            //#endif
-    ) {
-        AmaCarpet.LOGGER.debug("onPacketClient");
-        PacketHandler.handleS2C(this.content);
+    //#if 12002 <= MC && MC <= 12004
+    //$$ @Override
+    //#endif
+    public void write(FriendlyByteBuf buf)
+    {
+        buf.writeResourceLocation(identifier);
+        buf.writeByteArray(content);
+    }
+
+    //#if 12002 <= MC && MC <= 12004
+    //$$ @Override
+    //#endif
+    public ResourceLocation id()
+    {
+        return identifier;
     }
 }

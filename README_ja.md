@@ -1,7 +1,7 @@
-# ![Logo](amacarpet_icon_64.png) AmaCarpet
+# ![Logo](src/main/resources/assets/ama-carpet/icon_32.png) AmaCarpet
 
 [English readme here](README.md)<br><br>
-[![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
@@ -23,6 +23,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+<br><br>
 
 ### commandListRestriction
 
@@ -33,6 +34,7 @@
 - Default value: `true`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`
+<br><br>
 
 ### commandRestriction
 
@@ -42,15 +44,17 @@
 - Default value: `ops`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`
+<br><br>
 
 ### disableAnimalSpawnOnChunkGen
 
-> 地形生成時の動物のスポーンを無効化する。ワールドサイズの縮小が期待される。
+> 地形生成時の動物のスポーンを無効化する。軽量化やワールドサイズの縮小が期待される。
 
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`
+<br><br>
 
 ### disableSoundEngine
 
@@ -60,6 +64,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`
+<br><br>
 
 ### endGatewayChunkLoad (MC < 1.21)
 
@@ -70,6 +75,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+<br><br>
 
 ### endPortalChunkLoad (MC < 1.21)
 
@@ -80,6 +86,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+<br><br>
 
 ### notifySchematicShare
 
@@ -92,6 +99,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+<br><br>
 
 ### reloadPortalTicket
 
@@ -103,6 +111,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+<br><br>
 
 ### requireAmaCarpetClient
 
@@ -112,6 +121,7 @@
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`
+<br><br>
 
 ### requireAmaCarpetClientTimeoutSeconds
 
@@ -121,3 +131,4 @@
 - Default value: `5`
 - Suggested options: `3`, `5`, `10`
 - Categories: `AMA`
+<br><br>
