@@ -1,9 +1,8 @@
-# ![Logo](amacarpet_icon_64.png) AmaCarpet
+# AmaCarpet
 
-[日本語の説明はこちら](README_ja.md)<br><br>
+[日本語の説明はこちら](https://github.com/pugur523/ama-carpet/blob/main/README_ja.md)<br><br>
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
-[![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
 **AmaCarpet** is an extension of the Carpet Mod specifically designed for **Amateras SMP**.
 Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or [contribute to this mod](https://github.com/pugur523/ama-carpet/pulls).
@@ -15,8 +14,6 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 ### cheatRestriction
 
 > Prohibits specific features in client-side mods such as [Tweakeroo](https://modrinth.com/mod/tweakeroo), [Tweakermore](https://modrinth.com/mod/tweakermore), [Litematica](https://modrinth.com/mod/litematica). The features to restrict can be configured using the `/restriction` command.
-
-> [!NOTE]
 > Only works in server side.
 
 - Type: `boolean`
@@ -56,7 +53,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 ### disableSoundEngine
 
 > Disables all server-side sound engine processes.
- 
+
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
@@ -84,8 +81,6 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 
 ### notifySchematicShare
 > Sends notifications to player's chat when a schematic is shared or unshared using [Syncmatica](https://modrinth.com/mod/syncmatica) or [Kyoyu](https://modrinth.com/mod/kyoyu).
-
-> [!NOTE] 
 > Only works in server side.
 
 - Type: `boolean`

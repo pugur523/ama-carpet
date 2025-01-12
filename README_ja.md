@@ -1,6 +1,6 @@
-# ![Logo](https://github.com/pugur523/ama-carpet/blob/main/amacarpet_icon_64.png) AmaCarpet
+# ![Logo](amacarpet_icon_64.png) AmaCarpet
 
-[English readme here](https://github.com/pugur523/ama-carpet/blob/main/README.md)<br><br>
+[English readme here](README.md)<br><br>
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
@@ -26,7 +26,7 @@
 
 ### commandListRestriction
 
-> `/listrestriction`コマンドを有効化し、[cheatRestriction](#cheatrestriction)により禁止されているクライアントmodの機能の一覧をこのコマンドで閲覧できるようにする。
+> `/listrestriction`コマンドを有効化し、[cheatRestriction](#cheatRestriction)により禁止されているクライアントmodの機能の一覧をこのコマンドで閲覧できるようにする。
 > `/restriction`コマンドを引数なしで実行したときと同じ結果が返ってくるが、このコマンドはデフォルトではop権限を持っていないプレイヤーも実行することができる。
 
 - Type: `String`
@@ -36,7 +36,7 @@
 
 ### commandRestriction
 
-> `/restriction`コマンドを有効化し、[cheatRestriction](#cheatrestriction)により禁止するクライアントmodの機能をこのコマンドで設定できるようにする。
+> `/restriction`コマンドを有効化し、[cheatRestriction](#cheatRestriction)により禁止するクライアントmodの機能をこのコマンドで設定できるようにする。
 
 - Type: `String`
 - Default value: `ops`
@@ -86,7 +86,7 @@
 > schematic(.litematicファイル)が[syncmatica](https://modrinth.com/mod/syncmatica)や[kyoyu](https://modrinth.com/mod/kyoyu)を通じて共有されたり、削除されたときにプレイヤーのチャットへ通知を送信する。
 
 > [!NOTE]
-> サーバー側でのみ機能します。
+> サーバー側でのみ機能する。
 
 - Type: `boolean`
 - Default value: `false`
@@ -106,7 +106,7 @@
 
 ### requireAmaCarpetClient
 
-> ama-carpetを導入していないクライアントによるサーバーへのログインを拒否する。タイムアウトまでの時間は[requireAmaCarpetClientTimeoutSeconds](#requireamacarpetclienttimeoutseconds)にて設定できる。
+> ama-carpetを導入していないクライアントによるサーバーへのログインを拒否する。タイムアウトまでの時間は[requireAmaCarpetClientTimeoutSeconds](#requireAmaCarpetClientTimeoutSeconds)にて設定できる。
 
 - Type: `boolean`
 - Default value: `false`
@@ -115,7 +115,7 @@
 
 ### requireAmaCarpetClientTimeoutSeconds
 
-> [requireAmaCarpetClient](#requireamacarpetclient)によるクライアントがama-carpetを導入しているかどうかのチェックがタイムアウトするまでの時間を設定する。
+> [requireAmaCarpetClient](#requireAmaCarpetClient)によるクライアントがama-carpetを導入しているかどうかのチェックがタイムアウトするまでの時間を設定する。
 
 - Type: `int`
 - Default value: `5`
