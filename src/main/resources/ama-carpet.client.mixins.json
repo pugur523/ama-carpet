@@ -9,6 +9,7 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "addon.malilib.MixinConfigBoolean"
+    "addon.malilib.MixinConfigBoolean",
+    "addon.tweakeroo.MixinFeatureToggle"
   ]
 }

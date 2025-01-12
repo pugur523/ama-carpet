@@ -25,7 +25,7 @@ public class AmaCarpet implements ModInitializer {
     public void onInitialize() {
         LOGGER = LogManager.getLogger(MOD_NAME);
 
-        // Configurator.setLevel(LOGGER, Level.ERROR);
+        Configurator.setLevel(LOGGER, Level.DEBUG);
         LOGGER.debug("[AmaCarpet] debug log is enabled.");
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
