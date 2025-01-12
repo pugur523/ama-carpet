@@ -1,4 +1,4 @@
-# ![Logo](amacarpet_icon_64.png) AmaCarpet
+# ![Logo](https://github.com/pugur523/ama-carpet/blob/main/amacarpet_icon_64.png) AmaCarpet
 
 [日本語の説明はこちら](https://github.com/pugur523/ama-carpet/blob/main/README_ja.md)<br><br>
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
@@ -23,6 +23,17 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+
+### commandListRestriction
+
+> Enables `/listrestriction` command to display features restricted by [cheatRestriction](#cheatrestriction).
+> `/listrestriction` command provides the same output as `/restriction` when used with no arguments.
+> However, unlike `/restriction`, this command can be executed by players without operator permissions by default.
+
+- Type: `String`
+- Default value: `true`
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Categories: `AMA`, `COMMAND`, `SURVIVAL`
 
 ### commandRestriction
 

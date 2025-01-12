@@ -16,6 +16,9 @@ public class AmaCarpetSettings {
     public static boolean cheatRestriction = false;
 
     @Rule(categories = { AMA, COMMAND, SURVIVAL })
+    public static String commandListRestriction = "true";
+
+    @Rule(categories = { AMA, COMMAND, SURVIVAL })
     public static String commandRestriction = "ops";
 
     @Rule(categories = { AMA, OPTIMIZATION, SURVIVAL })
@@ -31,11 +34,6 @@ public class AmaCarpetSettings {
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean endPortalChunkLoad = false;
     //#endif
-
-    /*
-    @Rule(categories = { AMA, CREATIVE })
-    public static boolean hopperLock = false;
-    */
 
     @Rule(categories = { AMA, SURVIVAL })
     public static boolean notifySchematicShare = false;

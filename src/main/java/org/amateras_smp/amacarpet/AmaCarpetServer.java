@@ -15,6 +15,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 import org.amateras_smp.amacarpet.commands.CommandTreeContext;
+import org.amateras_smp.amacarpet.commands.restriction.ListRestrictionCommand;
 import org.amateras_smp.amacarpet.commands.restriction.RestrictionCommand;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
@@ -77,6 +78,7 @@ public class AmaCarpetServer implements CarpetExtension {
         );
 
         Lists.newArrayList(
+                ListRestrictionCommand.getInstance(),
                 RestrictionCommand.getInstance()
         ).forEach(command ->
                 command.registerCommand(context)

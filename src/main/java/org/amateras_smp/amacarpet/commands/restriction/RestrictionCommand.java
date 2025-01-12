@@ -54,8 +54,8 @@ public class RestrictionCommand extends AbstractCommand {
     public void registerCommand(CommandTreeContext.Register context) {
         initializeFeatureSuggestions();
         LiteralArgumentBuilder<CommandSourceStack> builder = literal("restriction")
-                .executes(this::printAllState)
                 .requires((player) -> CarpetModUtil.canUseCommand(player, AmaCarpetSettings.commandRestriction))
+                .executes(this::listAll)
                 .then(argument("featureName", StringArgumentType.word())
                     .suggests(FEATURE_NAME_SUGGESTIONS)
                     .executes(this::getState)
@@ -66,11 +66,19 @@ public class RestrictionCommand extends AbstractCommand {
         context.dispatcher.register(builder);
     }
 
+    private static void initializeFeatureSuggestions() {
+        FEATURE_SUGGESTIONS.clear();
+        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooFeaturesWatchList);
+        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooYeetsWatchList);
+        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakermoreWatchList);
+        FEATURE_SUGGESTIONS.addAll(ClientModUtil.litematicaWatchList);
+    }
+
     private static String isRestricted(boolean b) {
         return b ? "prohibited" : "allowed";
     }
 
-    public int changeSetting(CommandContext<CommandSourceStack> context) {
+    private int changeSetting(CommandContext<CommandSourceStack> context) {
         String featureName = StringArgumentType.getString(context, "featureName");
 
         if (!FEATURE_SUGGESTIONS.contains(featureName)) {
@@ -99,7 +107,11 @@ public class RestrictionCommand extends AbstractCommand {
         return Command.SINGLE_SUCCESS;
     }
 
-    private int printAllState(CommandContext<CommandSourceStack> context) {
+    public int listAll(CommandContext<CommandSourceStack> context) {
+        return listAllRestrictions(context);
+    }
+
+    public static int listAllRestrictions(CommandContext<CommandSourceStack> context) {
         MutableComponent message = Component.literal("CheatRestriction : ").withStyle(ChatFormatting.AQUA)
                 .append(Component.literal(AmaCarpetSettings.cheatRestriction ? "true\n\n" : "false\n\n").withStyle(AmaCarpetSettings.cheatRestriction ? ChatFormatting.RED : ChatFormatting.GREEN));
         for (String feature : FEATURE_SUGGESTIONS) {
@@ -109,13 +121,5 @@ public class RestrictionCommand extends AbstractCommand {
         }
         context.getSource().sendSystemMessage(message);
         return Command.SINGLE_SUCCESS;
-    }
-
-    private static void initializeFeatureSuggestions() {
-        FEATURE_SUGGESTIONS.clear();
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooFeaturesWatchList);
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakerooYeetsWatchList);
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.tweakermoreWatchList);
-        FEATURE_SUGGESTIONS.addAll(ClientModUtil.litematicaWatchList);
     }
 }

@@ -17,12 +17,22 @@
 > [tweakeroo](https://modrinth.com/mod/tweakeroo)や[tweakermore](https://modrinth.com/mod/tweakermore)、[litematica](https://modrinth.com/mod/litematica)の中の指定された機能を禁止する。禁止する機能は`/restriction`コマンドで指定できる。
 
 > [!NOTE]
-> サーバー側でのみ機能します。
+> サーバー側でのみ機能する。
 
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
+
+### commandListRestriction
+
+> `/listrestriction`コマンドを有効化し、[cheatRestriction](#cheatrestriction)により禁止されているクライアントmodの機能の一覧をこのコマンドで閲覧できるようにする。
+> `/restriction`コマンドを引数なしで実行したときと同じ結果が返ってくるが、このコマンドはデフォルトではop権限を持っていないプレイヤーも実行することができる。
+
+- Type: `String`
+- Default value: `true`
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Categories: `AMA`, `COMMAND`, `SURVIVAL`
 
 ### commandRestriction
 
