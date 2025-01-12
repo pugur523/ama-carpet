@@ -9,7 +9,12 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 ## Rules
 
 
-### disableSoundeEngine
+### disableAnimalSpawnOnChunkGen
+
+> Disables animal spawning on chunk generation.
+
+
+### disableSoundEngine
 
 > Disables all process of serverside sound engine.
 
@@ -27,9 +32,10 @@ Be free to [report any issues](https://github.com/pugur523/ama-carpet/issues) or
 
 
 ### notifyLitematicShared
+> [!NOTE] 
+> currently kyoyu support is under development.
 
 > Send notifications to player chat when litematic shared with [syncmatica](https://modrinth.com/mod/syncmatica) or [kyoyu](https://modrinth.com/mod/kyoyu).
-> [!NOTE] currently kyoyu support is under development.
 
 
 ### reloadPortalTicket
