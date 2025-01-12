@@ -5,7 +5,9 @@
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
 
-**AmaCarpet**は**Amateras SMP**のために作られたCarpet Mod Extensionです
+**AmaCarpet**は**Amateras SMP**のために作られたCarpet Mod Extensionです。<br>
+バグや問題等発見された方は[issue](https://github.com/pugur523/ama-carpet/issues)へお願いします。また、機能改善や新機能等あれば[pull request](https://github.com/pugur523/ama-carpet/pulls)まで。
+
 
 ## Rules
 
