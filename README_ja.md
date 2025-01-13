@@ -45,7 +45,7 @@
 
 ### disableAnimalSpawnOnChunkGen
 
-> 地形生成時の動物のスポーンを無効化する。ワールドサイズの縮小が期待される。
+> 地形生成時の動物のスポーンを無効化する。軽量化やワールドサイズの縮小が期待される。
 
 - Type: `boolean`
 - Default value: `false`
