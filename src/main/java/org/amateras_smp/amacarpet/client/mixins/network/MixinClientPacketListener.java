@@ -4,12 +4,10 @@
 
 package org.amateras_smp.amacarpet.client.mixins.network;
 
-import net.minecraft.ResourceLocationException;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.network.AmaCarpetPayload;
 import org.amateras_smp.amacarpet.network.PacketHandler;

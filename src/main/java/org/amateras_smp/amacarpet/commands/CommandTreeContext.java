@@ -12,8 +12,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.CommandBuildContext;
 //#endif
 
-public abstract class CommandTreeContext
-{
+public abstract class CommandTreeContext {
     //#if MC >= 11900
     public final CommandBuildContext commandBuildContext;
     //#endif
@@ -28,8 +27,7 @@ public abstract class CommandTreeContext
             //#if MC >= 11900
             CommandBuildContext commandBuildContext
             //#endif
-    )
-    {
+    ) {
         //#if MC >= 11900
         this.commandBuildContext = commandBuildContext;
         //#endif
@@ -40,8 +38,7 @@ public abstract class CommandTreeContext
             //#if MC >= 11900
             , CommandBuildContext commandBuildContext
             //#endif
-    )
-    {
+    ) {
         return new Register(
                 dispatcher
                 //#if MC >= 11900
@@ -55,8 +52,7 @@ public abstract class CommandTreeContext
             //#if MC >= 11900
             , CommandBuildContext commandBuildContext
             //#endif
-    )
-    {
+    ) {
         return new Node(
                 node
                 //#if MC >= 11900
@@ -72,8 +68,7 @@ public abstract class CommandTreeContext
      * TODO: make an interface with getCommandBuildContext() method.
      * then make this method returns a impl that getCommandBuildContext() throws
      */
-    public static Node ofNonContext(ArgumentBuilder<CommandSourceStack, ?> node)
-    {
+    public static Node ofNonContext(ArgumentBuilder<CommandSourceStack, ?> node) {
         return of(
                 node
                 //#if MC >= 11900
@@ -91,8 +86,7 @@ public abstract class CommandTreeContext
     /**
      * Creates a {@link Node} context based on self's basic information
      */
-    public Node node(ArgumentBuilder<CommandSourceStack, ?> node)
-    {
+    public Node node(ArgumentBuilder<CommandSourceStack, ?> node) {
         return of(
                 node
                 //#if MC >= 11900
@@ -101,8 +95,7 @@ public abstract class CommandTreeContext
         );
     }
 
-    public static class Register extends CommandTreeContext
-    {
+    public static class Register extends CommandTreeContext {
         public final CommandDispatcher<CommandSourceStack> dispatcher;
 
         private Register(
@@ -110,8 +103,7 @@ public abstract class CommandTreeContext
                 //#if MC >= 11900
                 , CommandBuildContext commandBuildContext
                 //#endif
-        )
-        {
+        ) {
             super(
                     //#if MC >= 11900
                     commandBuildContext
@@ -127,8 +119,7 @@ public abstract class CommandTreeContext
      * ---------------------
      */
 
-    public static class Node extends CommandTreeContext
-    {
+    public static class Node extends CommandTreeContext {
         public final ArgumentBuilder<CommandSourceStack, ?> node;
 
         private Node(
@@ -136,8 +127,7 @@ public abstract class CommandTreeContext
                 //#if MC >= 11900
                 , CommandBuildContext commandBuildContext
                 //#endif
-        )
-        {
+        ) {
             super(
                     //#if MC >= 11900
                     commandBuildContext

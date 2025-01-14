@@ -31,7 +31,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.HashSet;
 
-
 public class ChunkTicketUtil {
 
     private static final String portalTicketFileName = "portal_tickets.json";

@@ -8,8 +8,7 @@ import carpet.CarpetSettings;
 import net.minecraft.commands.CommandSourceStack;
 
 public class CarpetModUtil {
-    public static boolean canUseCommand(CommandSourceStack source, Object commandLevel)
-    {
+    public static boolean canUseCommand(CommandSourceStack source, Object commandLevel) {
         //#if MC >= 11901
         return carpet.utils.CommandHelper.canUseCommand(source, commandLevel);
         //#elseif MC >= 11600
@@ -28,13 +27,11 @@ public class CarpetModUtil {
     }
 
     // alias of canUseCommand
-    public static boolean hasEnoughPermission(CommandSourceStack source, String permissionRuleValue)
-    {
+    public static boolean hasEnoughPermission(CommandSourceStack source, String permissionRuleValue) {
         return canUseCommand(source, permissionRuleValue);
     }
 
-    public static boolean canUseCarpetCommand(CommandSourceStack source)
-    {
+    public static boolean canUseCarpetCommand(CommandSourceStack source) {
         // rule carpetCommandPermissionLevel is added in fabric carpet v1.4.55
         Object level =
                 //#if MC >= 11700
