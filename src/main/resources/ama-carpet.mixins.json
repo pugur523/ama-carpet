@@ -10,6 +10,7 @@
     "addon.syncmatica.MixinServerCommunicationManager",
     "addon.syncmatica.MixinSyncmaticManager",
     "network.MixinPlayerList",
+    "network.MixinServerGamePacketListenerImpl",
     "sound.MixinLevel",
     "spawn.MixinFlatLevelSource",
     "spawn.MixinNoiseBasedChunkGenerator",

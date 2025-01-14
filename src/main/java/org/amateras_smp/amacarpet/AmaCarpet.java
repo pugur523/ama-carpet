@@ -15,29 +15,35 @@ import org.apache.logging.log4j.core.config.Configurator;
 
 public class AmaCarpet implements ModInitializer {
 
-    public static String MOD_NAME = "AmaCarpet";
-    public static String MOD_ID = "ama-carpet";
-    private static String MOD_VERSION;
+    public static final String MOD_NAME = "AmaCarpet";
+    public static final String MOD_ID = "ama-carpet";
     public static Logger LOGGER;
-    public static boolean IS_CLIENT;
+    public static boolean kIsClient;
+    private static String kModVersion;
 
     @Override
     public void onInitialize() {
         LOGGER = LogManager.getLogger(MOD_NAME);
 
-        // Configurator.setLevel(LOGGER, Level.DEBUG);
-        // Configurator.setLevel("org.amateras_smp.amacarpet.exampleClassName", Level.DEBUG);
-        LOGGER.debug("[AmaCarpet] Debug log is enabled.");
-
         FabricLoader fabricLoader = FabricLoader.getInstance();
-        MOD_VERSION = fabricLoader.getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-        IS_CLIENT = fabricLoader.getEnvironmentType() == EnvType.CLIENT;
+        kModVersion = fabricLoader.getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+        kIsClient = fabricLoader.getEnvironmentType() == EnvType.CLIENT;
         InitHandler.init();
         LOGGER.info("{}({}) has initialized!", MOD_NAME, getVersion());
     }
 
     public static String getVersion() {
-        return MOD_VERSION;
+        return kModVersion;
+    }
+
+    public static void setDebug(boolean debug) {
+        if (debug) {
+            Configurator.setLevel(LOGGER, Level.DEBUG);
+            LOGGER.info("[AmaCarpet] Enabled debug mode.");
+        } else {
+            Configurator.setLevel(LOGGER, Level.ERROR);
+            LOGGER.info("[AmaCarpet] Disabled debug mode.");
+        }
     }
 
     public static class ModIds {

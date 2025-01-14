@@ -19,6 +19,7 @@ import org.amateras_smp.amacarpet.commands.restriction.ListRestrictionCommand;
 import org.amateras_smp.amacarpet.commands.restriction.RestrictionCommand;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -57,6 +58,8 @@ public class AmaCarpetServer implements CarpetExtension {
     public void onServerLoaded(MinecraftServer server)
     {
         MINECRAFT_SERVER = server;
+        AmaCarpet.setDebug(AmaCarpetSettings.debugModeAmaCarpet);
+        AmaCarpet.LOGGER.debug("[AmaCarpet] Debug mode is enabled");
     }
 
     @Override

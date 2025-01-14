@@ -33,7 +33,7 @@ public abstract class MixinServerCommunicationManager extends CommunicationManag
     @Inject(method = "handle", at = @At("HEAD"))
     //#if MC < 12004
     private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySchematicShare || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.IS_CLIENT) return;
+        if (!AmaCarpetSettings.notifySchematicShare || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.kIsClient) return;
     //#else
     //$$ private void onRemovePlacement(ExchangeTarget source, PacketType type, FriendlyByteBuf packetBuf, CallbackInfo ci) {
     //$$     if (!AmaCarpetSettings.notifySchematicShare || !type.equals(PacketType.REMOVE_SYNCMATIC)) return;

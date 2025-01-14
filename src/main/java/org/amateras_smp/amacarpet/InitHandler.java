@@ -11,7 +11,7 @@ public class InitHandler {
 
     public static void init() {
         AmaCarpetServer.init();
-        AmaCarpetPayload.register();
         CheatRestrictionConfig.init();
+        AmaCarpetPayload.registerPayload();
     }
 }

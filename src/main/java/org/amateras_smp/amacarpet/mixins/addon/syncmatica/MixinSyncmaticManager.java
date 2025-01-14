@@ -9,8 +9,6 @@ import ch.endte.syncmatica.ServerPlacement;
 import ch.endte.syncmatica.SyncmaticManager;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import org.amateras_smp.amacarpet.AmaCarpet;
@@ -26,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinSyncmaticManager {
     @Inject(method = "addPlacement", at = @At("HEAD"))
     private void onAddPlacement(ServerPlacement placement, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySchematicShare || AmaCarpet.IS_CLIENT) return;
+        if (!AmaCarpetSettings.notifySchematicShare || AmaCarpet.kIsClient) return;
         Component message = Component.literal(placement.getOwner().getName()).withStyle(ChatFormatting.GREEN).append(
                 Component.literal(Translations.tr("ama.message.schematic.shared")).withStyle(ChatFormatting.WHITE)).append(
                 Component.literal(placement.getName()).withStyle(ChatFormatting.YELLOW)).append(
