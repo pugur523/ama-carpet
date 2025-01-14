@@ -47,6 +47,16 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`
 <br><br>
 
+### debugModeAmaCarpet
+
+> Enables debug print for AmaCarpet developer.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `AMA`
+<br><br>
+
 ### disableAnimalSpawnOnChunkGen
 
 > Disables animal spawning during chunk generation.

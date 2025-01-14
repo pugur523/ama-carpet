@@ -20,7 +20,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### commandListRestriction
 
@@ -32,7 +32,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `true`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### commandRestriction
 
@@ -42,7 +42,17 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `ops`
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`
-  <br><br>
+<br><br>
+
+### debugModeAmaCarpet
+
+> Enables debug print for AmaCarpet developer.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `AMA`
+<br><br>
 
 ### disableAnimalSpawnOnChunkGen
 
@@ -52,7 +62,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `OPTIMIZATION`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### disableSoundEngine
 
@@ -62,7 +72,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `CREATIVE`, `OPTIMIZATION`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### endGatewayChunkLoad (MC < 1.21)
 
@@ -73,7 +83,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### endPortalChunkLoad (MC < 1.21)
 
@@ -84,7 +94,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### notifySchematicShare
 > Sends notifications to player's chat when a schematic is shared or unshared using [Syncmatica](https://modrinth.com/mod/syncmatica) or [Kyoyu](https://modrinth.com/mod/kyoyu).
@@ -94,7 +104,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### reloadPortalTicket
 
@@ -106,7 +116,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`, `SURVIVAL`
-  <br><br>
+<br><br>
 
 ### requireAmaCarpetClient
 
@@ -117,7 +127,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `AMA`
-  <br><br>
+<br><br>
 
 ### requireAmaCarpetClientTimeoutSeconds
 
@@ -127,4 +137,4 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 - Default value: `5`
 - Suggested options: `3`, `5`, `10`
 - Categories: `AMA`
-  <br><br>
+<br><br>

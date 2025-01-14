@@ -46,6 +46,16 @@
 - Categories: `AMA`, `COMMAND`, `SURVIVAL`
 <br><br>
 
+### debugModeAmaCarpet
+
+> AmaCarpet開発者用のdebug printを有効化する。
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `AMA`
+<br><br>
+
 ### disableAnimalSpawnOnChunkGen
 
 > 地形生成時の動物のスポーンを無効化する。軽量化やワールドサイズの縮小が期待される。
