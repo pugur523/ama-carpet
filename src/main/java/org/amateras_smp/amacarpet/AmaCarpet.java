@@ -24,7 +24,6 @@ public class AmaCarpet implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER = LogManager.getLogger(MOD_NAME);
-        Configurator.setLevel(LOGGER, Level.DEBUG);
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
         kModVersion = fabricLoader.getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();

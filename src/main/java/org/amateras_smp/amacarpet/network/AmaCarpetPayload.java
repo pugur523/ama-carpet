@@ -13,17 +13,12 @@ import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.utils.ResourceLocationUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
-
-//#if MC < 12004
 import io.netty.buffer.Unpooled;
-//#else
-//$$ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-//$$ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+
+//#if MC >= 12004
 //$$ import org.jetbrains.annotations.NotNull;
-//#if MC == 12004
-//$$ import net.minecraft.network.FriendlyByteBuf;
-//#else
 //$$ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+//#if MC >= 12005
 //$$ import net.minecraft.network.codec.ByteBufCodecs;
 //$$ import net.minecraft.network.codec.StreamCodec;
 //$$ import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -44,7 +39,7 @@ public class AmaCarpetPayload
         this.content = content;
     }
 
-    //#if MC == 12002
+    //#if MC >= 12002
     //$$ public AmaCarpetPayload(FriendlyByteBuf friendlyByteBuf) {
     //$$     this.content = friendlyByteBuf.readByteArray();
     //$$ }
@@ -70,37 +65,29 @@ public class AmaCarpetPayload
     public void sendC2S() {
         ClientPacketListener networkHandler = Minecraft.getInstance().getConnection();
         if (AmaCarpet.kIsClient && networkHandler != null) {
-            //#if MC >= 12004
-            //$$ ClientPlayNetworking.send(this);
-            //#else
             FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             AmaCarpet.LOGGER.debug("making c2s packet, identifier : {}, content : {}", identifier, content);
             write(buf);
-            //#if MC == 12002
+            //#if MC >= 12002
             //$$ ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(this);
             //#else
             ServerboundCustomPayloadPacket packet = new ServerboundCustomPayloadPacket(buf);
             //#endif
             networkHandler.send(packet);
-            //#endif
         } else {
             AmaCarpet.LOGGER.debug("this is not client or client connection is null");
         }
     }
 
     public void sendS2C(ServerPlayer player) {
-        //#if MC >= 12004
-        //$$ ServerPlayNetworking.send(player, this);
-        //#else
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         write(buf);
-        //#if MC == 12002
+        //#if MC >= 12002
         //$$ ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(this);
         //#else
         ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(buf);
         //#endif
         player.connection.send(packet);
-        //#endif
     }
 
     //#if 12002 <= MC && MC <= 12004
