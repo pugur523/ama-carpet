@@ -28,7 +28,7 @@ import java.util.UUID;
 public class MixinKyoyuPlacement {
     @Inject(method = "<init>", at = @At("CTOR_HEAD"))
     private void onAddKyoyuPlacement(UUID uuid, KyoyuRegion region, List<KyoyuRegion> subRegions, String ownerName, String updaterName, File file, CallbackInfo ci) {
-        if (!AmaCarpetSettings.notifySchematicShare || AmaCarpet.IS_CLIENT) return;
+        if (!AmaCarpetSettings.notifySchematicShare || AmaCarpet.kIsClient) return;
         KyoyuPlacement placement = (KyoyuPlacement)(Object) this;
         Component message = Component.literal(ownerName).withStyle(ChatFormatting.GREEN).append(
                 Component.literal(Translations.tr("ama.message.schematic.shared")).withStyle(ChatFormatting.WHITE)).append(

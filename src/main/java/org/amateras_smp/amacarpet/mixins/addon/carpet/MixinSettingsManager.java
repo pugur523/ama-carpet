@@ -7,6 +7,7 @@ package org.amateras_smp.amacarpet.mixins.addon.carpet;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
 import net.minecraft.commands.CommandSourceStack;
+import org.amateras_smp.amacarpet.AmaCarpet;
 import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.network.PacketHandler;
 import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
@@ -23,6 +24,10 @@ public class MixinSettingsManager {
             AmaCarpetServer.MINECRAFT_SERVER.getPlayerList().getPlayers().forEach(
                     (serverPlayer -> PacketHandler.sendS2C(new ModStatusQueryPacket(), serverPlayer))
             );
+            return;
+        }
+        if (rule.name().equals("debugModeAmaCarpet")) {
+            AmaCarpet.setDebug(newValue.equals("true"));
         }
     }
 }

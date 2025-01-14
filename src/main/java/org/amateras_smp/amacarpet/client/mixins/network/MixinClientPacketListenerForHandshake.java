@@ -15,10 +15,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPacketListener.class)
-public class MixinClientPlayNetworkHandler {
+public class MixinClientPacketListenerForHandshake {
     @Inject(method = "handleLogin", at = @At("RETURN"))
     private void sendHandshakePacket(ClientboundLoginPacket clientboundLoginPacket, CallbackInfo ci) {
         HandshakePacket handshakePacket = new HandshakePacket(AmaCarpet.getVersion());
+        AmaCarpet.LOGGER.debug("sending AmaCarpet HandShake packet");
         PacketHandler.sendC2S(handshakePacket);
     }
 }

@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinRemovePlacementPacket {
     @Inject(method = "onServer", at = @At("TAIL"))
     private void onRemoveKyoyuPlacement(ServerPlayer serverPlayer, CallbackInfo ci, @Local KyoyuPlacement kyoyuPlacement) {
-        if (!AmaCarpetSettings.notifySchematicShare || kyoyuPlacement == null || AmaCarpet.IS_CLIENT) return;
+        if (!AmaCarpetSettings.notifySchematicShare || kyoyuPlacement == null || AmaCarpet.kIsClient) return;
         Component message = Component.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.RED).append(
                 Component.literal(Translations.tr("ama.message.schematic.unshared")).withStyle(ChatFormatting.WHITE)).append(
                 Component.literal(kyoyuPlacement.getName()).withStyle(ChatFormatting.YELLOW));
