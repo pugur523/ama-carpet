@@ -26,7 +26,6 @@ public class MixinPlayerList {
     //#else
     //$$ private void onPlayerConnect(Connection connection, ServerPlayer serverPlayer, CommonListenerCookie commonListenerCookie, CallbackInfo ci) {
     //#endif
-        if (AmaCarpetServer.MINECRAFT_SERVER.isSingleplayer()) return;
         PlayerUtil.addShouldAuthPlayer(serverPlayer.getName().getString());
     }
 }

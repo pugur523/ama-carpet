@@ -15,17 +15,17 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.FriendlyByteBuf;
 import io.netty.buffer.Unpooled;
 
+//#if MC >= 12002
+//$$ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 //#if MC >= 12004
 //$$ import org.jetbrains.annotations.NotNull;
-//$$ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 //#if MC >= 12005
+//$$ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 //$$ import net.minecraft.network.codec.ByteBufCodecs;
 //$$ import net.minecraft.network.codec.StreamCodec;
 //$$ import net.minecraft.network.RegistryFriendlyByteBuf;
 //#endif
 //#endif
-//#if MC >= 12002
-//$$ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 //#endif
 
 public class AmaCarpetPayload
@@ -61,6 +61,13 @@ public class AmaCarpetPayload
     //$$    return TYPE;
     //$$ }
     //#endif
+
+    public static void registerPayload() {
+        //#if MC >= 12005
+        //$$ PayloadTypeRegistry.playC2S().register(TYPE, CODEC);
+        //$$ PayloadTypeRegistry.playS2C().register(TYPE, CODEC);
+        //#endif
+    }
 
     public void sendC2S() {
         ClientPacketListener networkHandler = Minecraft.getInstance().getConnection();
