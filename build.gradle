@@ -72,15 +72,3 @@ tasks.register('cleanPreprocessSources') {
         }
     }
 }
-
-tasks.register('cleanBuilds') {
-    group = 'build'
-    doFirst {
-        subprojects {
-            def path = project.projectDir.toPath().resolve('build/libs')
-            if (path.toFile().isDirectory()) {
-                path.toFile().deleteDir()
-            }
-        }
-    }
-}
