@@ -49,7 +49,7 @@ public class AmaCarpetPayload
         return this.content;
     }
 
-    public static final ResourceLocation identifier = ResourceLocationUtil.of(AmaCarpet.MOD_ID, "amacm");
+    public static final ResourceLocation identifier = ResourceLocationUtil.of(AmaCarpet.kModId, "amacm");
 
     //#if MC >= 12005
     //$$ public static final Type<AmaCarpetPayload> TYPE = new Type<>(identifier);

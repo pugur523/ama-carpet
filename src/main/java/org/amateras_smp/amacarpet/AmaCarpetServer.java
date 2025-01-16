@@ -28,14 +28,14 @@ import java.util.Map;
 public class AmaCarpetServer implements CarpetExtension {
 
     private static final AmaCarpetServer INSTANCE = new AmaCarpetServer();
-    public static final String COMPACT_NAME = AmaCarpet.MOD_ID.replaceAll("-","");  // should be `amacarpet`
+    public static final String COMPACT_NAME = AmaCarpet.kModId.replaceAll("-","");  // should be `amacarpet`
     public static final Logger LOGGER = AmaCarpet.LOGGER;
     public static MinecraftServer MINECRAFT_SERVER;
 
     @Override
     public String version()
     {
-        return AmaCarpet.MOD_ID;
+        return AmaCarpet.kModId;
     }
 
     public static AmaCarpetServer getInstance()

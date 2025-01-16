@@ -14,21 +14,21 @@ import org.apache.logging.log4j.core.config.Configurator;
 
 public class AmaCarpet implements ModInitializer {
 
-    public static final String MOD_NAME = "AmaCarpet";
-    public static final String MOD_ID = "ama-carpet";
-    public static Logger LOGGER;
+    public static final String kModName = "AmaCarpet";
+    public static final String kModId = "ama-carpet";
     public static boolean kIsClient;
     private static String kModVersion;
+    public static Logger LOGGER;
 
     @Override
     public void onInitialize() {
-        LOGGER = LogManager.getLogger(MOD_NAME);
+        LOGGER = LogManager.getLogger(kModName);
 
         FabricLoader fabricLoader = FabricLoader.getInstance();
-        kModVersion = fabricLoader.getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+        kModVersion = fabricLoader.getModContainer(kModId).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
         kIsClient = fabricLoader.getEnvironmentType() == EnvType.CLIENT;
         InitHandler.init();
-        LOGGER.info("{}({}) has initialized!", MOD_NAME, getVersion());
+        LOGGER.info("{}({}) has initialized!", kModName, getVersion());
     }
 
     public static String getVersion() {
