@@ -33,18 +33,14 @@ public class HandshakePacket extends IPacket {
 
     @Override
     public void onServer(ServerPlayer player) {
-        AmaCarpetServer.MINECRAFT_SERVER.execute(() -> {
-            AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpet-Client version {}.", player.getName().getString(), version);
-            PlayerUtil.markAsAuthenticated(player.getName().getString());
-            PacketHandler.sendS2C(new HandshakePacket(AmaCarpet.getVersion()), player);
-            PacketHandler.sendS2C(new ModStatusQueryPacket(), player);
-        });
+        AmaCarpetServer.LOGGER.info("[AmaCarpet] Player {} logged in with AmaCarpet-Client version {}.", player.getName().getString(), version);
+        PlayerUtil.markAsAuthenticated(player.getName().getString());
+        PacketHandler.sendS2C(new HandshakePacket(AmaCarpet.getVersion()), player);
+        PacketHandler.sendS2C(new ModStatusQueryPacket(), player);
     }
 
     @Override
     public void onClient() {
-        Minecraft.getInstance().execute(() -> {
-            AmaCarpetClient.LOGGER.info("[AmaCarpet] Logging into AmaCarpet-Server version {}.", version);
-        });
+        AmaCarpetClient.LOGGER.info("[AmaCarpet] Logging into AmaCarpet-Server version {}.", version);
     }
 }

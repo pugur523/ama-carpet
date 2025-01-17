@@ -7,6 +7,7 @@ package org.amateras_smp.amacarpet.network;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import org.amateras_smp.amacarpet.AmaCarpet;
+import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.network.packets.EnableSpecifiedFeaturePacket;
 import org.amateras_smp.amacarpet.network.packets.HandshakePacket;
 import org.amateras_smp.amacarpet.network.packets.ModStatusQueryPacket;
@@ -82,17 +83,14 @@ public class PacketHandler {
         AmaCarpet.LOGGER.debug("handling c2s packet");
         IPacket packet = decode(data);
         if (packet == null) return;
-        packet.onServer(player);
+        AmaCarpetServer.MINECRAFT_SERVER.execute(() -> packet.onServer(player));
     }
 
     public static void handleS2C(byte[] data) {
         AmaCarpet.LOGGER.debug("handling s2c packet");
-        Minecraft.getInstance().execute(() -> {
-            AmaCarpet.LOGGER.debug("handling s2c executed by client thread");
-            IPacket packet = decode(data);
-            if (packet == null) return;
-            packet.onClient();
-        });
+        IPacket packet = decode(data);
+        if (packet == null) return;
+        Minecraft.getInstance().execute(packet::onClient);
     }
 
     public static void sendC2S(IPacket packet) {
