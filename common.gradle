@@ -37,7 +37,7 @@ dependencies {
     mappings loom.officialMojangMappings()
     // mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    // modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     modImplementation "com.github.Fallen-Breath:conditional-mixin:${project.conditional_mixin_version}"
 
@@ -53,9 +53,6 @@ dependencies {
     }
 
     modImplementation "maven.modrinth:kyoyu:${project.kyoyu_version}-fabric"
-
-    include(modImplementation(fabricApi.module("fabric-networking-api-v1", project.fabric_api_version)))
-    include(modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)))
 }
 
 JavaVersion JAVA_COMPATIBILITY
