@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
-//#if MC < 12004
+//#if MC <= 12004
 import net.minecraft.resources.ResourceLocation;
 //#else
 //$$ import ch.endte.syncmatica.network.PacketType;
