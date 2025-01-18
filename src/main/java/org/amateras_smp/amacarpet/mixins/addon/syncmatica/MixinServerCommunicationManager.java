@@ -31,7 +31,7 @@ import net.minecraft.resources.ResourceLocation;
 @Mixin(ServerCommunicationManager.class)
 public abstract class MixinServerCommunicationManager extends CommunicationManager {
     @Inject(method = "handle", at = @At("HEAD"))
-    //#if MC < 12004
+    //#if MC <= 12004
     private void onRemovePlacement(ExchangeTarget source, ResourceLocation id, FriendlyByteBuf packetBuf, CallbackInfo ci) {
         if (!AmaCarpetSettings.notifySchematicShare || !id.equals(PacketType.REMOVE_SYNCMATIC.identifier) || AmaCarpet.kIsClient) return;
     //#else
