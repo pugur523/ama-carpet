@@ -1,6 +1,7 @@
 # ![Logo](src/main/resources/assets/ama-carpet/icon_32.png) AmaCarpet
 
 [日本語の説明はこちら](README_ja.md)<br><br>
+[![Dev Builds](https://github.com/pugur523/ama-carpet/actions/workflows/gradle.yml/badge.svg)](https://github.com/pugur523/ama-carpet/actions/workflows/gradle.yml)
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
