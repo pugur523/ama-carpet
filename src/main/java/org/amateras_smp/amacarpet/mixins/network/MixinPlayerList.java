@@ -7,7 +7,6 @@ package org.amateras_smp.amacarpet.mixins.network;
 import net.minecraft.network.Connection;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
-import org.amateras_smp.amacarpet.AmaCarpetServer;
 import org.amateras_smp.amacarpet.utils.PlayerUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
