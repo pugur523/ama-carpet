@@ -33,8 +33,17 @@
     "carpet": "*",
     "minecraft": "${minecraft_dependency}"
   },
-  "suggests": {
+  "recommends": {
     "syncmatica": "*",
     "kyoyu": ""
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/YFJff2Bkx8",
+        "modmenu.modrinth": "https://modrinth.com/project/amacarpet"
+      },
+      "parent": "carpet"
+    }
   }
 }
