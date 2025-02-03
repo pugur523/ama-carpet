@@ -1,6 +1,7 @@
 # ![Logo](src/main/resources/assets/ama-carpet/icon_32.png) AmaCarpet
 
-[English readme here](README.md)<br><br>
+[English readme here](README.md)
+
 [![License](https://img.shields.io/github/license/pugur523/ama-carpet.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Issues](https://img.shields.io/github/issues/pugur523/ama-carpet.svg)](https://github.com/pugur523/ama-carpet/issues)
 [![Modrinth](https://img.shields.io/modrinth/dt/amacarpet?label=Modrinth%20Downloads)](https://modrinth.com/mod/amacarpet)
