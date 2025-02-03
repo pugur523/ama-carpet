@@ -18,7 +18,7 @@ public class EnableSpecifiedFeaturePacket extends IPacket {
     public EnableSpecifiedFeaturePacket(String featureName) {
         this.featureName = featureName;
     }
-
+    
     public EnableSpecifiedFeaturePacket(byte[] bytes) {
         this.featureName = new String(bytes, StandardCharsets.UTF_8);
     }

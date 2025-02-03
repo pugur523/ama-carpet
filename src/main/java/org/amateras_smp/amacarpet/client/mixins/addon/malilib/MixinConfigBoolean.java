@@ -28,7 +28,7 @@ public class MixinConfigBoolean {
         String changed = self.getName();
         String sneak_changed = StringUtil.camelToSneak(changed);
 
-        // FeatureToggle overrides setBooleanValue so this does nothing.
+        // tweakeroo's FeatureToggle overrides setBooleanValue so this does nothing.
         // for (String feature : ClientModUtil.tweakerooFeaturesWatchList) {
         //     if (sneak_changed.equals("tweak_" + feature)) {
         //         PacketHandler.sendC2S(new EnableSpecifiedFeaturePacket(feature));

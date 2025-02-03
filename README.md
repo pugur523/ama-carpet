@@ -71,7 +71,7 @@ Feel free to [report any issues](https://github.com/pugur523/ama-carpet/issues) 
 ### disableSoundEngine
 
 > Disables all server-side sound engine processes.
- 
+
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`

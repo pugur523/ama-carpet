@@ -2,19 +2,21 @@
   "schemaVersion": 1,
   "id": "${id}",
   "version": "${version}",
+
   "name": "${name}",
-  "description": "A carpet mod extension made for Amateras SMP",
+  "description": "carpet addition made for amateras",
   "license": "LGPL-3",
   "authors": [
     "pugur"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/mod/amacarpet",
+    "issues": "https://github.com/pugur523/ama-carpet/issues",
     "sources": "https://github.com/pugur523/ama-carpet"
   },
+
   "icon": "assets/ama-carpet/icon.png",
+
   "environment": "*",
-  "accessWidener": "ama-carpet.accesswidener",
   "entrypoints": {
     "main": [
       "org.amateras_smp.amacarpet.AmaCarpet"
@@ -27,21 +29,22 @@
     "ama-carpet.mixins.json",
     "ama-carpet.client.mixins.json"
   ],
+
+  "accessWidener": "ama-carpet.accesswidener",
+  "breaks": {
+    "kyoyu": "<=1.1.1"
+  },
   "depends": {
-    "fabricloader": ">=0.15.0",
+    "fabricloader": ">=0.16.10",
     "fabric": "*",
     "carpet": "*",
     "minecraft": "${minecraft_dependency}"
-  },
-  "recommends": {
-    "syncmatica": "*",
-    "kyoyu": ""
   },
   "custom": {
     "modmenu": {
       "links": {
         "modmenu.discord": "https://discord.gg/YFJff2Bkx8",
-        "modmenu.modrinth": "https://modrinth.com/project/amacarpet"
+        "modmenu.modrinth": "https://modrinth.com/mod/amacarpet"
       },
       "parent": "carpet"
     }
